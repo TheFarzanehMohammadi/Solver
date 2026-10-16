@@ -4,387 +4,159 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>تسویه‌حساب | Solver</title>
-
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css">
+  <title>تأیید درخواست | Solver</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
-
   <style>
-    * { box-sizing: border-box; }
-
-    body {
-      font-family: 'Vazirmatn', sans-serif;
-      background: #f7f8fc;
-      color: #20243a;
-      margin: 0;
-    }
-
-    .checkout-header {
-      background: #fff;
-      border-bottom: 1px solid #eceef5;
-      padding: 18px 0;
-    }
-
-    .brand {
-      color: #635bdb;
-      font-size: 25px;
-      font-weight: 800;
-      text-decoration: none;
-    }
-
-    .brand span {
-      color: #252943;
-      font-size: 17px;
-      margin-right: 5px;
-    }
-
-    .back-link {
-      color: #635bdb;
-      text-decoration: none;
-      font-size: 14px;
-      font-weight: 600;
-    }
-
-    .page-heading { margin: 36px 0 24px; }
-    .page-heading h1 { font-size: 28px; font-weight: 800; }
-    .page-heading p { color: #777d91; margin-top: 10px; }
-
-    .checkout-card {
-      background: #fff;
-      border: 1px solid #eceef5;
-      border-radius: 20px;
-      padding: 28px;
-      margin-bottom: 22px;
-      box-shadow: 0 8px 30px rgba(30, 35, 80, .035);
-    }
-
-    .section-title {
-      font-size: 19px;
-      font-weight: 800;
-      margin-bottom: 24px;
-    }
-
-    .form-label { font-weight: 600; font-size: 14px; }
-
-    .form-control {
-      border: 1px solid #e2e5ef;
-      border-radius: 11px;
-      padding: 13px 14px;
-      font-family: inherit;
-    }
-
-    .form-control:focus {
-      border-color: #8179ef;
-      box-shadow: 0 0 0 3px rgba(99, 91, 219, .1);
-    }
-
-    .order-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 12px;
-      padding: 15px 0;
-      border-bottom: 1px solid #eff0f6;
-      font-size: 14px;
-    }
-
-    .item-name { font-weight: 600; }
-    .item-detail { color: #85899a; font-size: 12px; margin-top: 6px; }
-    .item-price { white-space: nowrap; font-weight: 700; }
-
-    .total-row {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      margin-top: 20px;
-      font-weight: 700;
-    }
-
-    .total-price { color: #635bdb; font-size: 22px; }
-
-    .primary-btn {
-      display: block;
-      width: 100%;
-      border: none;
-      border-radius: 12px;
-      padding: 15px;
-      margin-top: 24px;
-      background: #635bdb;
-      color: white;
-      font-family: inherit;
-      font-size: 15px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: .2s;
-    }
-
-    .primary-btn:hover { background: #5048c6; }
-    .primary-btn:disabled { opacity: .5; cursor: not-allowed; }
-
-    .notice {
-      background: #f1f0ff;
-      color: #5149bb;
-      border-radius: 12px;
-      padding: 14px;
-      font-size: 13px;
-      line-height: 1.9;
-      margin-top: 18px;
-    }
-
-    .secure-note {
-      color: #85899a;
-      font-size: 12px;
-      text-align: center;
-      margin-top: 14px;
-    }
-
-    .empty-state {
-      background: white;
-      padding: 45px 20px;
-      border-radius: 18px;
-      text-align: center;
-      border: 1px solid #eceef5;
-    }
-
-    .empty-state h2 { font-size: 21px; font-weight: 800; }
-    .empty-state p { color: #777d91; margin: 14px 0 22px; }
-
-    .empty-state a {
-      display: inline-block;
-      background: #635bdb;
-      color: white;
-      text-decoration: none;
-      padding: 12px 22px;
-      border-radius: 10px;
-      font-weight: 600;
-    }
-
-    footer {
-      text-align: center;
-      color: #85899a;
-      padding: 30px 15px;
-      font-size: 13px;
-    }
-
-    @media (max-width: 576px) {
-      .checkout-card { padding: 20px; }
-      .page-heading h1 { font-size: 24px; }
-    }
+    body { font-family: 'Vazirmatn', sans-serif; background: #f7f8fc; color: #20243a; }
+    .navbar { background: #fff; border-bottom: 1px solid #eee; }
+    .brand { color: #6658e8; font-size: 1.6rem; font-weight: 800; text-decoration: none; }
+    .page-wrap { max-width: 850px; margin: 45px auto; padding: 0 16px; }
+    .panel { background: #fff; border: 1px solid #ececf4; border-radius: 20px; padding: 28px; box-shadow: 0 8px 30px #20243a08; }
+    .muted { color: #777d91; }
+    .btn-solver { background: #6658e8; color: #fff; border: 0; border-radius: 10px; padding: 12px 20px; font-weight: 700; }
+    .btn-solver:hover { background: #5143d0; color: #fff; }
+    .form-control, .form-select { padding: 12px; border-radius: 10px; }
+    .notice { background: #f0eeff; border-radius: 12px; padding: 14px; color: #5143b7; }
+    footer { text-align: center; color: #777d91; padding: 25px 12px; }
   </style>
 </head>
-
 <body>
-  <header class="checkout-header">
-    <div class="container d-flex justify-content-between align-items-center">
-      <a href="index.html" class="brand">Solver <span>سالور</span></a>
-      <a href="cart.html" class="back-link">بازگشت به سبد خرید ←</a>
+  <nav class="navbar navbar-expand-lg">
+    <div class="container py-2">
+      <a class="brand" href="index.html">Solver</a>
+      <a href="services.html" class="btn btn-outline-secondary">مشاهده پروژه‌ها</a>
     </div>
-  </header>
+  </nav>
 
-  <main class="container pb-5">
-    <div class="page-heading">
-      <h1>تکمیل سفارش</h1>
-      <p>اطلاعاتت رو وارد کن تا سفارش آزمایشی‌ات ثبت بشه.</p>
-    </div>
-
-    <div id="emptyState" class="empty-state" hidden>
-      <h2>سبد خریدت خالیه!</h2>
-      <p>برای ادامه، اول یک خدمت به سبد خرید اضافه کن.</p>
-      <a href="services.html">مشاهدهٔ خدمات</a>
+  <main class="page-wrap">
+    <div class="mb-4">
+      <h1 class="h3 fw-bold">تأیید و ارسال درخواست</h1>
+      <p class="muted">اطلاعاتت رو بررسی کن و درخواستت رو ثبت کن.</p>
     </div>
 
-    <div id="checkoutContent" class="row g-4">
-      <section class="col-lg-7">
-        <div class="checkout-card">
-          <h2 class="section-title">اطلاعات سفارش‌دهنده</h2>
+    <div class="panel">
+      <div class="notice mb-4">
+        این مرحله نمایشی است؛ در حال حاضر پرداخت واقعی یا تراکنش بانکی انجام نمی‌شود.
+      </div>
 
-          <form id="checkoutForm">
-            <div class="mb-3">
-              <label for="fullName" class="form-label">نام و نام خانوادگی</label>
-              <input id="fullName" name="fullName" class="form-control"
-                     type="text" autocomplete="name" required minlength="3"
-                     placeholder="نام کاملت رو وارد کن">
-            </div>
+      <div id="projectSummary" class="mb-4">
+        <h2 class="h5 fw-bold">خلاصه درخواست</h2>
+        <p class="muted mb-0">در حال بررسی اطلاعات...</p>
+      </div>
 
-            <div class="mb-3">
-              <label for="email" class="form-label">ایمیل</label>
-              <input id="email" name="email" class="form-control"
-                     type="email" autocomplete="email" required
-                     placeholder="example@email.com">
-            </div>
+      <form id="checkoutForm">
+        <h2 class="h5 fw-bold mb-3">اطلاعات تماس</h2>
 
-            <div class="mb-3">
-              <label for="phone" class="form-label">شماره تماس</label>
-              <input id="phone" name="phone" class="form-control"
-                     type="tel" autocomplete="tel" required
-                     pattern="[0-9۰-۹٠-٩+\-() ]{8,20}"
-                     placeholder="شماره تماس">
-            </div>
-
-            <div class="mb-3">
-              <label for="description" class="form-label">
-                توضیحات سفارش <span class="text-secondary">(اختیاری)</span>
-              </label>
-              <textarea id="description" name="description"
-                        class="form-control" rows="3"
-                        maxlength="500"
-                        placeholder="اگر نکته‌ای دربارهٔ سفارشت داری، بنویس..."></textarea>
-            </div>
-
-            <div class="notice">
-              <strong>پرداخت آزمایشی:</strong>
-              این پروژه آموزشی است. اطلاعات کارت بانکی وارد نکن؛ هیچ پولی دریافت نمی‌شود.
-            </div>
-
-            <button id="submitBtn" class="primary-btn" type="submit">
-              ادامه به پرداخت آزمایشی
-            </button>
-            <p class="secure-note">
-              این نسخه نمایشی است و اطلاعات سفارش فقط در همین مرورگر ذخیره می‌شود.
-            </p>
-          </form>
+        <div class="mb-3">
+          <label for="fullName" class="form-label">نام و نام خانوادگی</label>
+          <input type="text" id="fullName" class="form-control" required maxlength="80" placeholder="نام شما">
         </div>
-      </section>
 
-      <aside class="col-lg-5">
-        <div class="checkout-card">
-          <h2 class="section-title">خلاصهٔ سفارش</h2>
-          <div id="orderItems"></div>
-
-          <div class="total-row">
-            <span>مبلغ قابل پرداخت</span>
-            <span id="totalPrice" class="total-price">۰ تومان</span>
-          </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">ایمیل</label>
+          <input type="email" id="email" class="form-control" required maxlength="120" placeholder="example@email.com">
         </div>
-      </aside>
+
+        <div class="mb-4">
+          <label for="notes" class="form-label">توضیحات تکمیلی (اختیاری)</label>
+          <textarea id="notes" class="form-control" rows="3" maxlength="1000" placeholder="اگر نکته‌ای هست بنویس..."></textarea>
+        </div>
+
+        <div id="formMessage" class="mb-3" role="status"></div>
+
+        <button type="submit" class="btn btn-solver w-100">ثبت درخواست نمایشی</button>
+        <a href="services.html" class="btn btn-light w-100 mt-2">بازگشت به فهرست پروژه‌ها</a>
+      </form>
     </div>
   </main>
 
-  <footer>
-    Solver | سالور — مهارتت، راه‌حل توئه.
-  </footer>
+  <footer>Solver — مهارتت، راه‌حل توئه.</footer>
 
   <script>
-    const CART_KEY = 'solverCart';
-    const ORDER_KEY = 'solverLastOrder';
+    const summary = document.getElementById('projectSummary');
+    const form = document.getElementById('checkoutForm');
+    const message = document.getElementById('formMessage');
 
-    const emptyState = document.getElementById('emptyState');
-    const checkoutContent = document.getElementById('checkoutContent');
-    const orderItems = document.getElementById('orderItems');
-    const totalPrice = document.getElementById('totalPrice');
-    const checkoutForm = document.getElementById('checkoutForm');
-    const submitBtn = document.getElementById('submitBtn');
+    const params = new URLSearchParams(window.location.search);
+    const projectId = params.get('id');
+    const projectTitle = params.get('title');
 
-    const formatPrice = (amount) =>
-      Number(amount).toLocaleString('fa-IR') + ' تومان';
+    let selectedProject = null;
 
-    function getCart() {
-      try {
-        const cart = JSON.parse(localStorage.getItem(CART_KEY) || '[]');
-        if (!Array.isArray(cart)) return [];
-
-        return cart.filter(item =>
-          item &&
-          typeof item.title === 'string' &&
-          item.title.trim() &&
-          Number.isFinite(Number(item.price)) &&
-          Number(item.price) >= 0 &&
-          Number.isInteger(Number(item.quantity)) &&
-          Number(item.quantity) > 0
-        );
-      } catch {
-        return [];
-      }
+    try {
+      const projects = JSON.parse(localStorage.getItem('solverProjects') || '[]');
+      selectedProject = projects.find(p => String(p.id) === String(projectId)) || null;
+    } catch (error) {
+      console.error('Could not read saved projects:', error);
     }
 
-    const cart = getCart();
-
-    function renderOrder() {
-      if (cart.length === 0) {
-        checkoutContent.hidden = true;
-        emptyState.hidden = false;
-        return;
-      }
-
-      checkoutContent.hidden = false;
-      emptyState.hidden = true;
-      orderItems.replaceChildren();
-
-      let total = 0;
-
-      cart.forEach(item => {
-        const price = Number(item.price);
-        const quantity = Number(item.quantity);
-        total += price * quantity;
-
-        const row = document.createElement('div');
-        row.className = 'order-item';
-
-        const info = document.createElement('div');
-
-        const name = document.createElement('div');
-        name.className = 'item-name';
-        name.textContent = item.title;
-
-        const detail = document.createElement('div');
-        detail.className = 'item-detail';
-        detail.textContent = 'تعداد: ' + quantity.toLocaleString('fa-IR');
-
-        const priceLabel = document.createElement('div');
-        priceLabel.className = 'item-price';
-        priceLabel.textContent = formatPrice(price * quantity);
-
-        info.append(name, detail);
-        row.append(info, priceLabel);
-        orderItems.appendChild(row);
-      });
-
-      totalPrice.textContent = formatPrice(total);
+    if (selectedProject) {
+      summary.innerHTML = `
+        <h2 class="h5 fw-bold">خلاصه پروژه</h2>
+        <p class="mb-1"><strong>عنوان:</strong> ${escapeHTML(selectedProject.title || 'بدون عنوان')}</p>
+        <p class="mb-1"><strong>بودجه پیشنهادی:</strong> ${escapeHTML(String(selectedProject.budget || 'تعیین نشده'))}</p>
+        <p class="mb-0"><strong>مهلت:</strong> ${escapeHTML(selectedProject.deadline || 'تعیین نشده')}</p>
+      `;
+    } else if (projectTitle) {
+      summary.innerHTML = `
+        <h2 class="h5 fw-bold">خلاصه درخواست</h2>
+        <p class="mb-0"><strong>عنوان:</strong> ${escapeHTML(projectTitle)}</p>
+        <p class="small muted mt-2 mb-0">جزئیات کامل این پروژه در اطلاعات ذخیره‌شده پیدا نشد.</p>
+      `;
+    } else {
+      summary.innerHTML = `
+        <h2 class="h5 fw-bold">خلاصه درخواست</h2>
+        <p class="muted mb-0">پروژه مشخصی انتخاب نشده است. می‌توانی از فهرست پروژه‌ها وارد جزئیات یک پروژه شوی.</p>
+      `;
     }
 
-    checkoutForm.addEventListener('submit', function(event) {
+    function escapeHTML(value) {
+      return String(value).replace(/[&<>"']/g, char => ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#39;'
+      }[char]));
+    }
+
+    form.addEventListener('submit', function(event) {
       event.preventDefault();
 
-      if (!checkoutForm.reportValidity()) return;
+      const fullName = document.getElementById('fullName').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const notes = document.getElementById('notes').value.trim();
 
-      if (cart.length === 0) {
-        renderOrder();
+      if (!fullName || !email) {
+        message.className = 'text-danger mb-3';
+        message.textContent = 'لطفاً نام و ایمیل را وارد کن.';
         return;
       }
 
-      const formData = new FormData(checkoutForm);
-      const total = cart.reduce(
-        (sum, item) => sum + Number(item.price) * Number(item.quantity), 0
-      );
-
-      const order = {
-        orderId: 'SLV-' + Date.now(),
-        customer: {
-          fullName: String(formData.get('fullName')).trim(),
-          email: String(formData.get('email')).trim(),
-          phone: String(formData.get('phone')).trim()
-        },
-        description: String(formData.get('description') || '').trim(),
-        items: cart.map(item => ({
-          title: item.title,
-          price: Number(item.price),
-          quantity: Number(item.quantity)
-        })),
-        total: total,
-        status: 'pending',
-        createdAt: new Date().toISOString()
+      const request = {
+        id: Date.now(),
+        projectId: projectId || null,
+        projectTitle: selectedProject?.title || projectTitle || 'درخواست بدون پروژه مشخص',
+        fullName,
+        email,
+        notes,
+        createdAt: new Date().toISOString(),
+        status: 'demo'
       };
 
-      localStorage.setItem(ORDER_KEY, JSON.stringify(order));
-
-      submitBtn.disabled = true;
-      submitBtn.textContent = 'در حال انتقال...';
-
-      window.location.href = 'payment-success.html';
+      try {
+        const requests = JSON.parse(localStorage.getItem('solverRequests') || '[]');
+        requests.push(request);
+        localStorage.setItem('solverRequests', JSON.stringify(requests));
+        localStorage.setItem('solverLastRequest', JSON.stringify(request));
+        window.location.href = 'payment-success.html';
+      } catch (error) {
+        message.className = 'text-danger mb-3';
+        message.textContent = 'ذخیره درخواست انجام نشد. فضای ذخیره‌سازی مرورگر را بررسی کن.';
+      }
     });
-
-    renderOrder();
   </script>
 </body>
 </html>
