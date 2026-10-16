@@ -1,0 +1,367 @@
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Solver؛ پلتفرم خدمات دانشجویی برای پیدا کردن مهارت‌ها و راه‌حل‌های موردنیاز.">
+    <meta name="theme-color" content="#6254e8">
+
+    <title>Solver | سالور — مهارتت، راه‌حل توئه</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<header class="site-header">
+    <nav class="navbar navbar-expand-lg container">
+        <a class="navbar-brand" href="index.html" aria-label="صفحه اصلی سالور">
+            <span class="brand-mark">S</span>
+            <span class="brand-name">Solver<span class="brand-dot">.</span></span>
+        </a>
+
+        <button class="navbar-toggler" type="button"
+                data-bs-toggle="collapse" data-bs-target="#mainNav"
+                aria-controls="mainNav" aria-expanded="false"
+                aria-label="باز کردن منو">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="mainNav">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item"><a class="nav-link active" href="index.html">خانه</a></li>
+                <li class="nav-item"><a class="nav-link" href="services.html">خدمات</a></li>
+                <li class="nav-item"><a class="nav-link" href="blog.html">مجله</a></li>
+                <li class="nav-item"><a class="nav-link" href="about.html">درباره ما</a></li>
+                <li class="nav-item"><a class="nav-link" href="contact.html">تماس با ما</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <a href="login.html" class="login-link">ورود</a>
+                <a href="signup.html" class="btn btn-brand">شروع رایگان <span>←</span></a>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<main>
+
+    <section class="hero-section">
+        <div class="container hero-grid">
+
+            <div class="hero-content">
+                <div class="eyebrow">
+                    <span class="eyebrow-dot"></span>
+                    دنیای فرصت‌های دانشجویی
+                </div>
+
+                <h1>
+                    هر مهارتی،<br>
+                    یک <span class="gradient-text">راه‌حل.</span>
+                </h1>
+
+                <p class="hero-description">
+                    دنبال کسی هستی که در انجام یک کار کمکت کنه؟
+                    یا مهارتی داری که می‌خوای باهاش درآمد کسب کنی؟
+                    سالور، نقطه‌ی شروع همکاری شماست.
+                </p>
+
+                <div class="hero-actions">
+                    <a href="services.html" class="btn btn-brand btn-lg">
+                        کشف خدمات <span>←</span>
+                    </a>
+                    <a href="signup.html" class="btn btn-outline-brand btn-lg">
+                        ارائه مهارت
+                    </a>
+                </div>
+
+                <div class="hero-trust">
+                    <span class="trust-icon">✦</span>
+                    <span>یادگیری، همکاری و رشد در کنار یکدیگر</span>
+                </div>
+            </div>
+
+            <div class="hero-visual" aria-label="تصویر گرافیکی برند سالور">
+                <div class="visual-glow"></div>
+                <div class="visual-ring ring-one"></div>
+                <div class="visual-ring ring-two"></div>
+
+                <div class="main-orb">
+                    <span class="orb-letter">S</span>
+                    <span class="orb-name">Solver</span>
+                    <span class="orb-caption">SKILLS MEET NEEDS</span>
+                </div>
+
+                <div class="floating-card float-top">
+                    <span class="float-icon icon-purple">✳</span>
+                    <span>
+                        <strong>طراحی خلاقانه</strong>
+                        <small>ایده‌هات رو اجرا کن</small>
+                    </span>
+                </div>
+
+                <div class="floating-card float-left">
+                    <span class="float-icon icon-green">{ }</span>
+                    <span>
+                        <strong>خدمات نرم‌افزاری</strong>
+                        <small>راه‌حل‌های کاربردی</small>
+                    </span>
+                </div>
+
+                <div class="floating-card float-bottom">
+                    <span class="float-icon icon-orange">文</span>
+                    <span>
+                        <strong>ترجمه و تایپ</strong>
+                        <small>مهارتت رو به اشتراک بذار</small>
+                    </span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="search-section">
+        <div class="container">
+            <form class="search-box" id="serviceSearch">
+                <span class="search-symbol" aria-hidden="true">⌕</span>
+                <input type="search" id="searchInput"
+                       placeholder="چه خدمتی نیاز داری؟ مثلاً طراحی رزومه..."
+                       aria-label="جست‌وجوی خدمات">
+                <button type="submit" class="btn btn-brand">جست‌وجو</button>
+            </form>
+            <p class="search-hint">پیشنهادهای محبوب: طراحی رزومه، ترجمه، برنامه‌نویسی</p>
+        </div>
+    </section>
+
+    <section class="section-padding categories-section">
+        <div class="container">
+            <div class="section-heading">
+                <div>
+                    <span class="eyebrow">مهارت موردنظرت رو پیدا کن</span>
+                    <h2>دسته‌بندی خدمات</h2>
+                    <p>از میان مهارت‌های مختلف، چیزی رو که نیاز داری انتخاب کن.</p>
+                </div>
+                <a href="services.html" class="text-link">همه خدمات ←</a>
+            </div>
+
+            <div class="row g-3">
+                <div class="col-6 col-lg-3">
+                    <a href="services.html?category=design" class="category-card">
+                        <span class="category-icon icon-purple">✳</span>
+                        <h3>طراحی و گرافیک</h3>
+                        <p>لوگو، پوستر و رزومه</p>
+                        <span class="category-arrow">←</span>
+                    </a>
+                </div>
+
+                <div class="col-6 col-lg-3">
+                    <a href="services.html?category=software" class="category-card">
+                        <span class="category-icon icon-green">{ }</span>
+                        <h3>نرم‌افزار و فناوری</h3>
+                        <p>برنامه‌نویسی و خدمات فنی</p>
+                        <span class="category-arrow">←</span>
+                    </a>
+                </div>
+
+                <div class="col-6 col-lg-3">
+                    <a href="services.html?category=translation" class="category-card">
+                        <span class="category-icon icon-orange">文</span>
+                        <h3>ترجمه و تایپ</h3>
+                        <p>ترجمه، تایپ و ویرایش</p>
+                        <span class="category-arrow">←</span>
+                    </a>
+                </div>
+
+                <div class="col-6 col-lg-3">
+                    <a href="services.html?category=education" class="category-card">
+                        <span class="category-icon icon-blue">✎</span>
+                        <h3>آموزش و مهارت</h3>
+                        <p>رفع اشکال و آموزش</p>
+                        <span class="category-arrow">←</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding featured-section">
+        <div class="container">
+            <div class="section-heading">
+                <div>
+                    <span class="eyebrow">چند پیشنهاد برای شروع</span>
+                    <h2>خدمات منتخب</h2>
+                    <p>نمونه‌هایی از خدماتی که می‌تونی در سالور پیدا کنی.</p>
+                </div>
+                <a href="services.html" class="text-link">مشاهده همه ←</a>
+            </div>
+
+            <div class="row g-4">
+
+                <div class="col-md-6 col-lg-4">
+                    <article class="service-card">
+                        <div class="service-art art-purple">
+                            <span class="art-label">CREATIVE</span>
+                            <span class="art-main">CV<span>.</span></span>
+                            <span class="art-decoration">✳</span>
+                        </div>
+                        <div class="service-body">
+                            <span class="service-category">طراحی و گرافیک</span>
+                            <h3>طراحی رزومه حرفه‌ای</h3>
+                            <p>یک رزومه‌ی منظم و جذاب برای معرفی بهتر توانایی‌هات.</p>
+                            <div class="service-footer">
+                                <span><small>قیمت نمونه</small><strong>۱۵۰ هزار تومان</strong></span>
+                                <a href="service-detail.html" class="service-link" aria-label="جزئیات طراحی رزومه">←</a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="col-md-6 col-lg-4">
+                    <article class="service-card">
+                        <div class="service-art art-green">
+                            <span class="art-label">BUILD SOMETHING</span>
+                            <span class="art-main">{<span> }</span></span>
+                            <span class="art-decoration">⌘</span>
+                        </div>
+                        <div class="service-body">
+                            <span class="service-category">نرم‌افزار و فناوری</span>
+                            <h3>راهنمایی برنامه‌نویسی</h3>
+                            <p>کمک به فهم مفاهیم پایه و رفع اشکال کدها.</p>
+                            <div class="service-footer">
+                                <span><small>قیمت نمونه</small><strong>۱۰۰ هزار تومان</strong></span>
+                                <a href="service-detail.html" class="service-link" aria-label="جزئیات راهنمایی برنامه‌نویسی">←</a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="col-md-6 col-lg-4">
+                    <article class="service-card">
+                        <div class="service-art art-orange">
+                            <span class="art-label">WORDS MATTER</span>
+                            <span class="art-main">ABC<span>.</span></span>
+                            <span class="art-decoration">文</span>
+                        </div>
+                        <div class="service-body">
+                            <span class="service-category">ترجمه و تایپ</span>
+                            <h3>تایپ و ویرایش متن</h3>
+                            <p>تبدیل دست‌نوشته‌ها به متن تایپ‌شده و مرتب.</p>
+                            <div class="service-footer">
+                                <span><small>قیمت نمونه</small><strong>۸۰ هزار تومان</strong></span>
+                                <a href="service-detail.html" class="service-link" aria-label="جزئیات تایپ و ویرایش">←</a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+            </div>
+
+            <p class="demo-note">خدمات و قیمت‌های نمایش‌داده‌شده در این نسخه، نمونه‌ی آزمایشی هستند.</p>
+        </div>
+    </section>
+
+    <section class="section-padding how-section">
+        <div class="container">
+            <div class="section-heading centered-heading">
+                <div>
+                    <span class="eyebrow">شروع همکاری در سه قدم</span>
+                    <h2>سالور چطور کار می‌کنه؟</h2>
+                    <p>فرآیند ساده‌ای برای پیدا کردن خدمت یا ارائه‌ی مهارت.</p>
+                </div>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="step-card">
+                        <span class="step-number">01</span>
+                        <div class="step-icon">⌕</div>
+                        <h3>خدمت رو پیدا کن</h3>
+                        <p>دسته‌بندی‌ها رو ببین و خدمت متناسب با نیازت رو پیدا کن.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="step-card">
+                        <span class="step-number">02</span>
+                        <div class="step-icon">↗</div>
+                        <h3>جزئیات رو بررسی کن</h3>
+                        <p>توضیحات و قیمت رو بخون و درباره‌ی انتخابت تصمیم بگیر.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="step-card">
+                        <span class="step-number">03</span>
+                        <div class="step-icon">✓</div>
+                        <h3>سفارش رو ثبت کن</h3>
+                        <p>سفارشت رو ثبت کن و مراحلش رو در پنل کاربری پیگیری کن.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-box">
+                <div class="cta-decoration">S</div>
+                <div class="cta-content">
+                    <span class="eyebrow">مهارت تو می‌تونه شروعی باشه</span>
+                    <h2>برای ارائه‌ی مهارتت آماده‌ای؟</h2>
+                    <p>به جمع کسانی بپیوند که دانش و توانایی‌هاشون رو به فرصت تبدیل می‌کنن.</p>
+                </div>
+                <a href="signup.html" class="btn btn-light btn-lg">ساخت حساب کاربری ←</a>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<footer class="site-footer">
+    <div class="container">
+        <div class="footer-main">
+            <div class="footer-brand">
+                <a class="navbar-brand" href="index.html">
+                    <span class="brand-mark">S</span>
+                    <span class="brand-name">Solver<span class="brand-dot">.</span></span>
+                </a>
+                <p>سالور؛ جایی برای پیوند مهارت‌ها با نیازها و ساختن فرصت‌های تازه.</p>
+                <span class="footer-tagline">مهارتت، راه‌حل توئه.</span>
+            </div>
+
+            <div class="footer-links">
+                <h4>دسترسی سریع</h4>
+                <a href="services.html">مشاهده خدمات</a>
+                <a href="about.html">درباره سالور</a>
+                <a href="contact.html">تماس با ما</a>
+                <a href="blog.html">مجله</a>
+            </div>
+
+            <div class="footer-links">
+                <h4>راهنما و قوانین</h4>
+                <a href="faq.html">سؤالات متداول</a>
+                <a href="terms.html">قوانین و مقررات</a>
+                <a href="privacy.html">حریم خصوصی</a>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <span>© سالور — پروژه‌ی آموزشی طراحی وب</span>
+            <button id="scrollTop" class="scroll-top" aria-label="بازگشت به بالای صفحه">↑</button>
+        </div>
+    </div>
+</footer>
+
+<div id="toast" class="toast-message" role="status" aria-live="polite"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/script.js"></script>
+
+</body>
+</html>
