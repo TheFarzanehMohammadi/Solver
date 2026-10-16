@@ -2,366 +2,801 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Solver؛ پلتفرم خدمات دانشجویی برای پیدا کردن مهارت‌ها و راه‌حل‌های موردنیاز.">
-    <meta name="theme-color" content="#6254e8">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Solver | سالور — مهارتت، راه‌حل توئه</title>
+  <title>Solver | سالور — پروژه پیدا کن، مهارتت رو به کار بگیر</title>
+  <meta name="description" content="در سالور پروژه‌های دانشجویی ثبت کن، پروژه‌های مناسب مهارتت رو پیدا کن و برای همکاری پیشنهاد بده.">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
+  <style>
+    :root {
+      --primary: #635bdb;
+      --primary-dark: #5048c6;
+      --ink: #222540;
+      --muted: #777d91;
+      --surface: #ffffff;
+      --background: #f8f9fd;
+      --border: #e9eaf3;
+      --green: #159b72;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--background);
+      color: var(--ink);
+      font-family: 'Vazirmatn', sans-serif;
+      line-height: 1.8;
+    }
+
+    a { text-decoration: none; }
+
+    .container { max-width: 1160px; }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,.94);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-wrap {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      color: var(--primary);
+      font-size: 27px;
+      font-weight: 900;
+      letter-spacing: -.8px;
+    }
+
+    .brand small {
+      color: var(--ink);
+      font-size: 16px;
+      margin-right: 5px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+    }
+
+    .nav-links a {
+      color: #555a70;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .nav-links a:hover { color: var(--primary); }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-main, .btn-outline {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      padding: 11px 17px;
+      border-radius: 12px;
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 700;
+      transition: .2s;
+    }
+
+    .btn-main {
+      color: white;
+      background: var(--primary);
+      border: 1px solid var(--primary);
+    }
+
+    .btn-main:hover {
+      color: white;
+      background: var(--primary-dark);
+      transform: translateY(-1px);
+    }
+
+    .btn-outline {
+      color: var(--primary);
+      background: white;
+      border: 1px solid #dcd9ff;
+    }
+
+    .btn-outline:hover {
+      color: var(--primary-dark);
+      background: #f5f4ff;
+    }
+
+    .hero {
+      overflow: hidden;
+      position: relative;
+      padding: 78px 0 72px;
+      background:
+        radial-gradient(ellipse at 90% 0%, #e9e7ff 0%, transparent 38%),
+        radial-gradient(ellipse at 5% 100%, #e5f7f1 0%, transparent 34%),
+        #fff;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      align-items: center;
+      gap: 55px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 12px;
+      color: var(--primary-dark);
+      background: #efedff;
+      border-radius: 30px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .eyebrow-dot {
+      width: 7px;
+      height: 7px;
+      background: var(--green);
+      border-radius: 50%;
+    }
+
+    .hero h1 {
+      margin: 23px 0 17px;
+      font-size: clamp(32px, 4.5vw, 51px);
+      line-height: 1.5;
+      font-weight: 900;
+      letter-spacing: -1.5px;
+    }
+
+    .hero h1 span { color: var(--primary); }
+
+    .hero-description {
+      max-width: 520px;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 2.1;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .hero-actions .btn-main,
+    .hero-actions .btn-outline {
+      padding: 14px 20px;
+      font-size: 14px;
+    }
+
+    .hero-note {
+      color: #85899b;
+      font-size: 12px;
+      margin-top: 18px;
+    }
+
+    .preview {
+      position: relative;
+      padding: 24px;
+      border: 1px solid #e7e6f4;
+      border-radius: 25px;
+      background: rgba(255,255,255,.88);
+      box-shadow: 0 24px 75px rgba(57, 51, 135, .12);
+    }
+
+    .preview-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .preview-header strong { font-size: 17px; }
+
+    .live-label {
+      padding: 5px 10px;
+      border-radius: 30px;
+      color: #137c5e;
+      background: #e4f8ef;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .project-card {
+      padding: 17px;
+      margin-top: 12px;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: white;
+    }
+
+    .project-top {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .project-icon {
+      display: grid;
+      flex-shrink: 0;
+      place-items: center;
+      width: 43px;
+      height: 43px;
+      border-radius: 13px;
+      background: #efedff;
+      font-size: 21px;
+    }
+
+    .project-name {
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .project-category {
+      color: var(--muted);
+      font-size: 11px;
+      margin-top: 3px;
+    }
+
+    .project-budget {
+      margin-right: auto;
+      white-space: nowrap;
+      color: var(--green);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .project-desc {
+      color: var(--muted);
+      font-size: 12px;
+      margin: 13px 0;
+    }
+
+    .project-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      border-top: 1px solid #f0f0f6;
+      padding-top: 12px;
+    }
+
+    .project-time {
+      color: #85899b;
+      font-size: 11px;
+    }
+
+    .mini-link {
+      color: var(--primary);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .preview-caption {
+      text-align: center;
+      color: #85899b;
+      font-size: 11px;
+      margin: 17px 0 0;
+    }
+
+    .section { padding: 76px 0; }
+
+    .section-heading {
+      text-align: center;
+      max-width: 660px;
+      margin: 0 auto 38px;
+    }
+
+    .section-kicker {
+      color: var(--primary);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .section-heading h2 {
+      margin: 9px 0 12px;
+      font-size: clamp(25px, 3vw, 34px);
+      font-weight: 900;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 2;
+    }
+
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 17px;
+    }
+
+    .category-card {
+      display: block;
+      padding: 24px 20px;
+      color: var(--ink);
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      transition: .2s;
+    }
+
+    .category-card:hover {
+      border-color: #c9c5ff;
+      transform: translateY(-4px);
+      box-shadow: 0 14px 30px rgba(40, 35, 100, .06);
+    }
+
+    .category-icon {
+      display: grid;
+      place-items: center;
+      width: 49px;
+      height: 49px;
+      margin-bottom: 17px;
+      background: #f0efff;
+      border-radius: 15px;
+      font-size: 24px;
+    }
+
+    .category-card h3 {
+      font-size: 15px;
+      font-weight: 800;
+      margin-bottom: 7px;
+    }
+
+    .category-card p {
+      color: var(--muted);
+      font-size: 12px;
+      margin: 0;
+    }
+
+    .steps-section { background: #fff; }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .step-card {
+      padding: 28px;
+      border: 1px solid var(--border);
+      border-radius: 19px;
+      background: #fff;
+    }
+
+    .step-number {
+      display: grid;
+      place-items: center;
+      width: 43px;
+      height: 43px;
+      border-radius: 14px;
+      color: white;
+      background: var(--primary);
+      font-size: 17px;
+      font-weight: 900;
+    }
+
+    .step-card h3 {
+      font-size: 17px;
+      font-weight: 800;
+      margin: 19px 0 10px;
+    }
+
+    .step-card p {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 2;
+      margin: 0;
+    }
+
+    .cta-wrap { padding: 70px 0; }
+
+    .cta {
+      position: relative;
+      overflow: hidden;
+      padding: 48px 35px;
+      border-radius: 26px;
+      background: linear-gradient(125deg, #635bdb, #8178ed);
+      color: white;
+      text-align: center;
+    }
+
+    .cta h2 {
+      font-size: clamp(25px, 3vw, 35px);
+      font-weight: 900;
+      margin-bottom: 13px;
+    }
+
+    .cta p {
+      max-width: 620px;
+      margin: 0 auto;
+      color: #eeedff;
+      font-size: 14px;
+      line-height: 2;
+    }
+
+    .cta .btn-white {
+      display: inline-flex;
+      margin-top: 25px;
+      padding: 13px 21px;
+      border-radius: 12px;
+      background: white;
+      color: var(--primary-dark);
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .site-footer {
+      padding: 45px 0 22px;
+      background: #fff;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 40px;
+      padding-bottom: 30px;
+    }
+
+    .footer-about p {
+      max-width: 400px;
+      margin-top: 13px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 2.1;
+    }
+
+    .footer-title {
+      font-size: 14px;
+      font-weight: 800;
+      margin-bottom: 15px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+    }
+
+    .footer-links a {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .footer-links a:hover { color: var(--primary); }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      color: #85899b;
+      font-size: 11px;
+    }
+
+    #scrollTop {
+      position: fixed;
+      bottom: 22px;
+      left: 22px;
+      z-index: 90;
+      display: none;
+      width: 44px;
+      height: 44px;
+      border: none;
+      border-radius: 14px;
+      color: white;
+      background: var(--primary);
+      font-size: 21px;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(99,91,219,.25);
+    }
+
+    #toast {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      z-index: 200;
+      max-width: calc(100% - 40px);
+      padding: 13px 18px;
+      border-radius: 12px;
+      background: #242642;
+      color: white;
+      font-size: 13px;
+      opacity: 0;
+      transform: translateY(12px);
+      pointer-events: none;
+      transition: .25s;
+    }
+
+    #toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 992px) {
+      .nav-links { gap: 14px; }
+      .hero-grid { gap: 30px; }
+      .category-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 768px) {
+      .nav-wrap { flex-wrap: wrap; padding: 13px 0; }
+      .nav-links { order: 3; width: 100%; justify-content: center; flex-wrap: wrap; }
+      .nav-actions .btn-outline { display: none; }
+      .hero { padding: 52px 0; }
+      .hero-grid { grid-template-columns: 1fr; }
+      .hero-copy { text-align: center; }
+      .hero-description { margin-inline: auto; }
+      .hero-actions { justify-content: center; }
+      .preview { max-width: 550px; width: 100%; margin: 0 auto; }
+      .steps-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .footer-about { grid-column: 1 / -1; }
+    }
+
+    @media (max-width: 480px) {
+      .brand { font-size: 23px; }
+      .nav-links { gap: 13px; }
+      .nav-links a { font-size: 12px; }
+      .nav-actions .btn-main { padding: 9px 11px; font-size: 11px; }
+      .hero h1 { font-size: 32px; }
+      .hero-actions .btn-main, .hero-actions .btn-outline { width: 100%; }
+      .preview { padding: 15px; }
+      .project-card { padding: 13px; }
+      .project-budget { font-size: 10px; }
+      .category-grid { gap: 11px; }
+      .category-card { padding: 17px 13px; }
+      .category-card h3 { font-size: 13px; }
+      .footer-grid { grid-template-columns: 1fr; gap: 27px; }
+      .footer-about { grid-column: auto; }
+      .cta { padding: 37px 20px; }
+    }
+  </style>
 </head>
 
 <body>
 
-<header class="site-header">
-    <nav class="navbar navbar-expand-lg container">
-        <a class="navbar-brand" href="index.html" aria-label="صفحه اصلی سالور">
-            <span class="brand-mark">S</span>
-            <span class="brand-name">Solver<span class="brand-dot">.</span></span>
-        </a>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html">Solver <small>سالور</small></a>
 
-        <button class="navbar-toggler" type="button"
-                data-bs-toggle="collapse" data-bs-target="#mainNav"
-                aria-controls="mainNav" aria-expanded="false"
-                aria-label="باز کردن منو">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+      <nav class="nav-links" aria-label="منوی اصلی">
+        <a href="index.html">خانه</a>
+        <a href="services.html">پروژه‌ها</a>
+        <a href="#how-it-works">نحوهٔ کار</a>
+        <a href="about.html">دربارهٔ ما</a>
+      </nav>
 
-        <div class="collapse navbar-collapse" id="mainNav">
-            <ul class="navbar-nav mx-auto">
-                <li class="nav-item"><a class="nav-link active" href="index.html">خانه</a></li>
-                <li class="nav-item"><a class="nav-link" href="services.html">خدمات</a></li>
-                <li class="nav-item"><a class="nav-link" href="blog.html">مجله</a></li>
-                <li class="nav-item"><a class="nav-link" href="about.html">درباره ما</a></li>
-                <li class="nav-item"><a class="nav-link" href="contact.html">تماس با ما</a></li>
-            </ul>
-
-            <div class="nav-actions">
-                <a href="login.html" class="login-link">ورود</a>
-                <a href="signup.html" class="btn btn-brand">شروع رایگان <span>←</span></a>
-            </div>
-        </div>
-    </nav>
-</header>
-
-<main>
-
-    <section class="hero-section">
-        <div class="container hero-grid">
-
-            <div class="hero-content">
-                <div class="eyebrow">
-                    <span class="eyebrow-dot"></span>
-                    دنیای فرصت‌های دانشجویی
-                </div>
-
-                <h1>
-                    هر مهارتی،<br>
-                    یک <span class="gradient-text">راه‌حل.</span>
-                </h1>
-
-                <p class="hero-description">
-                    دنبال کسی هستی که در انجام یک کار کمکت کنه؟
-                    یا مهارتی داری که می‌خوای باهاش درآمد کسب کنی؟
-                    سالور، نقطه‌ی شروع همکاری شماست.
-                </p>
-
-                <div class="hero-actions">
-                    <a href="services.html" class="btn btn-brand btn-lg">
-                        کشف خدمات <span>←</span>
-                    </a>
-                    <a href="signup.html" class="btn btn-outline-brand btn-lg">
-                        ارائه مهارت
-                    </a>
-                </div>
-
-                <div class="hero-trust">
-                    <span class="trust-icon">✦</span>
-                    <span>یادگیری، همکاری و رشد در کنار یکدیگر</span>
-                </div>
-            </div>
-
-            <div class="hero-visual" aria-label="تصویر گرافیکی برند سالور">
-                <div class="visual-glow"></div>
-                <div class="visual-ring ring-one"></div>
-                <div class="visual-ring ring-two"></div>
-
-                <div class="main-orb">
-                    <span class="orb-letter">S</span>
-                    <span class="orb-name">Solver</span>
-                    <span class="orb-caption">SKILLS MEET NEEDS</span>
-                </div>
-
-                <div class="floating-card float-top">
-                    <span class="float-icon icon-purple">✳</span>
-                    <span>
-                        <strong>طراحی خلاقانه</strong>
-                        <small>ایده‌هات رو اجرا کن</small>
-                    </span>
-                </div>
-
-                <div class="floating-card float-left">
-                    <span class="float-icon icon-green">{ }</span>
-                    <span>
-                        <strong>خدمات نرم‌افزاری</strong>
-                        <small>راه‌حل‌های کاربردی</small>
-                    </span>
-                </div>
-
-                <div class="floating-card float-bottom">
-                    <span class="float-icon icon-orange">文</span>
-                    <span>
-                        <strong>ترجمه و تایپ</strong>
-                        <small>مهارتت رو به اشتراک بذار</small>
-                    </span>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <section class="search-section">
-        <div class="container">
-            <form class="search-box" id="serviceSearch">
-                <span class="search-symbol" aria-hidden="true">⌕</span>
-                <input type="search" id="searchInput"
-                       placeholder="چه خدمتی نیاز داری؟ مثلاً طراحی رزومه..."
-                       aria-label="جست‌وجوی خدمات">
-                <button type="submit" class="btn btn-brand">جست‌وجو</button>
-            </form>
-            <p class="search-hint">پیشنهادهای محبوب: طراحی رزومه، ترجمه، برنامه‌نویسی</p>
-        </div>
-    </section>
-
-    <section class="section-padding categories-section">
-        <div class="container">
-            <div class="section-heading">
-                <div>
-                    <span class="eyebrow">مهارت موردنظرت رو پیدا کن</span>
-                    <h2>دسته‌بندی خدمات</h2>
-                    <p>از میان مهارت‌های مختلف، چیزی رو که نیاز داری انتخاب کن.</p>
-                </div>
-                <a href="services.html" class="text-link">همه خدمات ←</a>
-            </div>
-
-            <div class="row g-3">
-                <div class="col-6 col-lg-3">
-                    <a href="services.html?category=design" class="category-card">
-                        <span class="category-icon icon-purple">✳</span>
-                        <h3>طراحی و گرافیک</h3>
-                        <p>لوگو، پوستر و رزومه</p>
-                        <span class="category-arrow">←</span>
-                    </a>
-                </div>
-
-                <div class="col-6 col-lg-3">
-                    <a href="services.html?category=software" class="category-card">
-                        <span class="category-icon icon-green">{ }</span>
-                        <h3>نرم‌افزار و فناوری</h3>
-                        <p>برنامه‌نویسی و خدمات فنی</p>
-                        <span class="category-arrow">←</span>
-                    </a>
-                </div>
-
-                <div class="col-6 col-lg-3">
-                    <a href="services.html?category=translation" class="category-card">
-                        <span class="category-icon icon-orange">文</span>
-                        <h3>ترجمه و تایپ</h3>
-                        <p>ترجمه، تایپ و ویرایش</p>
-                        <span class="category-arrow">←</span>
-                    </a>
-                </div>
-
-                <div class="col-6 col-lg-3">
-                    <a href="services.html?category=education" class="category-card">
-                        <span class="category-icon icon-blue">✎</span>
-                        <h3>آموزش و مهارت</h3>
-                        <p>رفع اشکال و آموزش</p>
-                        <span class="category-arrow">←</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="section-padding featured-section">
-        <div class="container">
-            <div class="section-heading">
-                <div>
-                    <span class="eyebrow">چند پیشنهاد برای شروع</span>
-                    <h2>خدمات منتخب</h2>
-                    <p>نمونه‌هایی از خدماتی که می‌تونی در سالور پیدا کنی.</p>
-                </div>
-                <a href="services.html" class="text-link">مشاهده همه ←</a>
-            </div>
-
-            <div class="row g-4">
-
-                <div class="col-md-6 col-lg-4">
-                    <article class="service-card">
-                        <div class="service-art art-purple">
-                            <span class="art-label">CREATIVE</span>
-                            <span class="art-main">CV<span>.</span></span>
-                            <span class="art-decoration">✳</span>
-                        </div>
-                        <div class="service-body">
-                            <span class="service-category">طراحی و گرافیک</span>
-                            <h3>طراحی رزومه حرفه‌ای</h3>
-                            <p>یک رزومه‌ی منظم و جذاب برای معرفی بهتر توانایی‌هات.</p>
-                            <div class="service-footer">
-                                <span><small>قیمت نمونه</small><strong>۱۵۰ هزار تومان</strong></span>
-                                <a href="service-detail.html" class="service-link" aria-label="جزئیات طراحی رزومه">←</a>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-
-                <div class="col-md-6 col-lg-4">
-                    <article class="service-card">
-                        <div class="service-art art-green">
-                            <span class="art-label">BUILD SOMETHING</span>
-                            <span class="art-main">{<span> }</span></span>
-                            <span class="art-decoration">⌘</span>
-                        </div>
-                        <div class="service-body">
-                            <span class="service-category">نرم‌افزار و فناوری</span>
-                            <h3>راهنمایی برنامه‌نویسی</h3>
-                            <p>کمک به فهم مفاهیم پایه و رفع اشکال کدها.</p>
-                            <div class="service-footer">
-                                <span><small>قیمت نمونه</small><strong>۱۰۰ هزار تومان</strong></span>
-                                <a href="service-detail.html" class="service-link" aria-label="جزئیات راهنمایی برنامه‌نویسی">←</a>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-
-                <div class="col-md-6 col-lg-4">
-                    <article class="service-card">
-                        <div class="service-art art-orange">
-                            <span class="art-label">WORDS MATTER</span>
-                            <span class="art-main">ABC<span>.</span></span>
-                            <span class="art-decoration">文</span>
-                        </div>
-                        <div class="service-body">
-                            <span class="service-category">ترجمه و تایپ</span>
-                            <h3>تایپ و ویرایش متن</h3>
-                            <p>تبدیل دست‌نوشته‌ها به متن تایپ‌شده و مرتب.</p>
-                            <div class="service-footer">
-                                <span><small>قیمت نمونه</small><strong>۸۰ هزار تومان</strong></span>
-                                <a href="service-detail.html" class="service-link" aria-label="جزئیات تایپ و ویرایش">←</a>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-
-            </div>
-
-            <p class="demo-note">خدمات و قیمت‌های نمایش‌داده‌شده در این نسخه، نمونه‌ی آزمایشی هستند.</p>
-        </div>
-    </section>
-
-    <section class="section-padding how-section">
-        <div class="container">
-            <div class="section-heading centered-heading">
-                <div>
-                    <span class="eyebrow">شروع همکاری در سه قدم</span>
-                    <h2>سالور چطور کار می‌کنه؟</h2>
-                    <p>فرآیند ساده‌ای برای پیدا کردن خدمت یا ارائه‌ی مهارت.</p>
-                </div>
-            </div>
-
-            <div class="row g-4">
-                <div class="col-md-4">
-                    <div class="step-card">
-                        <span class="step-number">01</span>
-                        <div class="step-icon">⌕</div>
-                        <h3>خدمت رو پیدا کن</h3>
-                        <p>دسته‌بندی‌ها رو ببین و خدمت متناسب با نیازت رو پیدا کن.</p>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="step-card">
-                        <span class="step-number">02</span>
-                        <div class="step-icon">↗</div>
-                        <h3>جزئیات رو بررسی کن</h3>
-                        <p>توضیحات و قیمت رو بخون و درباره‌ی انتخابت تصمیم بگیر.</p>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="step-card">
-                        <span class="step-number">03</span>
-                        <div class="step-icon">✓</div>
-                        <h3>سفارش رو ثبت کن</h3>
-                        <p>سفارشت رو ثبت کن و مراحلش رو در پنل کاربری پیگیری کن.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="cta-section">
-        <div class="container">
-            <div class="cta-box">
-                <div class="cta-decoration">S</div>
-                <div class="cta-content">
-                    <span class="eyebrow">مهارت تو می‌تونه شروعی باشه</span>
-                    <h2>برای ارائه‌ی مهارتت آماده‌ای؟</h2>
-                    <p>به جمع کسانی بپیوند که دانش و توانایی‌هاشون رو به فرصت تبدیل می‌کنن.</p>
-                </div>
-                <a href="signup.html" class="btn btn-light btn-lg">ساخت حساب کاربری ←</a>
-            </div>
-        </div>
-    </section>
-
-</main>
-
-<footer class="site-footer">
-    <div class="container">
-        <div class="footer-main">
-            <div class="footer-brand">
-                <a class="navbar-brand" href="index.html">
-                    <span class="brand-mark">S</span>
-                    <span class="brand-name">Solver<span class="brand-dot">.</span></span>
-                </a>
-                <p>سالور؛ جایی برای پیوند مهارت‌ها با نیازها و ساختن فرصت‌های تازه.</p>
-                <span class="footer-tagline">مهارتت، راه‌حل توئه.</span>
-            </div>
-
-            <div class="footer-links">
-                <h4>دسترسی سریع</h4>
-                <a href="services.html">مشاهده خدمات</a>
-                <a href="about.html">درباره سالور</a>
-                <a href="contact.html">تماس با ما</a>
-                <a href="blog.html">مجله</a>
-            </div>
-
-            <div class="footer-links">
-                <h4>راهنما و قوانین</h4>
-                <a href="faq.html">سؤالات متداول</a>
-                <a href="terms.html">قوانین و مقررات</a>
-                <a href="privacy.html">حریم خصوصی</a>
-            </div>
-        </div>
-
-        <div class="footer-bottom">
-            <span>© سالور — پروژه‌ی آموزشی طراحی وب</span>
-            <button id="scrollTop" class="scroll-top" aria-label="بازگشت به بالای صفحه">↑</button>
-        </div>
+      <div class="nav-actions">
+        <a class="btn-outline" href="login.html">ورود</a>
+        <a class="btn-main" href="post-project.html">＋ ثبت پروژه</a>
+      </div>
     </div>
-</footer>
+  </header>
 
-<div id="toast" class="toast-message" role="status" aria-live="polite"></div>
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow">
+            <span class="eyebrow-dot"></span>
+            پلتفرم همکاری دانشجویی
+          </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="js/script.js"></script>
+          <h1>
+            مهارتت،<br>
+            <span>راه‌حل توئه.</span>
+          </h1>
 
-</body>
-</html>
+          <p class="hero-description">
+            پروژه‌ات رو ثبت کن، فرد مناسب رو پیدا کن یا با مهارتت به دیگران کمک کن.
+            سالور جاییه برای ارتباط دانشجوهایی که به کمک نیاز دارن با دانشجوهایی که می‌تونن کمک کنن.
+          </p>
+
+          <div class="hero-actions">
+            <a href="post-project.html" class="btn-main">＋ ثبت پروژهٔ جدید</a>
+            <a href="services.html" class="btn-outline">مشاهدهٔ پروژه‌ها ←</a>
+          </div>
+
+          <p class="hero-note">
+            مناسب برای پروژه‌های دانشجویی، طراحی، برنامه‌نویسی، ترجمه و مهارت‌های کاربردی
+          </p>
+        </div>
+
+        <div class="preview">
+          <div class="preview-header">
+            <strong>نمونهٔ پروژه‌های سالور</strong>
+            <span class="live-label">فرصت‌های همکاری</span>
+          </div>
+
+          <article class="project-card">
+            <div class="project-top">
+              <div class="project-icon">💻</div>
+              <div>
+                <div class="project-name">طراحی سایت با HTML و CSS</div>
+                <div class="project-category">برنامه‌نویسی و طراحی وب</div>
+              </div>
+              <div class="project-budget">بودجه: ۳۰۰ هزار تومان</div>
+            </div>
+            <p class="project-desc">
+              ساخت یک سایت سادهٔ چندصفحه‌ای برای ارائهٔ درس دانشگاه.
+            </p>
+            <div class="project-bottom">
+              <span class="project-time">مهلت: ۷ روز</span>
+              <a class="mini-link" href="service-detail.html?title=طراحی%20سایت">مشاهدهٔ پروژه ←</a>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-top">
+              <div class="project-icon">🎨</div>
+              <div>
+                <div class="project-name">طراحی پوستر برای رویداد دانشجویی</div>
+                <div class="project-category">طراحی گرافیک</div>
+              </div>
+              <div class="project-budget">بودجه: ۱۵۰ هزار تومان</div>
+            </div>
+            <p class="project-desc">
+              طراحی یک پوستر ساده و جذاب برای برنامهٔ دانشگاه.
+            </p>
+            <div class="project-bottom">
+              <span class="project-time">مهلت: ۳ روز</span>
+              <a class="mini-link" href="service-detail.html?title=طراحی%20پوستر">مشاهدهٔ پروژه ←</a>
+            </div>
+          </article>
+
+          <p class="preview-caption">
+            این موارد نمونهٔ نمایشی‌اند؛ پروژه‌های واقعی بعداً از طریق فرم ثبت می‌شوند.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="categories">
+      <div class="container">
+        <div class="section-heading">
+          <span class="section-kicker">زمینه‌های همکاری</span>
+          <h2>در چه زمینه‌ای می‌تونی همکاری کنی؟</h2>
+          <p>
+            از مهارت‌هایی که داری استفاده کن، یا برای انجام پروژه‌ات از دانشجوهای دیگر کمک بگیر.
+          </p>
+        </div>
+
+        <div class="category-grid">
+          <a class="category-card" href="services.html?category=programming">
+            <div class="category-icon">💻</div>
+            <h3>برنامه‌نویسی و فناوری</h3>
+            <p>وب‌سایت، کدنویسی و کمک فنی</p>
+          </a>
+
+          <a class="category-card" href="services.html?category=design">
+            <div class="category-icon">🎨</div>
+            <h3>طراحی گرافیک</h3>
+            <p>پوستر، لوگو و طراحی رزومه</p>
+          </a>
+
+          <a class="category-card" href="services.html?category=translation">
+            <div class="category-icon">🌐</div>
+            <h3>زبان و ترجمه</h3>
+            <p>ترجمه و ویرایش متون</p>
+          </a>
+
+          <a class="category-card" href="services.html?category=education">
+            <div class="category-icon">📚</div>
+            <h3>خدمات آموزشی</h3>
+            <p>تایپ، صفحه‌آرایی و کمک آموزشی</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section steps-section" id="how-it-works">
+      <div class="container">
+        <div class="section-heading">
+          <span class="section-kicker">شروع همکاری</span>
+          <h2>سالور چطور کار می‌کنه؟</h2>
+          <p>سه قدم ساده برای ارتباط بین صاحب پروژه و فردی که مهارت انجامش رو داره.</p>
+        </div>
+
+        <div class="steps-grid">
+          <article class="step-card">
+            <div class="step-number">۱</div>
+            <h3>پروژه‌ات رو ثبت کن</h3>
+            <p>
+              توضیحات، بودجهٔ پیشنهادی و مهلت تحویل رو وارد کن تا افراد مناسب بتونن پروژه‌ات رو ببینن.
+            </p>
+          </article>
+
+          <article class="step-card">
+            <div class="step-number">۲</div>
+            <h3>پروژه پیدا کن و پیشنهاد بده</h3>
+            <p>
+              پروژه‌های موجود رو بررسی کن و اگر مهارت و زمان انجامش رو داری، پیشنهاد خودت رو بفرست.
+            </p>
+          </article>
+
+          <article class="step-card">
+            <div class="step-number">۳</div>
+            <h3>فرد مناسب رو انتخاب کن</h3>
+            <p>
+              صاحب پروژه پیشنهادها رو بررسی می‌کنه و فرد مناسب رو برای همکاری انتخاب می‌کنه.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-wrap">
+      <div class="container">
+        <div class="cta">
+          <h2>مهارتی داری که به درد بقیه بخوره؟</h2>
+          <p>
+            لازم نیست متخصص حرفه‌ای باشی. اگر مهارتی داری که می‌تونه مشکلی رو حل کنه،
+            از یک پروژهٔ مناسب شروع کن.
+          </p>
+          <a href="services.html" class="btn-white">پیدا کردن پروژه ←</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <a class="brand" href="index.html">Solver <small>سالور</small></a>
+          <p>
+            سالور یک ایدهٔ پلتفرم برای همکاری دانشجویان است؛ جایی برای ثبت پروژه،
+            پیدا کردن افراد دارای مهارت و شکل دادن به همکاری‌های دانشجویی.
+          </p>
+        </div>
+
+        <div>
+          <h3 class="footer-title">دسترسی سریع</h3>
+          <div class="footer-links">
+            <a href="services.html">مشاهدهٔ پروژه‌ها</a>
+            <a href="post-project.html">ثبت پروژه</a>
+            <a href="login.html">ورود به حساب</a>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="footer-title">دربارهٔ سالور</h3>
+          <div class="footer-links">
+            <a href="about.html">دربارهٔ ما</a>
+            <a href="contact.html">تماس با ما</a>
+            <a href="faq.html">سؤالات متداول</a>
+          </div>
+        </div>
+      </div>
+
+      <div
