@@ -4,768 +4,599 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>پروژه‌های دانشجویی | Solver</title>
-  <meta name="description" content="پروژه‌های دانشجویی را پیدا کن، بودجه و مهلت تحویل را بررسی کن و برای همکاری پیشنهاد بده.">
+  <title>پروژه‌ها | Solver</title>
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap">
 
   <style>
     :root {
-      --primary: #635bdb;
-      --primary-dark: #5048c6;
-      --ink: #222540;
-      --muted: #777d91;
-      --bg: #f8f9fd;
-      --border: #e9eaf3;
-      --green: #159b72;
+      --primary: #6558d3;
+      --primary-dark: #5043b5;
+      --background: #f7f8fc;
+      --text: #24243b;
+      --muted: #74768a;
+      --border: #e8e9f2;
+      --green: #16865c;
     }
 
     * { box-sizing: border-box; }
 
     body {
       margin: 0;
-      background: var(--bg);
-      color: var(--ink);
-      font-family: 'Vazirmatn', sans-serif;
-      line-height: 1.8;
+      font-family: "Vazirmatn", sans-serif;
+      background: var(--background);
+      color: var(--text);
+      line-height: 1.9;
     }
 
     a { text-decoration: none; }
 
-    .container { max-width: 1160px; }
-
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(255,255,255,.96);
+    .navbar {
+      background: #fff;
       border-bottom: 1px solid var(--border);
-      backdrop-filter: blur(10px);
-    }
-
-    .nav-wrap {
-      min-height: 74px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
     }
 
     .brand {
       color: var(--primary);
-      font-size: 26px;
-      font-weight: 900;
+      font-size: 1.7rem;
+      font-weight: 800;
     }
 
-    .brand small {
-      color: var(--ink);
-      font-size: 15px;
-      margin-right: 5px;
+    .nav-link {
+      color: #505168;
+      font-weight: 500;
     }
 
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 23px;
-    }
-
-    .nav-links a {
-      color: #555a70;
-      font-size: 13px;
+    .btn-primary-custom {
+      background: var(--primary);
+      color: #fff;
+      border: 1px solid var(--primary);
+      border-radius: 12px;
+      padding: 10px 18px;
       font-weight: 600;
     }
 
-    .nav-links a:hover { color: var(--primary); }
-
-    .btn-main, .btn-outline {
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      padding: 11px 16px;
-      border-radius: 11px;
-      font-family: inherit;
-      font-size: 13px;
-      font-weight: 700;
-      transition: .2s;
-    }
-
-    .btn-main {
-      background: var(--primary);
-      border: 1px solid var(--primary);
-      color: #fff;
-    }
-
-    .btn-main:hover {
+    .btn-primary-custom:hover {
       background: var(--primary-dark);
       color: #fff;
     }
 
-    .btn-outline {
-      color: var(--primary);
-      border: 1px solid #dcd9ff;
+    .btn-outline-custom {
       background: #fff;
+      color: var(--primary);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 10px 18px;
+      font-weight: 600;
     }
 
-    .page-hero {
-      padding: 48px 0 42px;
-      background:
-        radial-gradient(ellipse at 90% 0%, #e9e7ff 0%, transparent 40%),
-        #fff;
+    .hero {
+      padding: 48px 0 36px;
+      background: linear-gradient(135deg, #f0eeff, #fff 75%);
       border-bottom: 1px solid var(--border);
     }
 
-    .eyebrow {
-      display: inline-block;
-      padding: 6px 12px;
-      background: #efedff;
-      color: var(--primary-dark);
-      border-radius: 30px;
-      font-size: 12px;
+    .hero h1 {
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
       font-weight: 800;
+      line-height: 1.6;
     }
 
-    .page-hero h1 {
-      font-size: clamp(27px, 4vw, 38px);
-      font-weight: 900;
-      margin: 17px 0 10px;
-    }
+    .hero p { color: var(--muted); }
 
-    .page-hero p {
-      max-width: 680px;
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 2;
-      margin-bottom: 24px;
-    }
-
-    .hero-search {
+    .search-box {
+      max-width: 650px;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      padding: 7px;
       display: flex;
-      gap: 10px;
-      max-width: 690px;
+      gap: 8px;
+      margin-top: 24px;
     }
 
-    .hero-search input {
+    .search-box input {
+      border: none;
+      outline: none;
+      box-shadow: none;
       flex: 1;
       min-width: 0;
-      padding: 13px 15px;
-      border: 1px solid #e2e4ef;
-      border-radius: 12px;
-      background: #fff;
-      font: inherit;
-      outline: none;
-    }
-
-    .hero-search input:focus {
-      border-color: #a5a0f5;
-      box-shadow: 0 0 0 3px #635bdb15;
-    }
-
-    .hero-search button {
-      border: 0;
-      border-radius: 12px;
-      padding: 12px 20px;
-      background: var(--primary);
-      color: #fff;
+      padding: 10px;
       font-family: inherit;
-      font-weight: 700;
-      cursor: pointer;
     }
 
-    .main-area { padding: 35px 0 75px; }
-
-    .results-heading {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 14px;
-      margin-bottom: 23px;
-    }
-
-    .results-heading h2 {
-      font-size: 21px;
-      font-weight: 900;
-      margin: 0;
-    }
-
-    .results-count {
-      color: var(--muted);
-      font-size: 12px;
-      margin-top: 5px;
-    }
-
-    .layout {
-      display: grid;
-      grid-template-columns: 255px minmax(0, 1fr);
-      gap: 23px;
-      align-items: start;
+    .page-container {
+      max-width: 1200px;
+      margin: 35px auto 65px;
+      padding: 0 18px;
     }
 
     .filter-card, .project-card {
       background: #fff;
       border: 1px solid var(--border);
-      border-radius: 17px;
+      border-radius: 18px;
+      padding: 22px;
     }
 
     .filter-card {
-      padding: 22px;
       position: sticky;
-      top: 95px;
+      top: 90px;
     }
 
-    .filter-title {
-      font-size: 16px;
-      font-weight: 900;
-      margin-bottom: 22px;
-    }
-
-    .field-label {
-      display: block;
-      font-size: 13px;
+    .section-title {
+      font-size: 1.1rem;
       font-weight: 800;
-      margin: 17px 0 9px;
+      margin-bottom: 18px;
     }
 
-    .filter-control {
-      width: 100%;
-      padding: 11px;
-      border: 1px solid #e2e4ef;
-      border-radius: 10px;
-      background: white;
-      color: var(--ink);
+    .form-label {
+      font-size: .9rem;
+      font-weight: 600;
+    }
+
+    .form-control, .form-select {
+      border-color: var(--border);
+      border-radius: 11px;
+      padding: 11px 12px;
       font-family: inherit;
-      font-size: 13px;
-      outline: none;
     }
 
-    .filter-control:focus { border-color: #aaa5f5; }
-
-    .filter-actions {
-      display: flex;
-      gap: 9px;
-      margin-top: 22px;
-    }
-
-    .filter-actions button {
-      flex: 1;
-      padding: 10px 8px;
-      border-radius: 10px;
-      font-family: inherit;
-      font-weight: 700;
-      font-size: 12px;
-      cursor: pointer;
-    }
-
-    .apply-btn {
-      color: #fff;
-      background: var(--primary);
-      border: 1px solid var(--primary);
-    }
-
-    .reset-btn {
-      color: #5d6277;
-      background: white;
-      border: 1px solid var(--border);
-    }
-
-    .project-list {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
+    .form-control:focus, .form-select:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(101, 88, 211, .12);
     }
 
     .project-card {
-      padding: 23px;
-      transition: .2s;
+      height: 100%;
+      transition: transform .2s, box-shadow .2s;
     }
 
     .project-card:hover {
-      border-color: #cbc7ff;
-      box-shadow: 0 12px 30px #27245b0b;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 28px rgba(35, 35, 75, .07);
     }
 
-    .project-top {
-      display: flex;
-      align-items: flex-start;
-      gap: 13px;
-    }
-
-    .project-icon {
-      width: 49px;
-      height: 49px;
-      flex-shrink: 0;
-      display: grid;
-      place-items: center;
-      background: #efedff;
-      border-radius: 14px;
-      font-size: 23px;
-    }
-
-    .project-heading {
-      flex: 1;
-      min-width: 0;
-    }
-
-    .project-heading h3 {
-      font-size: 16px;
-      font-weight: 900;
-      line-height: 1.8;
-      margin: 0 0 5px;
-    }
-
-    .category-label {
+    .category-badge {
       display: inline-block;
-      padding: 3px 9px;
-      background: #f1f2f8;
-      border-radius: 7px;
-      color: #666c80;
-      font-size: 11px;
+      background: #efedff;
+      color: var(--primary);
+      border-radius: 30px;
+      padding: 4px 11px;
+      font-size: .82rem;
+      font-weight: 600;
     }
 
-    .budget {
-      flex-shrink: 0;
-      color: var(--green);
-      font-size: 13px;
-      font-weight: 900;
-      text-align: left;
-    }
-
-    .budget small {
-      display: block;
-      color: var(--muted);
-      font-size: 10px;
-      font-weight: 500;
+    .project-card h3 {
+      font-size: 1.08rem;
+      font-weight: 800;
+      line-height: 1.8;
+      margin: 15px 0 8px;
     }
 
     .project-description {
-      color: #666c80;
-      font-size: 13px;
-      line-height: 2;
-      margin: 17px 0;
+      color: var(--muted);
+      font-size: .92rem;
+      min-height: 55px;
     }
 
     .project-meta {
       display: flex;
       flex-wrap: wrap;
-      gap: 9px 18px;
+      gap: 10px 18px;
       color: var(--muted);
-      font-size: 11px;
+      font-size: .86rem;
+      margin: 17px 0;
     }
-
-    .project-meta span { display: inline-flex; gap: 5px; }
 
     .project-bottom {
       display: flex;
       align-items: center;
       justify-content: space-between;
+      flex-wrap: wrap;
       gap: 12px;
-      border-top: 1px solid #f0f0f6;
-      margin-top: 18px;
+      border-top: 1px solid var(--border);
       padding-top: 16px;
+      margin-top: auto;
     }
 
-    .proposal-count {
-      color: var(--muted);
-      font-size: 11px;
-    }
-
-    .detail-link {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 9px 13px;
-      border-radius: 10px;
-      background: #efedff;
-      color: var(--primary-dark);
-      font-size: 12px;
+    .budget {
+      color: var(--green);
       font-weight: 800;
+      font-size: 1rem;
     }
 
-    .detail-link:hover {
-      background: var(--primary);
-      color: white;
+    .project-card-inner {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
     }
 
     .empty-state {
-      display: none;
-      text-align: center;
+      background: #fff;
+      border: 1px dashed #d7d5ec;
+      border-radius: 18px;
       padding: 45px 20px;
-      border: 1px dashed #d9d9eb;
-      border-radius: 17px;
-      background: white;
-    }
-
-    .empty-state .emoji { font-size: 35px; }
-    .empty-state h3 { font-size: 18px; font-weight: 900; margin: 12px 0; }
-    .empty-state p { color: var(--muted); font-size: 13px; }
-
-    .site-footer {
-      padding: 30px 0;
-      background: white;
-      border-top: 1px solid var(--border);
       text-align: center;
       color: var(--muted);
-      font-size: 12px;
     }
 
-    @media (max-width: 900px) {
-      .layout { grid-template-columns: 220px minmax(0, 1fr); }
-      .nav-links { gap: 12px; }
-      .nav-links a { font-size: 12px; }
-      .budget { font-size: 11px; }
+    .empty-state h3 {
+      color: var(--text);
+      font-size: 1.15rem;
+      font-weight: 800;
     }
 
-    @media (max-width: 700px) {
-      .nav-wrap { padding: 13px 0; flex-wrap: wrap; }
-      .nav-links { order: 3; width: 100%; justify-content: center; flex-wrap: wrap; }
-      .layout { grid-template-columns: 1fr; }
+    .footer {
+      background: #fff;
+      border-top: 1px solid var(--border);
+      padding: 28px 0;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    @media (max-width: 767px) {
+      .hero { padding: 32px 0; }
       .filter-card { position: static; }
-      .filter-row {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 0 14px;
-      }
-    }
-
-    @media (max-width: 450px) {
-      .brand { font-size: 22px; }
-      .brand small { font-size: 13px; }
-      .nav-actions .btn-outline { display: none; }
-      .nav-actions .btn-main { padding: 9px 11px; font-size: 11px; }
-      .hero-search { flex-direction: column; }
-      .hero-search button { padding: 12px; }
-      .project-card { padding: 17px; }
-      .project-top { flex-wrap: wrap; }
-      .project-heading { flex-basis: calc(100% - 65px); }
-      .budget { margin-right: 62px; text-align: right; }
-      .filter-row { grid-template-columns: 1fr; }
+      .search-box { flex-direction: column; }
+      .search-box button { width: 100%; }
     }
   </style>
 </head>
 
 <body>
+  <nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container py-2">
+      <a class="navbar-brand brand" href="index.html">Solver</a>
 
-<header class="site-header">
-  <div class="container nav-wrap">
-    <a href="index.html" class="brand">Solver <small>سالور</small></a>
+      <button class="navbar-toggler" type="button"
+        data-bs-toggle="collapse" data-bs-target="#mainNavbar"
+        aria-controls="mainNavbar" aria-expanded="false"
+        aria-label="باز کردن منو">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-    <nav class="nav-links" aria-label="منوی اصلی">
-      <a href="index.html">خانه</a>
-      <a href="services.html">پروژه‌ها</a>
-      <a href="post-project.html">ثبت پروژه</a>
-      <a href="about.html">دربارهٔ ما</a>
-    </nav>
-
-    <div class="d-flex gap-2">
-      <a href="login.html" class="btn-outline">ورود</a>
-      <a href="post-project.html" class="btn-main">＋ ثبت پروژه</a>
+      <div class="collapse navbar-collapse" id="mainNavbar">
+        <div class="navbar-nav me-auto align-items-lg-center gap-lg-2">
+          <a class="nav-link" href="index.html">صفحه اصلی</a>
+          <a class="nav-link" href="services.html">پروژه‌ها</a>
+          <a class="nav-link" href="post-project.html">ثبت پروژه</a>
+          <a class="nav-link" href="login.html">ورود</a>
+          <a class="btn-primary-custom mt-2 mt-lg-0" href="post-project.html">+ ثبت پروژه</a>
+        </div>
+      </div>
     </div>
-  </div>
-</header>
+  </nav>
 
-<section class="page-hero">
-  <div class="container">
-    <span class="eyebrow">فرصت‌های همکاری دانشجویی</span>
-    <h1>پروژهٔ مناسب خودت رو پیدا کن</h1>
-    <p>
-      پروژه‌ها رو بر اساس مهارتت جست‌وجو کن، بودجه و مهلت تحویل رو بررسی کن
-      و برای انجام پروژه پیشنهاد بفرست.
-    </p>
+  <header class="hero">
+    <div class="container">
+      <span class="category-badge">فرصت‌های همکاری دانشجویی</span>
+      <h1 class="mt-3">پروژه‌ای پیدا کن که به مهارتت می‌خوره.</h1>
+      <p class="mb-0">پروژه‌ها رو بررسی کن، شرایط رو بخون و پیشنهاد خودت رو بفرست.</p>
 
-    <form class="hero-search" id="searchForm">
-      <input id="searchInput" type="search"
-             placeholder="مثلاً طراحی سایت، ترجمه، برنامه‌نویسی..."
-             aria-label="جست‌وجوی پروژه">
-      <button type="submit">جست‌وجوی پروژه</button>
-    </form>
-  </div>
-</section>
-
-<main class="container main-area">
-  <div class="results-heading">
-    <div>
-      <h2>پروژه‌های ثبت‌شده</h2>
-      <div class="results-count" id="resultsCount">در حال نمایش پروژه‌ها...</div>
+      <form class="search-box" id="searchForm">
+        <input type="search" id="searchInput"
+          placeholder="مثلاً طراحی سایت، ترجمه یا پایتون..."
+          aria-label="جست‌وجو در پروژه‌ها">
+        <button class="btn-primary-custom" type="submit">جست‌وجو</button>
+      </form>
     </div>
-    <a href="post-project.html" class="btn-main">＋ ثبت پروژهٔ جدید</a>
-  </div>
+  </header>
 
-  <div class="layout">
-    <aside class="filter-card">
-      <h2 class="filter-title">فیلتر پروژه‌ها</h2>
+  <main class="page-container">
+    <div class="row g-4">
+      <aside class="col-lg-3">
+        <div class="filter-card">
+          <h2 class="section-title">فیلتر پروژه‌ها</h2>
 
-      <form id="filterForm">
-        <div class="filter-row">
-          <div>
-            <label class="field-label" for="categoryFilter">دسته‌بندی</label>
-            <select id="categoryFilter" class="filter-control">
-              <option value="">همهٔ دسته‌ها</option>
-              <option value="programming">برنامه‌نویسی و فناوری</option>
-              <option value="design">طراحی گرافیک</option>
-              <option value="translation">زبان و ترجمه</option>
-              <option value="education">خدمات آموزشی</option>
+          <div class="mb-4">
+            <label class="form-label" for="categoryFilter">دسته‌بندی</label>
+            <select class="form-select" id="categoryFilter">
+              <option value="all">همه دسته‌ها</option>
+              <option value="programming">برنامه‌نویسی</option>
+              <option value="design">طراحی</option>
+              <option value="translation">ترجمه</option>
+              <option value="education">آموزشی</option>
+              <option value="other">سایر</option>
             </select>
           </div>
 
-          <div>
-            <label class="field-label" for="budgetFilter">حداکثر بودجه (تومان)</label>
-            <input id="budgetFilter" class="filter-control"
-                   type="number" min="0" placeholder="مثلاً ۳۰۰۰۰۰">
+          <div class="mb-4">
+            <label class="form-label" for="budgetFilter">حداکثر بودجه (تومان)</label>
+            <input type="number" class="form-control" id="budgetFilter"
+              min="0" placeholder="مثلاً 300000">
           </div>
 
-          <div>
-            <label class="field-label" for="sortFilter">مرتب‌سازی</label>
-            <select id="sortFilter" class="filter-control">
-              <option value="newest">جدیدترین</option>
+          <div class="mb-4">
+            <label class="form-label" for="sortFilter">مرتب‌سازی</label>
+            <select class="form-select" id="sortFilter">
+              <option value="newest">جدیدترین پروژه‌ها</option>
               <option value="budget-low">کمترین بودجه</option>
               <option value="budget-high">بیشترین بودجه</option>
               <option value="deadline">نزدیک‌ترین مهلت</option>
             </select>
           </div>
+
+          <button class="btn-outline-custom w-100" type="button" id="resetFilters">
+            پاک کردن فیلترها
+          </button>
+        </div>
+      </aside>
+
+      <section class="col-lg-9">
+        <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+          <h2 class="section-title mb-0">پروژه‌های موجود</h2>
+          <span class="text-secondary small" id="resultCount" aria-live="polite"></span>
         </div>
 
-        <div class="filter-actions">
-          <button class="apply-btn" type="submit">اعمال فیلتر</button>
-          <button class="reset-btn" type="button" id="resetFilters">پاک کردن</button>
+        <div class="row g-3" id="projectsList"></div>
+
+        <div class="empty-state mt-3" id="emptyState" hidden>
+          <h3>پروژه‌ای پیدا نشد!</h3>
+          <p class="mb-3">عبارت جست‌وجو یا فیلترها رو تغییر بده.</p>
+          <button class="btn-outline-custom" type="button" id="emptyReset">
+            نمایش همه پروژه‌ها
+          </button>
         </div>
-      </form>
-    </aside>
 
-    <section>
-      <div class="project-list" id="projectList"></div>
-
-      <div class="empty-state" id="emptyState">
-        <div class="emoji">🔎</div>
-        <h3>پروژه‌ای پیدا نشد</h3>
-        <p>عبارت جست‌وجو یا فیلترها رو تغییر بده و دوباره امتحان کن.</p>
-        <button type="button" class="btn-outline" id="clearSearch">نمایش همهٔ پروژه‌ها</button>
-      </div>
-    </section>
-  </div>
-</main>
-
-<footer class="site-footer">
-  <div class="container">
-    Solver | سالور — مهارتت، راه‌حل توئه.
-    <div class="mt-2">
-      <a href="about.html">دربارهٔ ما</a> ·
-      <a href="contact.html">تماس با ما</a> ·
-      <a href="faq.html">سؤالات متداول</a>
+        <p class="small text-secondary mt-3">
+          توجه: پروژه‌های نمونه برای نمایش عملکرد سایت هستند و پیشنهادها هنوز به سرور ارسال نمی‌شوند.
+        </p>
+      </section>
     </div>
-  </div>
-</footer>
+  </main>
 
-<script>
-  /*
-    پروژه‌های زیر فعلاً نمونه‌های نمایشی هستند.
-    بعداً با فرم ثبت پروژه و پایگاه داده جایگزین می‌شوند.
-  */
+  <footer class="footer">
+    <div class="container">
+      <a href="index.html" class="brand">Solver</a>
+      <p class="mt-2 mb-0">مهارتت، راه‌حل توئه.</p>
+      <div class="mt-3">
+        <a class="text-secondary mx-2" href="about.html">درباره ما</a>
+        <a class="text-secondary mx-2" href="contact.html">تماس با ما</a>
+        <a class="text-secondary mx-2" href="faq.html">سؤالات متداول</a>
+      </div>
+    </div>
+  </footer>
 
-  const demoProjects = [
-    {
-      id: 'demo-1',
-      title: 'طراحی سایت ساده با HTML و CSS',
-      category: 'programming',
-      categoryName: 'برنامه‌نویسی و فناوری',
-      icon: '💻',
-      description: 'برای ارائهٔ دانشگاهی به یک وب‌سایت ساده و واکنش‌گرا با چند صفحه نیاز دارم. کدها باید مرتب و قابل توضیح باشند.',
-      budget: 300000,
-      deadlineDays: 7,
-      proposals: 2,
-      createdDays: 0
-    },
-    {
-      id: 'demo-2',
-      title: 'طراحی پوستر برای رویداد دانشجویی',
-      category: 'design',
-      categoryName: 'طراحی گرافیک',
-      icon: '🎨',
-      description: 'یک پوستر جذاب برای معرفی برنامهٔ دانشجویی می‌خواهم. متن و اطلاعات رویداد آماده است.',
-      budget: 150000,
-      deadlineDays: 3,
-      proposals: 4,
-      createdDays: 1
-    },
-    {
-      id: 'demo-3',
-      title: 'ترجمهٔ یک متن انگلیسی',
-      category: 'translation',
-      categoryName: 'زبان و ترجمه',
-      icon: '🌐',
-      description: 'ترجمهٔ روان یک متن آموزشی انگلیسی به فارسی با حفظ اصطلاحات تخصصی موردنیاز است.',
-      budget: 120000,
-      deadlineDays: 5,
-      proposals: 1,
-      createdDays: 2
-    },
-    {
-      id: 'demo-4',
-      title: 'تایپ و مرتب‌سازی جزوهٔ دانشگاه',
-      category: 'education',
-      categoryName: 'خدمات آموزشی',
-      icon: '📚',
-      description: 'چند صفحه جزوه نیاز به تایپ و قالب‌بندی مرتب در فایل Word دارد.',
-      budget: 80000,
-      deadlineDays: 4,
-      proposals: 0,
-      createdDays: 3
-    },
-    {
-      id: 'demo-5',
-      title: 'رفع اشکال کد مقدماتی پایتون',
-      category: 'programming',
-      categoryName: 'برنامه‌نویسی و فناوری',
-      icon: '🐍',
-      description: 'برای یک تمرین مقدماتی پایتون به کمک برای پیدا کردن خطاها و فهمیدن راه‌حل نیاز دارم.',
-      budget: 200000,
-      deadlineDays: 6,
-      proposals: 3,
-      createdDays: 4
-    },
-    {
-      id: 'demo-6',
-      title: 'طراحی رزومهٔ دانشجویی',
-      category: 'design',
-      categoryName: 'طراحی گرافیک',
-      icon: '📄',
-      description: 'یک رزومهٔ مرتب و حرفه‌ای برای کارآموزی می‌خواهم. اطلاعات تحصیلی و مهارت‌ها آماده است.',
-      budget: 100000,
-      deadlineDays: 8,
-      proposals: 2,
-      createdDays: 5
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    "use strict";
+
+    const demoProjects = [
+      {
+        id: "demo-1",
+        title: "طراحی سایت ساده با HTML و CSS",
+        category: "programming",
+        budget: 300000,
+        deadline: 7,
+        proposals: 2,
+        createdDays: 0,
+        description: "طراحی یک وب‌سایت ساده، مرتب و واکنش‌گرا برای نمایش درست در موبایل و رایانه."
+      },
+      {
+        id: "demo-2",
+        title: "طراحی پوستر برای رویداد دانشجویی",
+        category: "design",
+        budget: 150000,
+        deadline: 3,
+        proposals: 4,
+        createdDays: 1,
+        description: "طراحی یک پوستر جذاب با اطلاعات واضح برای یک برنامه دانشجویی."
+      },
+      {
+        id: "demo-3",
+        title: "ترجمه یک متن انگلیسی",
+        category: "translation",
+        budget: 120000,
+        deadline: 5,
+        proposals: 1,
+        createdDays: 2,
+        description: "ترجمه روان و دقیق یک متن انگلیسی به فارسی با حفظ مفهوم اصلی."
+      },
+      {
+        id: "demo-4",
+        title: "تایپ و مرتب‌سازی جزوه دانشگاه",
+        category: "education",
+        budget: 80000,
+        deadline: 4,
+        proposals: 0,
+        createdDays: 3,
+        description: "تایپ جزوه دانشگاهی با تیترگذاری، بخش‌بندی و قالب‌بندی منظم."
+      },
+      {
+        id: "demo-5",
+        title: "رفع اشکال کد مقدماتی پایتون",
+        category: "programming",
+        budget: 200000,
+        deadline: 6,
+        proposals: 3,
+        createdDays: 4,
+        description: "بررسی خطاهای یک برنامه مقدماتی پایتون و توضیح دلیل بروز آن‌ها."
+      },
+      {
+        id: "demo-6",
+        title: "طراحی رزومه دانشجویی",
+        category: "design",
+        budget: 100000,
+        deadline: 8,
+        proposals: 2,
+        createdDays: 5,
+        description: "طراحی رزومه‌ای ساده و حرفه‌ای برای نمایش سوابق تحصیلی و مهارت‌ها."
+      }
+    ];
+
+    const categoryNames = {
+      programming: "برنامه‌نویسی",
+      design: "طراحی",
+      translation: "ترجمه",
+      education: "آموزشی",
+      other: "سایر"
+    };
+
+    const projectsList = document.getElementById("projectsList");
+    const searchInput = document.getElementById("searchInput");
+    const categoryFilter = document.getElementById("categoryFilter");
+    const budgetFilter = document.getElementById("budgetFilter");
+    const sortFilter = document.getElementById("sortFilter");
+    const resultCount = document.getElementById("resultCount");
+    const emptyState = document.getElementById("emptyState");
+
+    function readProjects() {
+      try {
+        const saved = JSON.parse(localStorage.getItem("solverProjects") || "[]");
+        const validSaved = Array.isArray(saved) ? saved : [];
+
+        const normalizedSaved = validSaved.map((project, index) => ({
+          id: String(project.id || "saved-" + index),
+          title: String(project.title || "پروژه بدون عنوان"),
+          category: categoryNames[project.category] ? project.category : "other",
+          budget: Number(project.budget ?? project.price ?? 0) || 0,
+          deadline: Number(project.deadline ?? project.days ?? 0) || 0,
+          proposals: Number(project.proposals) || 0,
+          createdDays: -1,
+          description: String(project.description || "توضیحات بیشتری ثبت نشده است.")
+        }));
+
+        const savedIds = new Set(normalizedSaved.map(project => project.id));
+
+        return normalizedSaved.concat(
+          demoProjects.filter(project => !savedIds.has(project.id))
+        );
+      } catch (error) {
+        return demoProjects.slice();
+      }
     }
-  ];
 
-  const projectList = document.getElementById('projectList');
-  const resultsCount = document.getElementById('resultsCount');
-  const emptyState = document.getElementById('emptyState');
+    const allProjects = readProjects();
 
-  const searchInput = document.getElementById('searchInput');
-  const categoryFilter = document.getElementById('categoryFilter');
-  const budgetFilter = document.getElementById('budgetFilter');
-  const sortFilter = document.getElementById('sortFilter');
+    function formatMoney(amount) {
+      return Number(amount).toLocaleString("fa-IR") + " تومان";
+    }
 
-  const formatPrice = amount => Number(amount).toLocaleString('fa-IR') + ' تومان';
+    function createElement(tag, className, text) {
+      const element = document.createElement(tag);
+      if (className) element.className = className;
+      if (text !== undefined) element.textContent = text;
+      return element;
+    }
 
-  function getAllProjects() {
-    try {
-      const saved = JSON.parse(localStorage.getItem('solverProjects') || '[]');
-      if (!Array.isArray(saved)) return demoProjects;
+    function createProjectCard(project) {
+      const column = createElement("div", "col-md-6");
+      const card = createElement("article", "project-card");
+      const inner = createElement("div", "project-card-inner");
 
-      const validSaved = saved.filter(project =>
-        project &&
-        typeof project.id === 'string' &&
-        typeof project.title === 'string' &&
-        project.title.trim() &&
-        typeof project.description === 'string' &&
-        Number.isFinite(Number(project.budget)) &&
-        Number(project.budget) >= 0 &&
-        typeof project.category === 'string'
+      const category = createElement(
+        "span",
+        "category-badge align-self-start",
+        categoryNames[project.category] || "سایر"
       );
 
-      return [...validSaved, ...demoProjects];
-    } catch {
-      return demoProjects;
+      const title = createElement("h3", "", project.title);
+      const description = createElement("p", "project-description", project.description);
+
+      const meta = createElement("div", "project-meta");
+      meta.append(
+        createElement("span", "", "◷ " + project.deadline.toLocaleString("fa-IR") + " روز مهلت"),
+        createElement("span", "", "◉ " + project.proposals.toLocaleString("fa-IR") + " پیشنهاد")
+      );
+
+      const bottom = createElement("div", "project-bottom");
+      const budget = createElement(
+        "div",
+        "budget",
+        project.budget > 0 ? formatMoney(project.budget) : "بودجه توافقی"
+      );
+
+      const link = createElement("a", "btn-primary-custom");
+      link.href = "service-detail.html?id=" +
+        encodeURIComponent(project.id) +
+        "&title=" + encodeURIComponent(project.title);
+      link.textContent = "مشاهده پروژه ←";
+
+      bottom.append(budget, link);
+      inner.append(category, title, description, meta, bottom);
+      card.appendChild(inner);
+      column.appendChild(card);
+
+      return column;
     }
-  }
 
-  function createProjectCard(project) {
-    const article = document.createElement('article');
-    article.className = 'project-card';
+    function renderProjects() {
+      const query = searchInput.value.trim().toLocaleLowerCase("fa");
+      const selectedCategory = categoryFilter.value;
+      const maxBudget = budgetFilter.value.trim() === ""
+        ? null
+        : Number(budgetFilter.value);
+      const sort = sortFilter.value;
 
-    const top = document.createElement('div');
-    top.className = 'project-top';
+      let filtered = allProjects.filter(project => {
+        const searchableText = (
+          project.title + " " +
+          project.description + " " +
+          (categoryNames[project.category] || "")
+        ).toLocaleLowerCase("fa");
 
-    const icon = document.createElement('div');
-    icon.className = 'project-icon';
-    icon.textContent = project.icon || '📌';
+        const matchesSearch = searchableText.includes(query);
+        const matchesCategory =
+          selectedCategory === "all" || project.category === selectedCategory;
+        const matchesBudget =
+          maxBudget === null || (project.budget > 0 && project.budget <= maxBudget);
 
-    const heading = document.createElement('div');
-    heading.className = 'project-heading';
+        return matchesSearch && matchesCategory && matchesBudget;
+      });
 
-    const title = document.createElement('h3');
-    title.textContent = project.title;
+      if (sort === "budget-low") {
+        filtered.sort((a, b) => a.budget - b.budget);
+      } else if (sort === "budget-high") {
+        filtered.sort((a, b) => b.budget - a.budget);
+      } else if (sort === "deadline") {
+        filtered.sort((a, b) => a.deadline - b.deadline);
+      } else {
+        filtered.sort((a, b) => a.createdDays - b.createdDays);
+      }
 
-    const category = document.createElement('span');
-    category.className = 'category-label';
-    category.textContent = project.categoryName || 'سایر پروژه‌ها';
+      projectsList.replaceChildren();
 
-    heading.append(title, category);
+      filtered.forEach(project => {
+        projectsList.appendChild(createProjectCard(project));
+      });
 
-    const budget = document.createElement('div');
-    budget.className = 'budget';
-    budget.textContent = formatPrice(project.budget);
+      resultCount.textContent =
+        filtered.length.toLocaleString("fa-IR") + " پروژه";
 
-    const budgetLabel = document.createElement('small');
-    budgetLabel.textContent = 'بودجهٔ پیشنهادی';
-    budget.appendChild(budgetLabel);
+      emptyState.hidden = filtered.length !== 0;
+    }
 
-    top.append(icon, heading, budget);
+    function resetFilters() {
+      searchInput.value = "";
+      categoryFilter.value = "all";
+      budgetFilter.value = "";
+      sortFilter.value = "newest";
+      renderProjects();
+    }
 
-    const description = document.createElement('p');
-    description.className = 'project-description';
-    description.textContent = project.description;
-
-    const meta = document.createElement('div');
-    meta.className = 'project-meta';
-
-    const deadline = document.createElement('span');
-    deadline.textContent = '🗓 مهلت: ' +
-      (Number(project.deadlineDays) > 0
-        ? Number(project.deadlineDays).toLocaleString('fa-IR') + ' روز'
-        : 'توافقی');
-
-    const proposalCount = document.createElement('span');
-    proposalCount.textContent = '✉️ ' +
-      Number(project.proposals || 0).toLocaleString('fa-IR') + ' پیشنهاد';
-
-    meta.append(deadline, proposalCount);
-
-    const bottom = document.createElement('div');
-    bottom.className = 'project-bottom';
-
-    const note = document.createElement('span');
-    note.className = 'proposal-count';
-    note.textContent = 'برای این پروژه پیشنهادت رو ثبت کن';
-
-    const link = document.createElement('a');
-    link.className = 'detail-link';
-    link.textContent = 'مشاهده و ارسال پیشنهاد ←';
-    link.href = 'service-detail.html?id=' +
-      encodeURIComponent(project.id) +
-      '&title=' + encodeURIComponent(project.title);
-
-    bottom.append(note, link);
-    article.append(top, description, meta, bottom);
-
-    return article;
-  }
-
-  function renderProjects() {
-    const query = searchInput.value.trim().toLocaleLowerCase('fa');
-    const category = categoryFilter.value;
-    const maxBudget = budgetFilter.value === ''
-      ? null
-      : Number(budgetFilter.value);
-
-    let projects = getAllProjects().filter(project => {
-      const text = (
-        project.title + ' ' +
-        project.description + ' ' +
-        (project.categoryName || '')
-      ).toLocaleLowerCase('fa');
-
-      const matchesSearch = !query || text.includes(query);
-      const matchesCategory = !category || project.category === category;
-      const matchesBudget = maxBudget === null ||
-        (Number.isFinite(maxBudget) &&
-         Number(project.budget) <= maxBudget);
-
-      return matchesSearch && matchesCategory && matchesBudget;
+    document.getElementById("searchForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+      renderProjects();
     });
 
-    switch (sortFilter.value) {
-      case 'budget-low':
-        projects.sort((a, b) => Number(a.budget) - Number(b.budget))
+    searchInput.addEventListener("input", renderProjects);
+    categoryFilter.addEventListener("change", renderProjects);
+    budgetFilter.addEventListener("input", renderProjects);
+    sortFilter.addEventListener("change", renderProjects);
+
+    document.getElementById("resetFilters").addEventListener("click", resetFilters);
+    document.getElementById("emptyReset").addEventListener("click", resetFilters);
+
+    const params = new URLSearchParams(window.location.search);
+    const requestedCategory = params.get("category");
+
+    if (requestedCategory && Object.prototype.hasOwnProperty.call(categoryNames, requestedCategory)) {
+      categoryFilter.value = requestedCategory;
+    }
+
+    renderProjects();
+  </script>
+</body>
+</html>
