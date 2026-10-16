@@ -3,800 +3,271 @@
 <html lang="fa" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Solver | سالور — پروژه پیدا کن، مهارتت رو به کار بگیر</title>
-  <meta name="description" content="در سالور پروژه‌های دانشجویی ثبت کن، پروژه‌های مناسب مهارتت رو پیدا کن و برای همکاری پیشنهاد بده.">
-
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="در Solver پروژه‌های دانشجویی پیدا کن، پیشنهاد بده و مهارت‌هایت را به کار بگیر.">
+  <title>Solver | مهارتت، راه‌حل توئه</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
-
   <style>
-    :root {
-      --primary: #635bdb;
-      --primary-dark: #5048c6;
-      --ink: #222540;
-      --muted: #777d91;
-      --surface: #ffffff;
-      --background: #f8f9fd;
-      --border: #e9eaf3;
-      --green: #159b72;
-    }
-
-    * { box-sizing: border-box; }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      margin: 0;
-      background: var(--background);
-      color: var(--ink);
-      font-family: 'Vazirmatn', sans-serif;
-      line-height: 1.8;
-    }
-
-    a { text-decoration: none; }
-
-    .container { max-width: 1160px; }
-
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(255,255,255,.94);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .nav-wrap {
-      min-height: 76px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-    }
-
-    .brand {
-      color: var(--primary);
-      font-size: 27px;
-      font-weight: 900;
-      letter-spacing: -.8px;
-    }
-
-    .brand small {
-      color: var(--ink);
-      font-size: 16px;
-      margin-right: 5px;
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 25px;
-    }
-
-    .nav-links a {
-      color: #555a70;
-      font-size: 14px;
-      font-weight: 600;
-    }
-
-    .nav-links a:hover { color: var(--primary); }
-
-    .nav-actions {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .btn-main, .btn-outline {
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      gap: 8px;
-      padding: 11px 17px;
-      border-radius: 12px;
-      font-family: inherit;
-      font-size: 13px;
-      font-weight: 700;
-      transition: .2s;
-    }
-
-    .btn-main {
-      color: white;
-      background: var(--primary);
-      border: 1px solid var(--primary);
-    }
-
-    .btn-main:hover {
-      color: white;
-      background: var(--primary-dark);
-      transform: translateY(-1px);
-    }
-
-    .btn-outline {
-      color: var(--primary);
-      background: white;
-      border: 1px solid #dcd9ff;
-    }
-
-    .btn-outline:hover {
-      color: var(--primary-dark);
-      background: #f5f4ff;
-    }
-
-    .hero {
-      overflow: hidden;
-      position: relative;
-      padding: 78px 0 72px;
-      background:
-        radial-gradient(ellipse at 90% 0%, #e9e7ff 0%, transparent 38%),
-        radial-gradient(ellipse at 5% 100%, #e5f7f1 0%, transparent 34%),
-        #fff;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.05fr .95fr;
-      align-items: center;
-      gap: 55px;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 7px 12px;
-      color: var(--primary-dark);
-      background: #efedff;
-      border-radius: 30px;
-      font-size: 12px;
-      font-weight: 700;
-    }
-
-    .eyebrow-dot {
-      width: 7px;
-      height: 7px;
-      background: var(--green);
-      border-radius: 50%;
-    }
-
-    .hero h1 {
-      margin: 23px 0 17px;
-      font-size: clamp(32px, 4.5vw, 51px);
-      line-height: 1.5;
-      font-weight: 900;
-      letter-spacing: -1.5px;
-    }
-
-    .hero h1 span { color: var(--primary); }
-
-    .hero-description {
-      max-width: 520px;
-      color: var(--muted);
-      font-size: 16px;
-      line-height: 2.1;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 28px;
-    }
-
-    .hero-actions .btn-main,
-    .hero-actions .btn-outline {
-      padding: 14px 20px;
-      font-size: 14px;
-    }
-
-    .hero-note {
-      color: #85899b;
-      font-size: 12px;
-      margin-top: 18px;
-    }
-
-    .preview {
-      position: relative;
-      padding: 24px;
-      border: 1px solid #e7e6f4;
-      border-radius: 25px;
-      background: rgba(255,255,255,.88);
-      box-shadow: 0 24px 75px rgba(57, 51, 135, .12);
-    }
-
-    .preview-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 20px;
-    }
-
-    .preview-header strong { font-size: 17px; }
-
-    .live-label {
-      padding: 5px 10px;
-      border-radius: 30px;
-      color: #137c5e;
-      background: #e4f8ef;
-      font-size: 11px;
-      font-weight: 700;
-    }
-
-    .project-card {
-      padding: 17px;
-      margin-top: 12px;
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      background: white;
-    }
-
-    .project-top {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-    }
-
-    .project-icon {
-      display: grid;
-      flex-shrink: 0;
-      place-items: center;
-      width: 43px;
-      height: 43px;
-      border-radius: 13px;
-      background: #efedff;
-      font-size: 21px;
-    }
-
-    .project-name {
-      font-size: 14px;
-      font-weight: 800;
-    }
-
-    .project-category {
-      color: var(--muted);
-      font-size: 11px;
-      margin-top: 3px;
-    }
-
-    .project-budget {
-      margin-right: auto;
-      white-space: nowrap;
-      color: var(--green);
-      font-size: 12px;
-      font-weight: 800;
-    }
-
-    .project-desc {
-      color: var(--muted);
-      font-size: 12px;
-      margin: 13px 0;
-    }
-
-    .project-bottom {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 10px;
-      border-top: 1px solid #f0f0f6;
-      padding-top: 12px;
-    }
-
-    .project-time {
-      color: #85899b;
-      font-size: 11px;
-    }
-
-    .mini-link {
-      color: var(--primary);
-      font-size: 12px;
-      font-weight: 800;
-    }
-
-    .preview-caption {
-      text-align: center;
-      color: #85899b;
-      font-size: 11px;
-      margin: 17px 0 0;
-    }
-
-    .section { padding: 76px 0; }
-
-    .section-heading {
-      text-align: center;
-      max-width: 660px;
-      margin: 0 auto 38px;
-    }
-
-    .section-kicker {
-      color: var(--primary);
-      font-size: 12px;
-      font-weight: 800;
-    }
-
-    .section-heading h2 {
-      margin: 9px 0 12px;
-      font-size: clamp(25px, 3vw, 34px);
-      font-weight: 900;
-    }
-
-    .section-heading p {
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 2;
-    }
-
-    .category-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 17px;
-    }
-
-    .category-card {
-      display: block;
-      padding: 24px 20px;
-      color: var(--ink);
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      transition: .2s;
-    }
-
-    .category-card:hover {
-      border-color: #c9c5ff;
-      transform: translateY(-4px);
-      box-shadow: 0 14px 30px rgba(40, 35, 100, .06);
-    }
-
-    .category-icon {
-      display: grid;
-      place-items: center;
-      width: 49px;
-      height: 49px;
-      margin-bottom: 17px;
-      background: #f0efff;
-      border-radius: 15px;
-      font-size: 24px;
-    }
-
-    .category-card h3 {
-      font-size: 15px;
-      font-weight: 800;
-      margin-bottom: 7px;
-    }
-
-    .category-card p {
-      color: var(--muted);
-      font-size: 12px;
-      margin: 0;
-    }
-
-    .steps-section { background: #fff; }
-
-    .steps-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 22px;
-    }
-
-    .step-card {
-      padding: 28px;
-      border: 1px solid var(--border);
-      border-radius: 19px;
-      background: #fff;
-    }
-
-    .step-number {
-      display: grid;
-      place-items: center;
-      width: 43px;
-      height: 43px;
-      border-radius: 14px;
-      color: white;
-      background: var(--primary);
-      font-size: 17px;
-      font-weight: 900;
-    }
-
-    .step-card h3 {
-      font-size: 17px;
-      font-weight: 800;
-      margin: 19px 0 10px;
-    }
-
-    .step-card p {
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 2;
-      margin: 0;
-    }
-
-    .cta-wrap { padding: 70px 0; }
-
-    .cta {
-      position: relative;
-      overflow: hidden;
-      padding: 48px 35px;
-      border-radius: 26px;
-      background: linear-gradient(125deg, #635bdb, #8178ed);
-      color: white;
-      text-align: center;
-    }
-
-    .cta h2 {
-      font-size: clamp(25px, 3vw, 35px);
-      font-weight: 900;
-      margin-bottom: 13px;
-    }
-
-    .cta p {
-      max-width: 620px;
-      margin: 0 auto;
-      color: #eeedff;
-      font-size: 14px;
-      line-height: 2;
-    }
-
-    .cta .btn-white {
-      display: inline-flex;
-      margin-top: 25px;
-      padding: 13px 21px;
-      border-radius: 12px;
-      background: white;
-      color: var(--primary-dark);
-      font-size: 14px;
-      font-weight: 800;
-    }
-
-    .site-footer {
-      padding: 45px 0 22px;
-      background: #fff;
-      border-top: 1px solid var(--border);
-    }
-
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 1.5fr 1fr 1fr;
-      gap: 40px;
-      padding-bottom: 30px;
-    }
-
-    .footer-about p {
-      max-width: 400px;
-      margin-top: 13px;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 2.1;
-    }
-
-    .footer-title {
-      font-size: 14px;
-      font-weight: 800;
-      margin-bottom: 15px;
-    }
-
-    .footer-links {
-      display: flex;
-      flex-direction: column;
-      gap: 11px;
-    }
-
-    .footer-links a {
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    .footer-links a:hover { color: var(--primary); }
-
-    .footer-bottom {
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 10px;
-      padding-top: 20px;
-      border-top: 1px solid var(--border);
-      color: #85899b;
-      font-size: 11px;
-    }
-
-    #scrollTop {
-      position: fixed;
-      bottom: 22px;
-      left: 22px;
-      z-index: 90;
-      display: none;
-      width: 44px;
-      height: 44px;
-      border: none;
-      border-radius: 14px;
-      color: white;
-      background: var(--primary);
-      font-size: 21px;
-      cursor: pointer;
-      box-shadow: 0 6px 20px rgba(99,91,219,.25);
-    }
-
-    #toast {
-      position: fixed;
-      right: 20px;
-      bottom: 20px;
-      z-index: 200;
-      max-width: calc(100% - 40px);
-      padding: 13px 18px;
-      border-radius: 12px;
-      background: #242642;
-      color: white;
-      font-size: 13px;
-      opacity: 0;
-      transform: translateY(12px);
-      pointer-events: none;
-      transition: .25s;
-    }
-
-    #toast.show {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    @media (max-width: 992px) {
-      .nav-links { gap: 14px; }
-      .hero-grid { gap: 30px; }
-      .category-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-
-    @media (max-width: 768px) {
-      .nav-wrap { flex-wrap: wrap; padding: 13px 0; }
-      .nav-links { order: 3; width: 100%; justify-content: center; flex-wrap: wrap; }
-      .nav-actions .btn-outline { display: none; }
-      .hero { padding: 52px 0; }
-      .hero-grid { grid-template-columns: 1fr; }
-      .hero-copy { text-align: center; }
-      .hero-description { margin-inline: auto; }
-      .hero-actions { justify-content: center; }
-      .preview { max-width: 550px; width: 100%; margin: 0 auto; }
-      .steps-grid { grid-template-columns: 1fr; }
-      .footer-grid { grid-template-columns: 1fr 1fr; }
-      .footer-about { grid-column: 1 / -1; }
-    }
-
-    @media (max-width: 480px) {
-      .brand { font-size: 23px; }
-      .nav-links { gap: 13px; }
-      .nav-links a { font-size: 12px; }
-      .nav-actions .btn-main { padding: 9px 11px; font-size: 11px; }
-      .hero h1 { font-size: 32px; }
-      .hero-actions .btn-main, .hero-actions .btn-outline { width: 100%; }
-      .preview { padding: 15px; }
-      .project-card { padding: 13px; }
-      .project-budget { font-size: 10px; }
-      .category-grid { gap: 11px; }
-      .category-card { padding: 17px 13px; }
-      .category-card h3 { font-size: 13px; }
-      .footer-grid { grid-template-columns: 1fr; gap: 27px; }
-      .footer-about { grid-column: auto; }
-      .cta { padding: 37px 20px; }
-    }
+    :root{--purple:#7357e8;--purple-dark:#5940ca;--lavender:#f2eeff;--ink:#28243d;--muted:#79758d;--line:#eeebf5}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:90px}
+    body{margin:0;font-family:Vazirmatn,sans-serif;color:var(--ink);background:#fff;line-height:1.9}
+    a{color:inherit;text-decoration:none}
+    .container{width:min(1120px,calc(100% - 36px));margin:auto}
+    .site-header{position:sticky;top:0;z-index:20;background:#ffffffed;border-bottom:1px solid var(--line);backdrop-filter:blur(14px)}
+    .header-inner{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .brand{display:flex;align-items:center;gap:10px;font-size:1.4rem;font-weight:800;direction:ltr}
+    .brand-mark{display:grid;place-items:center;width:39px;height:39px;border-radius:13px;color:#fff;background:linear-gradient(145deg,#a18cff,#6548d9);box-shadow:0 5px 15px #7357e82b}
+    .nav{display:flex;align-items:center;gap:25px}
+    .nav a{font-size:.88rem;color:var(--muted);transition:color .2s}
+    .nav a:hover{color:var(--purple)}
+    .actions{display:flex;gap:9px;align-items:center}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:10px 17px;border-radius:11px;border:1px solid transparent;font-size:.87rem;font-weight:700;cursor:pointer;transition:.2s}
+    .btn:hover{transform:translateY(-2px)}
+    .btn-primary{background:var(--purple);color:white;box-shadow:0 5px 15px #7357e822}
+    .btn-primary:hover{background:var(--purple-dark);color:#fff}
+    .btn-outline{border-color:var(--line);background:#fff}
+    .btn-outline:hover{border-color:#d5cbff;color:var(--purple)}
+    .hero{overflow:hidden;background:radial-gradient(ellipse at 83% 15%,#e9e1ff 0,transparent 35%),radial-gradient(ellipse at 12% 90%,#faedff 0,transparent 33%),linear-gradient(120deg,#fff,#fcfaff);padding:75px 0 65px}
+    .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:40px}
+    .eyebrow{display:inline-flex;align-items:center;gap:9px;padding:5px 12px;border:1px solid #e6ddff;background:#fff;border-radius:30px;color:var(--purple-dark);font-size:.78rem;font-weight:600}
+    .dot{width:7px;height:7px;border-radius:50%;background:#8b70f4;box-shadow:0 0 0 4px #eee8ff}
+    h1{font-size:clamp(2.3rem,4.5vw,3.6rem);line-height:1.5;letter-spacing:-1px;margin:19px 0;font-weight:800}
+    h1 span{color:var(--purple)}
+    .hero p{max-width:500px;color:var(--muted);font-size:.96rem;line-height:2.15}
+    .hero-actions{display:flex;gap:11px;flex-wrap:wrap;margin-top:25px}
+    .hero-actions .btn{padding:12px 21px}
+    .hero-note{font-size:.77rem!important;margin-top:17px}
+    .visual{position:relative;min-height:370px;display:grid;place-items:center}
+    .orbit{position:absolute;width:315px;height:315px;border:1px solid #ded5ff;border-radius:50%}
+    .orbit:before{content:"";position:absolute;inset:23px;border:1px solid #e8e1ff;border-radius:50%}
+    .project-preview{position:relative;z-index:1;width:min(325px,100%);padding:24px;background:#ffffffed;border:1px solid #e9e3f7;border-radius:22px;box-shadow:0 25px 65px #4d3c8019;transform:rotate(-2deg)}
+    .preview-top,.preview-bottom{display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .tiny{font-size:.75rem;color:var(--muted)}
+    .pill{background:var(--lavender);color:var(--purple-dark);padding:4px 9px;border-radius:8px;font-size:.7rem;font-weight:700}
+    .project-preview h3{font-size:1.05rem;margin:19px 0 7px}
+    .project-preview p{font-size:.79rem;line-height:1.9;margin:0 0 17px}
+    .tags{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:20px}
+    .tags span{font-size:.69rem;color:#716b85;background:#f7f6fb;padding:3px 8px;border-radius:6px}
+    .preview-bottom{border-top:1px solid var(--line);padding-top:16px}
+    .budget strong{display:block;font-size:.98rem}
+    .budget small{display:block;color:var(--muted);font-size:.7rem}
+    .float-card{position:absolute;z-index:2;display:flex;align-items:center;gap:10px;padding:12px 14px;background:white;border:1px solid var(--line);border-radius:14px;box-shadow:0 12px 30px #40316b12}
+    .float-one{top:28px;right:0}.float-two{bottom:28px;left:0}
+    .float-icon{width:37px;height:37px;display:grid;place-items:center;background:var(--lavender);color:var(--purple);border-radius:11px;font-size:1.15rem}
+    .float-card strong{display:block;font-size:.76rem}.float-card small{display:block;font-size:.68rem;color:var(--muted)}
+    .section{padding:70px 0}
+    .section-heading{display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:27px}
+    .kicker{font-size:.78rem;color:var(--purple);font-weight:700;margin-bottom:5px}
+    .section h2{font-size:clamp(1.55rem,3vw,2rem);margin:0;font-weight:800}
+    .section-desc{color:var(--muted);font-size:.88rem;margin:8px 0 0}
+    .text-link{color:var(--purple);font-size:.84rem;font-weight:700;white-space:nowrap}
+    .category-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:15px}
+    .category-card{padding:21px;border:1px solid var(--line);border-radius:17px;transition:.2s;background:#fff}
+    .category-card:hover{border-color:#d7ceff;transform:translateY(-4px);box-shadow:0 12px 25px #4734850b}
+    .category-icon{display:grid;place-items:center;width:45px;height:45px;margin-bottom:14px;background:var(--lavender);border-radius:13px;font-size:1.3rem}
+    .category-card h3{font-size:.96rem;margin:0 0 4px}
+    .category-card p{font-size:.77rem;color:var(--muted);margin:0}
+    .projects-section{background:#fcfbff}
+    .project-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:17px}
+    .project-card{display:flex;flex-direction:column;padding:21px;background:#fff;border:1px solid var(--line);border-radius:17px;transition:.2s}
+    .project-card:hover{transform:translateY(-4px);border-color:#d9d0ff;box-shadow:0 12px 28px #4734850c}
+    .project-top{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:16px}
+    .project-category{font-size:.72rem;background:var(--lavender);color:var(--purple-dark);padding:4px 9px;border-radius:7px}
+    .project-card h3{font-size:1rem;line-height:1.8;margin:0 0 8px}
+    .project-card>p{font-size:.81rem;color:var(--muted);margin:0 0 16px;min-height:52px}
+    .project-meta{display:flex;flex-wrap:wrap;gap:7px 13px;padding:13px 0;border-top:1px solid #f1eff6;color:var(--muted);font-size:.73rem}
+    .project-bottom{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:auto}
+    .project-bottom small{display:block;font-size:.69rem;color:var(--muted)}
+    .project-bottom strong{font-size:.91rem}
+    .steps-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:17px;margin-top:28px}
+    .step-card{padding:23px;border:1px solid var(--line);border-radius:17px}
+    .step-number{width:42px;height:42px;display:grid;place-items:center;border-radius:12px;background:var(--lavender);color:var(--purple);font-weight:800;margin-bottom:16px}
+    .step-card h3{font-size:.98rem;margin:0 0 7px}
+    .step-card p{font-size:.82rem;line-height:2;color:var(--muted);margin:0}
+    .cta{padding:12px 0 75px}
+    .cta-box{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:39px;background:radial-gradient(ellipse at 100% 0,#e0d7ff 0,transparent 42%),linear-gradient(120deg,#faf8ff,#f2edff);border:1px solid #e9e1ff;border-radius:23px}
+    .cta-box h2{font-size:1.65rem;margin:0 0 8px}
+    .cta-box p{color:var(--muted);font-size:.87rem;margin:0}
+    .cta-actions{display:flex;gap:10px;flex-wrap:wrap}
+    .site-footer{padding:43px 0 19px;border-top:1px solid var(--line)}
+    .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:28px;padding-bottom:30px}
+    .footer-about p{max-width:270px;color:var(--muted);font-size:.8rem;line-height:2}
+    .footer-col h3{font-size:.88rem;margin:0 0 13px}
+    .footer-links{display:grid;gap:9px}
+    .footer-links a{font-size:.8rem;color:var(--muted)}
+    .footer-links a:hover{color:var(--purple)}
+    .footer-bottom{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding-top:17px;border-top:1px solid var(--line);color:#9692a5;font-size:.75rem}
+    .scroll-top{position:fixed;bottom:20px;left:20px;z-index:30;width:43px;height:43px;border:0;border-radius:13px;background:var(--purple);color:white;font-size:1.2rem;cursor:pointer;opacity:0;visibility:hidden;transition:.2s}
+    .scroll-top.visible{opacity:1;visibility:visible}
+    @media(max-width:900px){.nav{gap:13px}.hero-grid{gap:20px}.category-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.project-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.footer-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(max-width:680px){.header-inner{flex-wrap:wrap;padding:12px 0;gap:11px}.nav{order:3;width:100%;overflow-x:auto;gap:22px;padding:3px 0}.nav a{white-space:nowrap}.actions{margin-right:auto}.actions .btn{padding:8px 11px;font-size:.78rem}.hero{padding:48px 0 30px}.hero-grid{grid-template-columns:1fr;gap:0}.hero h1{font-size:clamp(2.1rem,8vw,2.9rem)}.hero p{font-size:.9rem}.visual{min-height:340px;margin-top:12px}.orbit{width:285px;height:285px}.section{padding:52px 0}.section-heading{align-items:flex-start;flex-direction:column;gap:9px}.project-grid{grid-template-columns:1fr}.project-card>p{min-height:0}.steps-grid{grid-template-columns:1fr;gap:12px}.cta{padding-bottom:52px}.cta-box{align-items:flex-start;flex-direction:column;padding:27px 22px}.cta-box h2{font-size:1.4rem}.footer-grid{gap:25px 16px}}
+    @media(max-width:390px){.container{width:calc(100% - 24px)}.category-grid{gap:10px}.category-card{padding:15px}.visual{transform:scale(.87);margin-inline:-20px}.hero-actions .btn{flex:1}.footer-grid{grid-template-columns:1fr 1fr}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important}}
   </style>
 </head>
 
 <body>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="index.html" aria-label="Solver صفحه اصلی">
+      <span class="brand-mark">S</span><span>Solver</span>
+    </a>
+    <nav class="nav" aria-label="منوی اصلی">
+      <a href="index.html">صفحه اصلی</a>
+      <a href="services.html">پروژه‌ها</a>
+      <a href="#how-it-works">نحوه کار</a>
+      <a href="about.html">درباره ما</a>
+      <a href="contact.html">تماس با ما</a>
+    </nav>
+    <div class="actions">
+      <a class="btn btn-outline" href="login.html">ورود</a>
+      <a class="btn btn-primary" href="post-project.html">＋ ثبت پروژه</a>
+    </div>
+  </div>
+</header>
 
-  <header class="site-header">
-    <div class="container nav-wrap">
-      <a class="brand" href="index.html">Solver <small>سالور</small></a>
+<main>
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <div class="eyebrow"><span class="dot"></span> فضایی برای رشد مهارت‌های دانشجویی</div>
+        <h1>مهارتت،<br><span>راه‌حل توئه.</span></h1>
+        <p>ایده‌ها رو به پروژه تبدیل کن، مهارت‌هات رو به کار بگیر و با دانشجوهای دیگه همکاری کن. قدم بعدی تو می‌تونه از همین‌جا شروع بشه.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="services.html">مشاهده پروژه‌ها <span>←</span></a>
+          <a class="btn btn-outline" href="post-project.html">ثبت پروژه جدید ＋</a>
+        </div>
+        <p class="hero-note">برای شروع، مهارتت رو پیدا کن یا پروژه‌ای که نیاز داری ثبت کن.</p>
+      </div>
 
-      <nav class="nav-links" aria-label="منوی اصلی">
-        <a href="index.html">خانه</a>
-        <a href="services.html">پروژه‌ها</a>
-        <a href="#how-it-works">نحوهٔ کار</a>
-        <a href="about.html">دربارهٔ ما</a>
-      </nav>
-
-      <div class="nav-actions">
-        <a class="btn-outline" href="login.html">ورود</a>
-        <a class="btn-main" href="post-project.html">＋ ثبت پروژه</a>
+      <div class="visual" aria-label="نمونه نمایشی کارت پروژه">
+        <div class="orbit"></div>
+        <div class="float-card float-one">
+          <span class="float-icon">✦</span>
+          <span><strong>مهارتت رو نشون بده</strong><small>با پیشنهاد روی پروژه‌ها</small></span>
+        </div>
+        <div class="project-preview">
+          <div class="preview-top"><span class="tiny">نمونه پروژه</span><span class="pill">پروژه باز</span></div>
+          <h3>طراحی یک وب‌سایت شخصی</h3>
+          <p>به دنبال طراحی ساده و مدرن برای معرفی نمونه‌کارها و مهارت‌ها هستیم.</p>
+          <div class="tags"><span>Web Design</span><span>HTML & CSS</span><span>Frontend</span></div>
+          <div class="preview-bottom">
+            <div class="budget"><small>بودجه پیشنهادی</small><strong>۲ تا ۴ میلیون تومان</strong></div>
+            <span class="visual-action">مشاهده جزئیات ←</span>
+          </div>
+        </div>
+        <div class="float-card float-two">
+          <span class="float-icon">↗</span>
+          <span><strong>از مهارت تا تجربه</strong><small>یک قدم در هر پروژه</small></span>
+        </div>
       </div>
     </div>
-  </header>
+  </section>
 
-  <main>
-    <section class="hero">
-      <div class="container hero-grid">
-        <div class="hero-copy">
-          <div class="eyebrow">
-            <span class="eyebrow-dot"></span>
-            پلتفرم همکاری دانشجویی
-          </div>
-
-          <h1>
-            مهارتت،<br>
-            <span>راه‌حل توئه.</span>
-          </h1>
-
-          <p class="hero-description">
-            پروژه‌ات رو ثبت کن، فرد مناسب رو پیدا کن یا با مهارتت به دیگران کمک کن.
-            سالور جاییه برای ارتباط دانشجوهایی که به کمک نیاز دارن با دانشجوهایی که می‌تونن کمک کنن.
-          </p>
-
-          <div class="hero-actions">
-            <a href="post-project.html" class="btn-main">＋ ثبت پروژهٔ جدید</a>
-            <a href="services.html" class="btn-outline">مشاهدهٔ پروژه‌ها ←</a>
-          </div>
-
-          <p class="hero-note">
-            مناسب برای پروژه‌های دانشجویی، طراحی، برنامه‌نویسی، ترجمه و مهارت‌های کاربردی
-          </p>
-        </div>
-
-        <div class="preview">
-          <div class="preview-header">
-            <strong>نمونهٔ پروژه‌های سالور</strong>
-            <span class="live-label">فرصت‌های همکاری</span>
-          </div>
-
-          <article class="project-card">
-            <div class="project-top">
-              <div class="project-icon">💻</div>
-              <div>
-                <div class="project-name">طراحی سایت با HTML و CSS</div>
-                <div class="project-category">برنامه‌نویسی و طراحی وب</div>
-              </div>
-              <div class="project-budget">بودجه: ۳۰۰ هزار تومان</div>
-            </div>
-            <p class="project-desc">
-              ساخت یک سایت سادهٔ چندصفحه‌ای برای ارائهٔ درس دانشگاه.
-            </p>
-            <div class="project-bottom">
-              <span class="project-time">مهلت: ۷ روز</span>
-              <a class="mini-link" href="service-detail.html?title=طراحی%20سایت">مشاهدهٔ پروژه ←</a>
-            </div>
-          </article>
-
-          <article class="project-card">
-            <div class="project-top">
-              <div class="project-icon">🎨</div>
-              <div>
-                <div class="project-name">طراحی پوستر برای رویداد دانشجویی</div>
-                <div class="project-category">طراحی گرافیک</div>
-              </div>
-              <div class="project-budget">بودجه: ۱۵۰ هزار تومان</div>
-            </div>
-            <p class="project-desc">
-              طراحی یک پوستر ساده و جذاب برای برنامهٔ دانشگاه.
-            </p>
-            <div class="project-bottom">
-              <span class="project-time">مهلت: ۳ روز</span>
-              <a class="mini-link" href="service-detail.html?title=طراحی%20پوستر">مشاهدهٔ پروژه ←</a>
-            </div>
-          </article>
-
-          <p class="preview-caption">
-            این موارد نمونهٔ نمایشی‌اند؛ پروژه‌های واقعی بعداً از طریق فرم ثبت می‌شوند.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="categories">
-      <div class="container">
-        <div class="section-heading">
-          <span class="section-kicker">زمینه‌های همکاری</span>
-          <h2>در چه زمینه‌ای می‌تونی همکاری کنی؟</h2>
-          <p>
-            از مهارت‌هایی که داری استفاده کن، یا برای انجام پروژه‌ات از دانشجوهای دیگر کمک بگیر.
-          </p>
-        </div>
-
-        <div class="category-grid">
-          <a class="category-card" href="services.html?category=programming">
-            <div class="category-icon">💻</div>
-            <h3>برنامه‌نویسی و فناوری</h3>
-            <p>وب‌سایت، کدنویسی و کمک فنی</p>
-          </a>
-
-          <a class="category-card" href="services.html?category=design">
-            <div class="category-icon">🎨</div>
-            <h3>طراحی گرافیک</h3>
-            <p>پوستر، لوگو و طراحی رزومه</p>
-          </a>
-
-          <a class="category-card" href="services.html?category=translation">
-            <div class="category-icon">🌐</div>
-            <h3>زبان و ترجمه</h3>
-            <p>ترجمه و ویرایش متون</p>
-          </a>
-
-          <a class="category-card" href="services.html?category=education">
-            <div class="category-icon">📚</div>
-            <h3>خدمات آموزشی</h3>
-            <p>تایپ، صفحه‌آرایی و کمک آموزشی</p>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <section class="section steps-section" id="how-it-works">
-      <div class="container">
-        <div class="section-heading">
-          <span class="section-kicker">شروع همکاری</span>
-          <h2>سالور چطور کار می‌کنه؟</h2>
-          <p>سه قدم ساده برای ارتباط بین صاحب پروژه و فردی که مهارت انجامش رو داره.</p>
-        </div>
-
-        <div class="steps-grid">
-          <article class="step-card">
-            <div class="step-number">۱</div>
-            <h3>پروژه‌ات رو ثبت کن</h3>
-            <p>
-              توضیحات، بودجهٔ پیشنهادی و مهلت تحویل رو وارد کن تا افراد مناسب بتونن پروژه‌ات رو ببینن.
-            </p>
-          </article>
-
-          <article class="step-card">
-            <div class="step-number">۲</div>
-            <h3>پروژه پیدا کن و پیشنهاد بده</h3>
-            <p>
-              پروژه‌های موجود رو بررسی کن و اگر مهارت و زمان انجامش رو داری، پیشنهاد خودت رو بفرست.
-            </p>
-          </article>
-
-          <article class="step-card">
-            <div class="step-number">۳</div>
-            <h3>فرد مناسب رو انتخاب کن</h3>
-            <p>
-              صاحب پروژه پیشنهادها رو بررسی می‌کنه و فرد مناسب رو برای همکاری انتخاب می‌کنه.
-            </p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="cta-wrap">
-      <div class="container">
-        <div class="cta">
-          <h2>مهارتی داری که به درد بقیه بخوره؟</h2>
-          <p>
-            لازم نیست متخصص حرفه‌ای باشی. اگر مهارتی داری که می‌تونه مشکلی رو حل کنه،
-            از یک پروژهٔ مناسب شروع کن.
-          </p>
-          <a href="services.html" class="btn-white">پیدا کردن پروژه ←</a>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
+  <section class="section">
     <div class="container">
-      <div class="footer-grid">
-        <div class="footer-about">
-          <a class="brand" href="index.html">Solver <small>سالور</small></a>
-          <p>
-            سالور یک ایدهٔ پلتفرم برای همکاری دانشجویان است؛ جایی برای ثبت پروژه،
-            پیدا کردن افراد دارای مهارت و شکل دادن به همکاری‌های دانشجویی.
-          </p>
-        </div>
-
-        <div>
-          <h3 class="footer-title">دسترسی سریع</h3>
-          <div class="footer-links">
-            <a href="services.html">مشاهدهٔ پروژه‌ها</a>
-            <a href="post-project.html">ثبت پروژه</a>
-            <a href="login.html">ورود به حساب</a>
-          </div>
-        </div>
-
-        <div>
-          <h3 class="footer-title">دربارهٔ سالور</h3>
-          <div class="footer-links">
-            <a href="about.html">دربارهٔ ما</a>
-            <a href="contact.html">تماس با ما</a>
-            <a href="faq.html">سؤالات متداول</a>
-          </div>
-        </div>
+      <div class="section-heading">
+        <div><div class="kicker">EXPLORE CATEGORIES</div><h2>از کجا شروع می‌کنی؟</h2><p class="section-desc">حوزه موردعلاقه‌ات رو انتخاب کن و پروژه‌های مرتبط رو ببین.</p></div>
+        <a class="text-link" href="services.html">همه پروژه‌ها ←</a>
       </div>
+      <div class="category-grid">
+        <a class="category-card" href="services.html?category=programming"><span class="category-icon">⌘</span><h3>برنامه‌نویسی</h3><p>وب، اپلیکیشن و کدنویسی</p></a>
+        <a class="category-card" href="services.html?category=design"><span class="category-icon">✳</span><h3>طراحی گرافیک</h3><p>پوستر، لوگو و رابط کاربری</p></a>
+        <a class="category-card" href="services.html?category=translation"><span class="category-icon">文</span><h3>ترجمه و نگارش</h3><p>متن، ویرایش و ترجمه</p></a>
+        <a class="category-card" href="services.html?category=education"><span class="category-icon">⌁</span><h3>آموزش و دروس</h3><p>یادگیری و حل مسائل درسی</p></a>
+      </div>
+    </div>
+  </section>
 
-      <div
+  <section class="section projects-section">
+    <div class="container">
+      <div class="section-heading">
+        <div><div class="kicker">OPEN PROJECTS</div><h2>پروژه‌هایی برای شروع</h2><p class="section-desc">چند نمونه از پروژه‌هایی که می‌تونی بررسی کنی و براشون پیشنهاد بفرستی.</p></div>
+        <a class="text-link" href="services.html">مشاهده همه ←</a>
+      </div>
+      <div class="project-grid">
+        <article class="project-card">
+          <div class="project-top"><span class="project-category">برنامه‌نویسی</span><span class="tiny">نمونه</span></div>
+          <h3>طراحی صفحه معرفی کسب‌وکار</h3>
+          <p>ساخت یک صفحه واکنش‌گرا با طراحی مرتب و نمایش مناسب در موبایل.</p>
+          <div class="project-meta"><span>◷ ۷ روز</span><span>⌘ HTML / CSS</span></div>
+          <div class="project-bottom"><div><small>بودجه پیشنهادی</small><strong>۲ تا ۳ میلیون تومان</strong></div><a class="small-link" href="services.html">مشاهده پروژه ←</a></div>
+        </article>
+        <article class="project-card">
+          <div class="project-top"><span class="project-category">طراحی گرافیک</span><span class="tiny">نمونه</span></div>
+          <h3>طراحی پوستر برای رویداد دانشگاهی</h3>
+          <p>طراحی پوستر خوانا و جذاب برای اطلاع‌رسانی یک برنامه دانشجویی.</p>
+          <div class="project-meta"><span>◷ ۴ روز</span><span>✳ Graphic Design</span></div>
+          <div class="project-bottom"><div><small>بودجه پیشنهادی</small><strong>۵۰۰ هزار تا ۱ میلیون</strong></div><a class="small-link" href="services.html">مشاهده پروژه ←</a></div>
+        </article>
+        <article class="project-card">
+          <div class="project-top"><span class="project-category">ترجمه و نگارش</span><span class="tiny">نمونه</span></div>
+          <h3>ویرایش و آماده‌سازی متن انگلیسی</h3>
+          <p>بررسی نگارش و ساختار یک متن آموزشی و آماده‌سازی نسخه نهایی.</p>
+          <div class="project-meta"><span>◷ ۳ روز</span><span>文 Editing</span></div>
+          <div class="project-bottom"><div><small>بودجه پیشنهادی</small><strong>۳۰۰ تا ۶۰۰ هزار تومان</strong></div><a class="small-link" href="services.html">مشاهده پروژه ←</a></div>
+        </article>
+      </div>
+      <p class="tiny" style="margin-top:18px">نمونه‌های بالا برای نمایش طراحی هستند و پیشنهاد واقعی یا سفارش تأییدشده محسوب نمی‌شوند.</p>
+    </div>
+  </section>
+
+  <section class="section" id="how-it-works">
+    <div class="container">
+      <div class="section-heading">
+        <div><div class="kicker">HOW IT WORKS</div><h2>شروع همکاری، ساده‌تر از چیزی که فکر می‌کنی</h2><p class="section-desc">سه قدم برای پیدا کردن همکاری مناسب.</p></div>
+      </div>
+      <div class="steps-grid">
+        <article class="step-card"><div class="step-number">۰۱</div><h3>پروژه رو ثبت کن</h3><p>توضیحات، بودجه پیشنهادی و زمان موردنیازت رو مشخص کن تا دیگران با درخواستت آشنا بشن.</p></article>
+        <article class="step-card"><div class="step-number">۰۲</div><h3>پیشنهادها رو بررسی کن</h3><p>پیشنهادهای دانشجوهای علاقه‌مند رو از نظر هزینه، زمان و توضیحات مقایسه کن.</p></article>
+        <article class="step-card"><div class="step-number">۰۳</div><h3>همکاری رو شروع کن</h3><p>بعد از انتخاب پیشنهاد مناسب، درباره جزئیات کار با طرف مقابل هماهنگ شو.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="container">
+      <div class="cta-box">
+        <div><h2>یه پروژه توی ذهنته؟</h2><p>توضیحاتش رو بنویس و اولین قدم رو بردار.</p></div>
+        <div class="cta-actions"><a href="post-project.html" class="btn btn-primary">ثبت پروژه ＋</a><a href="services.html" class="btn btn-outline">دیدن پروژه‌ها</a></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-about">
+        <a class="brand" href="index.html"><span class="brand-mark">S</span><span>Solver</span></a>
+        <p>فضایی برای ارتباط دانشجوها، به‌اشتراک‌گذاشتن مهارت‌ها و پیدا کردن فرصت‌های همکاری.</p>
+      </div>
+      <div class="footer-col"><h3>دسترسی سریع</h3><div class="footer-links"><a href="index.html">صفحه اصلی</a><a href="services.html">پروژه‌ها</a><a href="post-project.html">ثبت پروژه</a><a href="login.html">ورود</a></div></div>
+      <div class="footer-col"><h3>درباره Solver</h3><div class="footer-links"><a href="about.html">درباره ما</a><a href="contact.html">تماس با ما</a><a href="faq.html">سؤالات متداول</a></div></div>
+      <div class="footer-col"><h3>راهنما</h3><div class="footer-links"><a href="terms.html">قوانین استفاده</a><a href="privacy.html">حریم خصوصی</a><a href="services.html">راهنمای پروژه‌ها</a></div></div>
+    </div>
+    <div class="footer-bottom"><span>© <span id="currentYear"></span> Solver — مهارتت، راه‌حل توئه.</span><span>یک پروژه دانشجویی در حال توسعه</span></div>
+  </div>
+</footer>
+
+<button class="scroll-top" id="scrollTop" aria-label="بازگشت به بالای صفحه">↑</button>
+
+<script>
+  document.getElementById("currentYear").textContent = new Date().getFullYear();
+
+  const scrollButton = document.getElementById("scrollTop");
+
+  window.addEventListener("scroll", function () {
+    scrollButton.classList.toggle("visible", window.scrollY > 350);
+  }, { passive: true });
+
+  scrollButton.addEventListener("click", function () {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+</script>
+</body>
+</html>
