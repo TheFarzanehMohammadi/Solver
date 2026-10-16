@@ -4,156 +4,577 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>جزئیات خدمت | Solver</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <title>جزئیات پروژه | Solver</title>
+
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
   <style>
-    body { background: #faf9fd; }
-    .detail-wrap { max-width: 1100px; margin: 48px auto 80px; padding: 0 20px; }
-    .breadcrumb { color: #81798e; font-size: 14px; margin-bottom: 28px; }
-    .breadcrumb a { color: #7047eb; text-decoration: none; }
-    .detail-layout { display: grid; grid-template-columns: 1.5fr 1fr; gap: 26px; }
-    .detail-panel, .purchase-panel { background: white; border: 1px solid #eee8f7; border-radius: 22px; padding: 30px; }
-    .detail-icon { width: 100%; min-height: 230px; display: grid; place-items: center; background: linear-gradient(135deg,#eee7ff,#faf7ff); border-radius: 18px; font-size: 90px; margin-bottom: 26px; }
-    .category { display: inline-block; color: #7047eb; background: #f1ebff; border-radius: 30px; padding: 7px 13px; font-size: 13px; }
-    h1 { font-size: clamp(25px,4vw,35px); font-weight: 800; margin: 18px 0; }
-    .muted { color: #777184; line-height: 2; }
-    .section-title { font-size: 19px; font-weight: 800; margin: 25px 0 12px; }
-    .feature-list { padding-right: 20px; line-height: 2.3; color: #5e576d; }
-    .price { color: #5631bf; font-size: 29px; font-weight: 800; }
-    .seller { display: flex; align-items: center; gap: 13px; padding: 18px 0; border-bottom: 1px solid #eeeaf4; margin-bottom: 18px; }
-    .avatar { width: 48px; height: 48px; display: grid; place-items: center; background: #eee7ff; border-radius: 50%; font-size: 22px; }
-    .seller p { margin: 3px 0 0; color: #81798e; font-size: 13px; }
-    .primary-btn { display: block; width: 100%; padding: 14px; border: 0; border-radius: 12px; color: white; background: #7047eb; font-family: inherit; font-weight: 700; cursor: pointer; }
-    .primary-btn:hover { background: #5d35d3; }
-    .secondary-btn { display: block; text-align: center; margin-top: 12px; padding: 12px; border: 1px solid #e6def7; border-radius: 12px; color: #7047eb; text-decoration: none; }
-    .notice { background: #f8f5ff; border-radius: 12px; padding: 14px; font-size: 13px; color: #665b7c; line-height: 1.9; margin-top: 20px; }
-    @media(max-width:750px) { .detail-layout { grid-template-columns: 1fr; } .detail-wrap { margin-top: 25px; } .detail-panel,.purchase-panel { padding: 22px; } }
+    :root {
+      --primary: #6558d3;
+      --primary-dark: #5043b5;
+      --background: #f7f8fc;
+      --text: #202238;
+      --muted: #73768b;
+      --border: #e8e9f2;
+      --green: #16865c;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--background);
+      color: var(--text);
+      font-family: "Vazirmatn", sans-serif;
+      line-height: 1.9;
+    }
+
+    a { text-decoration: none; }
+
+    .navbar {
+      background: #fff;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .brand {
+      color: var(--primary);
+      font-size: 1.7rem;
+      font-weight: 800;
+    }
+
+    .nav-link {
+      color: #51536a;
+      font-weight: 500;
+    }
+
+    .btn-primary-custom {
+      background: var(--primary);
+      border: 1px solid var(--primary);
+      color: #fff;
+      border-radius: 12px;
+      padding: 10px 20px;
+      font-weight: 600;
+    }
+
+    .btn-primary-custom:hover {
+      background: var(--primary-dark);
+      color: #fff;
+    }
+
+    .btn-outline-custom {
+      border: 1px solid var(--border);
+      background: #fff;
+      color: var(--text);
+      border-radius: 12px;
+      padding: 10px 18px;
+      font-weight: 600;
+    }
+
+    .breadcrumb a { color: var(--primary); }
+
+    .page-container {
+      max-width: 1120px;
+      margin: 35px auto 70px;
+      padding: 0 18px;
+    }
+
+    .project-card, .side-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 28px;
+      box-shadow: 0 8px 30px rgba(30, 30, 70, 0.035);
+    }
+
+    .category-badge {
+      display: inline-block;
+      background: #efedff;
+      color: var(--primary);
+      border-radius: 30px;
+      padding: 5px 13px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .project-title {
+      font-size: clamp(1.5rem, 3vw, 2.1rem);
+      font-weight: 800;
+      margin: 18px 0 12px;
+      line-height: 1.6;
+    }
+
+    .muted { color: var(--muted); }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin: 25px 0;
+    }
+
+    .info-box {
+      background: #f8f8fd;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+    }
+
+    .info-label {
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    .info-value {
+      font-weight: 800;
+      font-size: 1.08rem;
+      margin-top: 5px;
+      overflow-wrap: anywhere;
+    }
+
+    .section-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      margin-bottom: 13px;
+    }
+
+    .section-block {
+      border-top: 1px solid var(--border);
+      margin-top: 25px;
+      padding-top: 23px;
+    }
+
+    .side-card {
+      position: sticky;
+      top: 20px;
+    }
+
+    .budget {
+      color: var(--green);
+      font-size: 1.7rem;
+      font-weight: 800;
+    }
+
+    .form-control, .form-select {
+      border-color: var(--border);
+      border-radius: 11px;
+      padding: 11px 13px;
+    }
+
+    .form-control:focus, .form-select:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(101, 88, 211, 0.12);
+    }
+
+    .alert-demo {
+      background: #fff8e7;
+      border: 1px solid #f4dfaa;
+      color: #785b19;
+      border-radius: 12px;
+      padding: 12px 14px;
+      font-size: 0.88rem;
+    }
+
+    .footer {
+      background: #fff;
+      border-top: 1px solid var(--border);
+      padding: 25px 0;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    @media (max-width: 767px) {
+      .page-container { margin-top: 20px; }
+      .project-card, .side-card { padding: 20px; }
+      .info-grid { grid-template-columns: 1fr; }
+      .side-card { position: static; }
+    }
   </style>
 </head>
+
 <body>
-  <header class="border-bottom bg-white">
-    <nav class="navbar navbar-expand-lg container py-3">
-      <a class="navbar-brand fw-bold" href="index.html" style="color:#7047eb;">Solver <span class="text-dark">| سالور</span></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-label="باز کردن منو">
+  <nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container py-2">
+      <a class="navbar-brand brand" href="index.html">Solver</a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+        data-bs-target="#mainNavbar" aria-controls="mainNavbar"
+        aria-expanded="false" aria-label="باز کردن منو">
         <span class="navbar-toggler-icon"></span>
       </button>
+
       <div class="collapse navbar-collapse" id="mainNavbar">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0 gap-lg-2">
-          <li class="nav-item"><a class="nav-link" href="index.html">خانه</a></li>
-          <li class="nav-item"><a class="nav-link" href="services.html">خدمات</a></li>
-          <li class="nav-item"><a class="nav-link" href="blog.html">مجله</a></li>
-          <li class="nav-item"><a class="nav-link" href="about.html">درباره ما</a></li>
-        </ul>
-        <a href="cart.html" class="btn btn-outline-secondary btn-sm">سبد خرید</a>
-      </div>
-    </nav>
-  </header>
-
-  <main class="detail-wrap">
-    <div class="breadcrumb"><a href="index.html">خانه</a> ← <a href="services.html">خدمات</a> ← جزئیات خدمت</div>
-
-    <div class="detail-layout">
-      <section class="detail-panel">
-        <div class="detail-icon" id="serviceIcon" aria-hidden="true">📄</div>
-        <span class="category" id="serviceCategory">طراحی و گرافیک</span>
-        <h1 id="serviceTitle">طراحی رزومه حرفه‌ای</h1>
-        <p class="muted" id="serviceDescription">یک رزومهٔ مرتب و جذاب می‌تونه بهت کمک کنه مهارت‌ها و تجربه‌هات رو بهتر معرفی کنی. این خدمت برای دانشجویانی طراحی شده که می‌خوان برای کارآموزی یا فرصت‌های شغلی آماده بشن.</p>
-
-        <h2 class="section-title">این خدمت شامل چه چیزهایی می‌شه؟</h2>
-        <ul class="feature-list">
-          <li>طراحی ظاهری منظم و خوانا</li>
-          <li>چیدمان اطلاعات تحصیلی و مهارت‌ها</li>
-          <li>فایل نهایی دیجیتال</li>
-          <li>یک نوبت اصلاح جزئی</li>
-        </ul>
-
-        <h2 class="section-title">قبل از سفارش</h2>
-        <p class="muted">اطلاعات موردنیاز و جزئیات کار باید پیش از شروع با ارائه‌دهنده هماهنگ بشه. نمونه‌ها و قیمت‌های این پروژه فعلاً آزمایشی هستند.</p>
-      </section>
-
-      <aside class="purchase-panel">
-        <span class="category">قیمت نمونه</span>
-        <p class="muted mt-3 mb-1">هزینهٔ این خدمت</p>
-        <div class="price" id="servicePrice">۱۵۰٬۰۰۰ تومان</div>
-
-        <div class="seller">
-          <div class="avatar">🎓</div>
-          <div>
-            <strong>ارائه‌دهندهٔ دانشجو</strong>
-            <p>عضو نمونهٔ پلتفرم Solver</p>
-          </div>
+        <div class="navbar-nav me-auto align-items-lg-center gap-lg-2">
+          <a class="nav-link" href="index.html">صفحه اصلی</a>
+          <a class="nav-link" href="services.html">پروژه‌ها</a>
+          <a class="nav-link" href="post-project.html">ثبت پروژه</a>
+          <a class="nav-link" href="login.html">ورود</a>
         </div>
-
-        <p class="muted">با افزودن خدمت به سبد خرید، می‌تونی قبل از ادامه، سفارش آزمایشی خودت رو بررسی کنی.</p>
-        <button class="primary-btn" id="addToCart" type="button">افزودن به سبد خرید</button>
-        <a class="secondary-btn" href="services.html">بازگشت به خدمات</a>
-        <div class="notice">🔒 این نسخه آموزشی است. پرداخت واقعی و ثبت سفارش در سرور هنوز پیاده‌سازی نشده‌اند.</div>
-      </aside>
+      </div>
     </div>
+  </nav>
+
+  <main class="page-container">
+    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+      <nav aria-label="مسیر صفحه">
+        <ol class="breadcrumb mb-0">
+          <li class="breadcrumb-item"><a href="index.html">خانه</a></li>
+          <li class="breadcrumb-item"><a href="services.html">پروژه‌ها</a></li>
+          <li class="breadcrumb-item active" aria-current="page">جزئیات پروژه</li>
+        </ol>
+      </nav>
+
+      <a href="services.html" class="btn-outline-custom">← بازگشت به پروژه‌ها</a>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-lg-8">
+        <article class="project-card">
+          <span class="category-badge" id="projectCategory">دسته‌بندی پروژه</span>
+
+          <h1 class="project-title" id="projectTitle">در حال بارگذاری پروژه...</h1>
+
+          <p class="muted mb-0" id="projectMeta">جزئیات پروژه</p>
+
+          <div class="info-grid">
+            <div class="info-box">
+              <div class="info-label">بودجه پیشنهادی ثبت‌کننده</div>
+              <div class="info-value" id="projectBudget">—</div>
+            </div>
+
+            <div class="info-box">
+              <div class="info-label">مهلت انجام</div>
+              <div class="info-value" id="projectDeadline">—</div>
+            </div>
+
+            <div class="info-box">
+              <div class="info-label">تعداد پیشنهادها</div>
+              <div class="info-value" id="projectOffers">—</div>
+            </div>
+          </div>
+
+          <section class="section-block">
+            <h2 class="section-title">توضیحات پروژه</h2>
+            <p id="projectDescription" class="mb-0">
+              توضیحات پروژه در این قسمت نمایش داده می‌شود.
+            </p>
+          </section>
+
+          <section class="section-block">
+            <h2 class="section-title">قبل از ارسال پیشنهاد</h2>
+            <ul class="mb-0">
+              <li>شرح پروژه و انتظارات ثبت‌کننده را با دقت بخوان.</li>
+              <li>مبلغی پیشنهاد بده که با مهارت و زمان موردنیازت متناسب باشد.</li>
+              <li>زمان تحویل واقع‌بینانه‌ای انتخاب کن.</li>
+              <li>پیش از ارسال، از کامل بودن اطلاعاتت مطمئن شو.</li>
+            </ul>
+          </section>
+
+          <div class="alert-demo mt-4 mb-0">
+            این نسخه نمایشی است؛ پیشنهادها در همین مرورگر ذخیره می‌شوند و هنوز به حساب کاربری یا سرور متصل نیستند.
+          </div>
+        </article>
+      </div>
+
+      <div class="col-lg-4">
+        <aside class="side-card">
+          <h2 class="section-title">ارسال پیشنهاد</h2>
+          <p class="muted small">
+            مبلغ و زمان پیشنهادی خودت را وارد کن تا ثبت‌کننده بتواند آن را بررسی کند.
+          </p>
+
+          <form id="offerForm">
+            <div class="mb-3">
+              <label for="offerName" class="form-label">نام شما</label>
+              <input type="text" class="form-control" id="offerName"
+                placeholder="نام و نام خانوادگی" required maxlength="80">
+            </div>
+
+            <div class="mb-3">
+              <label for="offerPrice" class="form-label">مبلغ پیشنهادی (تومان)</label>
+              <input type="number" class="form-control" id="offerPrice"
+                min="1000" step="1000" placeholder="مثلاً 250000" required>
+            </div>
+
+            <div class="mb-3">
+              <label for="offerDays" class="form-label">زمان لازم (روز)</label>
+              <input type="number" class="form-control" id="offerDays"
+                min="1" max="365" placeholder="مثلاً 5 روز" required>
+            </div>
+
+            <div class="mb-3">
+              <label for="offerMessage" class="form-label">پیام به ثبت‌کننده</label>
+              <textarea class="form-control" id="offerMessage" rows="4"
+                maxlength="1000" placeholder="توضیح کوتاهی درباره روش انجام پروژه و مهارت مرتبطت بنویس..." required></textarea>
+            </div>
+
+            <button type="submit" class="btn-primary-custom w-100" id="submitOffer">
+              ثبت پیشنهاد
+            </button>
+          </form>
+
+          <div id="offerFeedback" class="mt-3" aria-live="polite"></div>
+        </aside>
+      </div>
+    </div>
+
+    <section class="project-card mt-4">
+      <h2 class="section-title">پیشنهادهای ثبت‌شده در این مرورگر</h2>
+      <p class="muted small">
+        این بخش برای نمایش نمونهٔ عملکرد سایت است. اطلاعات کاربران مختلف هنوز به هم متصل نیست.
+      </p>
+      <div id="offersList">
+        <p class="muted mb-0">هنوز پیشنهادی در این مرورگر ثبت نشده است.</p>
+      </div>
+    </section>
   </main>
 
-  <footer class="py-4 border-top bg-white">
-    <div class="container d-flex justify-content-between flex-wrap gap-2">
-      <a href="index.html" class="fw-bold text-decoration-none" style="color:#7047eb;">Solver | سالور</a>
-      <span class="text-secondary small">مهارتت، راه‌حل توئه.</span>
-      <a href="contact.html" class="text-secondary small">تماس با ما</a>
+  <footer class="footer">
+    <div class="container">
+      <a href="index.html" class="brand">Solver</a>
+      <p class="mt-2 mb-0">مهارتت، راه‌حل توئه.</p>
     </div>
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
   <script>
-    const services = {
-      'طراحی رزومه حرفه‌ای': {
-        category: 'طراحی و گرافیک', icon: '📄', price: 150000,
-        description: 'طراحی رزومه‌ای مرتب و جذاب برای معرفی مهارت‌ها و سوابق تحصیلی در مسیر کارآموزی و فرصت‌های شغلی.'
+    const demoProjects = [
+      {
+        id: "demo-1",
+        title: "طراحی سایت ساده با HTML و CSS",
+        category: "programming",
+        budget: 300000,
+        deadline: 7,
+        description: "به یک وب‌سایت ساده و واکنش‌گرا با HTML و CSS نیاز دارم. صفحه باید ظاهر مرتب داشته باشد و در موبایل و رایانه به‌درستی نمایش داده شود."
       },
-      'کمک در برنامه‌نویسی': {
-        category: 'برنامه‌نویسی و فناوری', icon: '💻', price: 250000,
-        description: 'راهنمایی برای درک مفاهیم مقدماتی برنامه‌نویسی، پیدا کردن خطاها و بهتر فهمیدن کدها.'
+      {
+        id: "demo-2",
+        title: "طراحی پوستر برای رویداد دانشجویی",
+        category: "design",
+        budget: 150000,
+        deadline: 3,
+        description: "برای یک رویداد دانشجویی به پوستری جذاب و خوانا نیاز دارم. اطلاعات اصلی رویداد باید به‌خوبی در طراحی دیده شوند."
       },
-      'تایپ و ویرایش متن': {
-        category: 'تایپ و نگارش', icon: '⌨️', price: 80000,
-        description: 'تایپ و مرتب‌سازی جزوه‌ها، گزارش‌ها و متن‌های دانشجویی با قالب‌بندی خوانا.'
+      {
+        id: "demo-3",
+        title: "ترجمه یک متن انگلیسی",
+        category: "translation",
+        budget: 120000,
+        deadline: 5,
+        description: "یک متن انگلیسی دارم که باید با حفظ مفهوم، روان و دقیق به فارسی ترجمه شود."
       },
-      'ترجمه متن انگلیسی': {
-        category: 'ترجمه', icon: '🌐', price: 120000,
-        description: 'ترجمهٔ متون عمومی و دانشجویی با نگارش روان و قابل‌فهم.'
+      {
+        id: "demo-4",
+        title: "تایپ و مرتب‌سازی جزوه دانشگاه",
+        category: "education",
+        budget: 80000,
+        deadline: 4,
+        description: "نیاز دارم چند صفحه جزوه به‌صورت تایپ‌شده و منظم آماده شود؛ تیترها و بخش‌بندی‌ها هم مشخص باشند."
+      },
+      {
+        id: "demo-5",
+        title: "رفع اشکال کد مقدماتی پایتون",
+        category: "programming",
+        budget: 200000,
+        deadline: 6,
+        description: "برای پیدا کردن و توضیح خطاهای یک برنامه مقدماتی پایتون کمک می‌خواهم. هدفم این است که دلیل خطاها را هم یاد بگیرم."
+      },
+      {
+        id: "demo-6",
+        title: "طراحی رزومه دانشجویی",
+        category: "design",
+        budget: 100000,
+        deadline: 8,
+        description: "یک رزومه ساده و حرفه‌ای برای استفاده دانشجویی می‌خواهم که اطلاعات تحصیلی و مهارت‌ها را مرتب نمایش دهد."
       }
+    ];
+
+    const categoryNames = {
+      programming: "برنامه‌نویسی",
+      design: "طراحی",
+      translation: "ترجمه",
+      education: "آموزشی",
+      other: "سایر"
     };
 
-    const params = new URLSearchParams(location.search);
-    const requestedTitle = params.get('title');
-    const service = services[requestedTitle] || services['طراحی رزومه حرفه‌ای'];
+    const params = new URLSearchParams(window.location.search);
+    const projectId = params.get("id");
+    const queryTitle = params.get("title");
 
-    document.getElementById('serviceTitle').textContent = requestedTitle && services[requestedTitle] ? requestedTitle : 'طراحی رزومه حرفه‌ای';
-    document.getElementById('serviceCategory').textContent = service.category;
-    document.getElementById('serviceIcon').textContent = service.icon;
-    document.getElementById('serviceDescription').textContent = service.description;
-    document.getElementById('servicePrice').textContent = service.price.toLocaleString('fa-IR') + ' تومان';
-
-    document.getElementById('addToCart').addEventListener('click', () => {
-      let cart = [];
+    function readStorage(key, fallback) {
       try {
-        cart = JSON.parse(localStorage.getItem('solverCart') || '[]');
-        if (!Array.isArray(cart)) cart = [];
-      } catch {
-        cart = [];
+        const value = JSON.parse(localStorage.getItem(key));
+        return value ?? fallback;
+      } catch (error) {
+        return fallback;
+      }
+    }
+
+    function getAllProjects() {
+      const saved = readStorage("solverProjects", []);
+      return [
+        ...saved,
+        ...demoProjects.filter(demo =>
+          !saved.some(project => String(project.id) === demo.id)
+        )
+      ];
+    }
+
+    function normalizeProject(project) {
+      return {
+        id: String(project.id ?? ""),
+        title: project.title || "پروژه بدون عنوان",
+        category: project.category || "other",
+        budget: Number(project.budget ?? project.price ?? 0),
+        deadline: Number(project.deadline ?? project.days ?? 0),
+        description: project.description || "برای این پروژه توضیحات بیشتری ثبت نشده است."
+      };
+    }
+
+    const allProjects = getAllProjects().map(normalizeProject);
+
+    let project = allProjects.find(item => item.id === String(projectId));
+
+    if (!project && queryTitle) {
+      const decodedTitle = queryTitle.trim();
+      project = allProjects.find(item => item.title === decodedTitle);
+
+      if (!project) {
+        project = normalizeProject({
+          id: "legacy-" + decodedTitle,
+          title: decodedTitle,
+          category: "other",
+          budget: 0,
+          deadline: 0,
+          description: "این صفحه از یک پیوند قدیمی باز شده است. اطلاعات کامل این پروژه در فهرست فعلی پیدا نشد."
+        });
+      }
+    }
+
+    if (!project) {
+      project = normalizeProject({
+        id: "not-found",
+        title: "پروژه پیدا نشد",
+        category: "other",
+        budget: 0,
+        deadline: 0,
+        description: "این پروژه در فهرست فعلی پیدا نشد. ممکن است حذف شده باشد یا پیوند آن معتبر نباشد."
+      });
+      document.getElementById("submitOffer").disabled = true;
+    }
+
+    const formatMoney = amount =>
+      Number(amount).toLocaleString("fa-IR") + " تومان";
+
+    document.title = project.title + " | Solver";
+    document.getElementById("projectTitle").textContent = project.title;
+    document.getElementById("projectCategory").textContent =
+      categoryNames[project.category] || "سایر";
+    document.getElementById("projectBudget").textContent =
+      project.budget > 0 ? formatMoney(project.budget) : "تعیین نشده";
+    document.getElementById("projectDeadline").textContent =
+      project.deadline > 0 ? project.deadline.toLocaleString("fa-IR") + " روز" : "تعیین نشده";
+    document.getElementById("projectDescription").textContent = project.description;
+
+    function getOffers() {
+      const offers = readStorage("solverOffers", []);
+      return Array.isArray(offers) ? offers : [];
+    }
+
+    function projectOffers() {
+      return getOffers().filter(offer => String(offer.projectId) === project.id);
+    }
+
+    function renderOffers() {
+      const offers = projectOffers();
+      document.getElementById("projectOffers").textContent =
+        offers.length.toLocaleString("fa-IR") + " پیشنهاد";
+
+      const list = document.getElementById("offersList");
+
+      if (offers.length === 0) {
+        list.innerHTML = '<p class="muted mb-0">هنوز پیشنهادی در این مرورگر ثبت نشده است.</p>';
+        return;
       }
 
-      const title = requestedTitle && services[requestedTitle] ? requestedTitle : 'طراحی رزومه حرفه‌ای';
-      const existing = cart.find(item => item.title === title);
-      if (existing) {
-        existing.quantity = (Number(existing.quantity) || 1) + 1;
-      } else {
-        cart.push({ title, price: service.price, quantity: 1 });
+      list.innerHTML = "";
+
+      offers.forEach(offer => {
+        const card = document.createElement("div");
+        card.className = "border rounded-4 p-3 mb-3";
+
+        const heading = document.createElement("div");
+        heading.className = "d-flex flex-wrap justify-content-between gap-2";
+
+        const name = document.createElement("strong");
+        name.textContent = offer.name;
+
+        const price = document.createElement("strong");
+        price.className = "text-success";
+        price.textContent = formatMoney(offer.price);
+
+        heading.append(name, price);
+
+        const days = document.createElement("p");
+        days.className = "small muted mt-2 mb-1";
+        days.textContent = "زمان پیشنهادی: " + Number(offer.days).toLocaleString("fa-IR") + " روز";
+
+        const message = document.createElement("p");
+        message.className = "mb-0";
+        message.textContent = offer.message;
+
+        card.append(heading, days, message);
+        list.appendChild(card);
+      });
+    }
+
+    document.getElementById("offerForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      if (project.id === "not-found") return;
+
+      const name = document.getElementById("offerName").value.trim();
+      const price = Number(document.getElementById("offerPrice").value);
+      const days = Number(document.getElementById("offerDays").value);
+      const message = document.getElementById("offerMessage").value.trim();
+      const feedback = document.getElementById("offerFeedback");
+
+      if (!name || !message || !Number.isFinite(price) || price < 1000 ||
+          !Number.isInteger(days) || days < 1 || days > 365) {
+        feedback.className = "alert alert-danger mt-3";
+        feedback.textContent = "لطفاً همه اطلاعات را درست وارد کن.";
+        return;
       }
-      localStorage.setItem('solverCart', JSON.stringify(cart));
-      window.location.href = 'cart.html';
+
+      const offers = getOffers();
+
+      offers.push({
+        id: "offer-" + Date.now(),
+        projectId: project.id,
+        name,
+        price,
+        days,
+        message,
+        createdAt: new Date().toISOString()
+      });
+
+      try {
+        localStorage.setItem("solverOffers", JSON.stringify(offers));
+      } catch (error) {
+        feedback.className = "alert alert-danger mt-3";
+        feedback.textContent = "ذخیره‌سازی انجام نشد. فضای ذخیره‌سازی مرورگر را بررسی کن.";
+        return;
+      }
+
+      feedback.className = "alert alert-success mt-3";
+      feedback.textContent = "پیشنهادت در این مرورگر ذخیره شد.";
+
+      this.reset();
+      renderOffers();
     });
+
+    renderOffers();
   </script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
