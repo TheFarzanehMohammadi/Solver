@@ -4,577 +4,536 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>جزئیات پروژه | Solver</title>
-
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
+  <meta name="theme-color" content="#7357d9">
+  <meta name="description" content="مشاهده جزئیات پروژه و ارسال پیشنهاد همکاری در سالور.">
+  <title>جزئیات پروژه | سالور</title>
+  <link rel="stylesheet" href="css/style.css">
   <style>
-    :root {
-      --primary: #6558d3;
-      --primary-dark: #5043b5;
-      --background: #f7f8fc;
-      --text: #202238;
-      --muted: #73768b;
-      --border: #e8e9f2;
-      --green: #16865c;
+    .detail-hero {
+      padding: 48px 0 35px;
+      background: linear-gradient(135deg, #f8f6ff, #eee9ff 70%, #fff);
     }
-
-    * { box-sizing: border-box; }
-
-    body {
-      margin: 0;
-      background: var(--background);
-      color: var(--text);
-      font-family: "Vazirmatn", sans-serif;
-      line-height: 1.9;
+    .breadcrumbs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-bottom: 24px;
+      color: var(--text-muted);
+      font-size: .88rem;
     }
-
-    a { text-decoration: none; }
-
-    .navbar {
-      background: #fff;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .brand {
-      color: var(--primary);
-      font-size: 1.7rem;
-      font-weight: 800;
-    }
-
-    .nav-link {
-      color: #51536a;
-      font-weight: 500;
-    }
-
-    .btn-primary-custom {
-      background: var(--primary);
-      border: 1px solid var(--primary);
-      color: #fff;
-      border-radius: 12px;
-      padding: 10px 20px;
-      font-weight: 600;
-    }
-
-    .btn-primary-custom:hover {
-      background: var(--primary-dark);
-      color: #fff;
-    }
-
-    .btn-outline-custom {
-      border: 1px solid var(--border);
-      background: #fff;
-      color: var(--text);
-      border-radius: 12px;
-      padding: 10px 18px;
-      font-weight: 600;
-    }
-
-    .breadcrumb a { color: var(--primary); }
-
-    .page-container {
-      max-width: 1120px;
-      margin: 35px auto 70px;
-      padding: 0 18px;
-    }
-
-    .project-card, .side-card {
-      background: #fff;
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 28px;
-      box-shadow: 0 8px 30px rgba(30, 30, 70, 0.035);
-    }
-
-    .category-badge {
-      display: inline-block;
-      background: #efedff;
-      color: var(--primary);
-      border-radius: 30px;
-      padding: 5px 13px;
-      font-size: 0.85rem;
-      font-weight: 600;
-    }
-
-    .project-title {
-      font-size: clamp(1.5rem, 3vw, 2.1rem);
-      font-weight: 800;
-      margin: 18px 0 12px;
-      line-height: 1.6;
-    }
-
-    .muted { color: var(--muted); }
-
-    .info-grid {
+    .breadcrumbs a { color: var(--primary); }
+    .detail-layout {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      margin: 25px 0;
+      grid-template-columns: minmax(0, 1fr) 320px;
+      gap: 26px;
+      align-items: start;
     }
-
-    .info-box {
-      background: #f8f8fd;
+    .detail-main, .detail-sidebar {
+      display: grid;
+      gap: 22px;
+    }
+    .detail-panel {
+      padding: 26px;
+      background: #fff;
       border: 1px solid var(--border);
-      border-radius: 14px;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+    }
+    .detail-title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 18px;
+    }
+    .detail-title-row h1 {
+      margin: 12px 0;
+      font-size: clamp(1.7rem, 3vw, 2.35rem);
+    }
+    .detail-description {
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+      line-height: 2.1;
+    }
+    .detail-facts {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 22px;
+    }
+    .fact {
       padding: 16px;
+      background: var(--surface);
+      border-radius: 12px;
     }
-
-    .info-label {
-      color: var(--muted);
-      font-size: 0.85rem;
+    .fact-label {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--text-muted);
+      font-size: .85rem;
     }
-
-    .info-value {
+    .fact-value {
       font-weight: 800;
-      font-size: 1.08rem;
-      margin-top: 5px;
       overflow-wrap: anywhere;
     }
-
-    .section-title {
-      font-size: 1.15rem;
-      font-weight: 800;
-      margin-bottom: 13px;
-    }
-
-    .section-block {
-      border-top: 1px solid var(--border);
-      margin-top: 25px;
-      padding-top: 23px;
-    }
-
-    .side-card {
+    .detail-sidebar {
       position: sticky;
-      top: 20px;
+      top: 100px;
     }
-
-    .budget {
-      color: var(--green);
-      font-size: 1.7rem;
-      font-weight: 800;
+    .budget-value {
+      margin: 8px 0 20px;
+      color: var(--primary-dark);
+      font-size: 1.6rem;
+      font-weight: 900;
     }
-
-    .form-control, .form-select {
-      border-color: var(--border);
+    .offer-note {
+      padding: 13px;
+      margin-bottom: 18px;
+      color: #5140a1;
+      background: #f3f0ff;
       border-radius: 11px;
-      padding: 11px 13px;
+      font-size: .85rem;
     }
-
-    .form-control:focus, .form-select:focus {
-      border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(101, 88, 211, 0.12);
+    .offer-list {
+      display: grid;
+      gap: 14px;
     }
-
-    .alert-demo {
-      background: #fff8e7;
-      border: 1px solid #f4dfaa;
-      color: #785b19;
+    .offer-item {
+      padding: 17px;
+      border: 1px solid var(--border);
       border-radius: 12px;
-      padding: 12px 14px;
-      font-size: 0.88rem;
     }
-
-    .footer {
-      background: #fff;
-      border-top: 1px solid var(--border);
-      padding: 25px 0;
-      color: var(--muted);
+    .offer-item h3 { margin-bottom: 7px; }
+    .offer-item p { white-space: pre-wrap; overflow-wrap: anywhere; }
+    .offer-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      color: var(--text-muted);
+      font-size: .86rem;
+    }
+    .error-box {
+      max-width: 650px;
+      margin: 50px auto;
       text-align: center;
     }
-
-    @media (max-width: 767px) {
-      .page-container { margin-top: 20px; }
-      .project-card, .side-card { padding: 20px; }
-      .info-grid { grid-template-columns: 1fr; }
-      .side-card { position: static; }
+    @media (max-width: 850px) {
+      .detail-layout { grid-template-columns: 1fr; }
+      .detail-sidebar { position: static; }
+    }
+    @media (max-width: 520px) {
+      .detail-panel { padding: 19px; }
+      .detail-title-row { flex-direction: column; }
+      .detail-facts { grid-template-columns: 1fr; }
     }
   </style>
 </head>
-
 <body>
-  <nav class="navbar navbar-expand-lg sticky-top">
-    <div class="container py-2">
-      <a class="navbar-brand brand" href="index.html">Solver</a>
 
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-        data-bs-target="#mainNavbar" aria-controls="mainNavbar"
-        aria-expanded="false" aria-label="باز کردن منو">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="logo" href="index.html">
+      <span class="logo-mark">S</span><span>سالور</span>
+    </a>
+    <button class="menu-toggle" type="button" aria-label="باز کردن منو" aria-expanded="false">☰</button>
+    <nav class="main-nav" aria-label="منوی اصلی">
+      <a href="index.html">صفحه اصلی</a>
+      <a class="active" href="services.html">پروژه‌ها</a>
+      <a href="post-project.html">ثبت پروژه</a>
+      <a href="about.html">درباره ما</a>
+      <a href="contact.html">تماس با ما</a>
+    </nav>
+    <div class="header-actions">
+      <a class="btn btn-outline" href="login.html">ورود</a>
+      <a class="btn btn-primary" href="post-project.html">ثبت پروژه</a>
+    </div>
+  </div>
+</header>
 
-      <div class="collapse navbar-collapse" id="mainNavbar">
-        <div class="navbar-nav me-auto align-items-lg-center gap-lg-2">
-          <a class="nav-link" href="index.html">صفحه اصلی</a>
-          <a class="nav-link" href="services.html">پروژه‌ها</a>
-          <a class="nav-link" href="post-project.html">ثبت پروژه</a>
-          <a class="nav-link" href="login.html">ورود</a>
+<main>
+  <section class="detail-hero">
+    <div class="container">
+      <nav class="breadcrumbs" aria-label="مسیر صفحه">
+        <a href="index.html">صفحه اصلی</a>
+        <span>/</span>
+        <a href="services.html">پروژه‌ها</a>
+        <span>/</span>
+        <span>جزئیات پروژه</span>
+      </nav>
+      <span class="badge">جزئیات و پیشنهاد همکاری</span>
+      <h1 style="margin: 14px 0 8px;">جزئیات پروژه</h1>
+      <p style="margin: 0;">اطلاعات پروژه رو بررسی کن و اگر توانایی انجامش رو داری، پیشنهادت رو ثبت کن.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div id="detailContent" class="detail-layout">
+        <div class="loading-wrap">
+          <div class="loading-spinner" aria-label="در حال بارگذاری"></div>
+          <span>در حال دریافت اطلاعات پروژه...</span>
         </div>
       </div>
     </div>
-  </nav>
+  </section>
+</main>
 
-  <main class="page-container">
-    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
-      <nav aria-label="مسیر صفحه">
-        <ol class="breadcrumb mb-0">
-          <li class="breadcrumb-item"><a href="index.html">خانه</a></li>
-          <li class="breadcrumb-item"><a href="services.html">پروژه‌ها</a></li>
-          <li class="breadcrumb-item active" aria-current="page">جزئیات پروژه</li>
-        </ol>
-      </nav>
-
-      <a href="services.html" class="btn-outline-custom">← بازگشت به پروژه‌ها</a>
-    </div>
-
-    <div class="row g-4">
-      <div class="col-lg-8">
-        <article class="project-card">
-          <span class="category-badge" id="projectCategory">دسته‌بندی پروژه</span>
-
-          <h1 class="project-title" id="projectTitle">در حال بارگذاری پروژه...</h1>
-
-          <p class="muted mb-0" id="projectMeta">جزئیات پروژه</p>
-
-          <div class="info-grid">
-            <div class="info-box">
-              <div class="info-label">بودجه پیشنهادی ثبت‌کننده</div>
-              <div class="info-value" id="projectBudget">—</div>
-            </div>
-
-            <div class="info-box">
-              <div class="info-label">مهلت انجام</div>
-              <div class="info-value" id="projectDeadline">—</div>
-            </div>
-
-            <div class="info-box">
-              <div class="info-label">تعداد پیشنهادها</div>
-              <div class="info-value" id="projectOffers">—</div>
-            </div>
-          </div>
-
-          <section class="section-block">
-            <h2 class="section-title">توضیحات پروژه</h2>
-            <p id="projectDescription" class="mb-0">
-              توضیحات پروژه در این قسمت نمایش داده می‌شود.
-            </p>
-          </section>
-
-          <section class="section-block">
-            <h2 class="section-title">قبل از ارسال پیشنهاد</h2>
-            <ul class="mb-0">
-              <li>شرح پروژه و انتظارات ثبت‌کننده را با دقت بخوان.</li>
-              <li>مبلغی پیشنهاد بده که با مهارت و زمان موردنیازت متناسب باشد.</li>
-              <li>زمان تحویل واقع‌بینانه‌ای انتخاب کن.</li>
-              <li>پیش از ارسال، از کامل بودن اطلاعاتت مطمئن شو.</li>
-            </ul>
-          </section>
-
-          <div class="alert-demo mt-4 mb-0">
-            این نسخه نمایشی است؛ پیشنهادها در همین مرورگر ذخیره می‌شوند و هنوز به حساب کاربری یا سرور متصل نیستند.
-          </div>
-        </article>
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a class="logo" href="index.html"><span class="logo-mark">S</span><span>سالور</span></a>
+        <p>مهارتت، راه‌حل توئه.</p>
       </div>
-
-      <div class="col-lg-4">
-        <aside class="side-card">
-          <h2 class="section-title">ارسال پیشنهاد</h2>
-          <p class="muted small">
-            مبلغ و زمان پیشنهادی خودت را وارد کن تا ثبت‌کننده بتواند آن را بررسی کند.
-          </p>
-
-          <form id="offerForm">
-            <div class="mb-3">
-              <label for="offerName" class="form-label">نام شما</label>
-              <input type="text" class="form-control" id="offerName"
-                placeholder="نام و نام خانوادگی" required maxlength="80">
-            </div>
-
-            <div class="mb-3">
-              <label for="offerPrice" class="form-label">مبلغ پیشنهادی (تومان)</label>
-              <input type="number" class="form-control" id="offerPrice"
-                min="1000" step="1000" placeholder="مثلاً 250000" required>
-            </div>
-
-            <div class="mb-3">
-              <label for="offerDays" class="form-label">زمان لازم (روز)</label>
-              <input type="number" class="form-control" id="offerDays"
-                min="1" max="365" placeholder="مثلاً 5 روز" required>
-            </div>
-
-            <div class="mb-3">
-              <label for="offerMessage" class="form-label">پیام به ثبت‌کننده</label>
-              <textarea class="form-control" id="offerMessage" rows="4"
-                maxlength="1000" placeholder="توضیح کوتاهی درباره روش انجام پروژه و مهارت مرتبطت بنویس..." required></textarea>
-            </div>
-
-            <button type="submit" class="btn-primary-custom w-100" id="submitOffer">
-              ثبت پیشنهاد
-            </button>
-          </form>
-
-          <div id="offerFeedback" class="mt-3" aria-live="polite"></div>
-        </aside>
+      <div>
+        <h4>دسترسی سریع</h4>
+        <ul>
+          <li><a href="services.html">پروژه‌ها</a></li>
+          <li><a href="post-project.html">ثبت پروژه</a></li>
+          <li><a href="about.html">درباره ما</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>راهنما</h4>
+        <ul>
+          <li><a href="faq.html">سؤالات متداول</a></li>
+          <li><a href="contact.html">تماس با ما</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>قوانین</h4>
+        <ul>
+          <li><a href="terms.html">شرایط استفاده</a></li>
+          <li><a href="privacy.html">حریم خصوصی</a></li>
+        </ul>
       </div>
     </div>
+    <div class="footer-bottom">© <span id="currentYear"></span> سالور — نسخه نمایشی پروژه دانشگاهی</div>
+  </div>
+</footer>
 
-    <section class="project-card mt-4">
-      <h2 class="section-title">پیشنهادهای ثبت‌شده در این مرورگر</h2>
-      <p class="muted small">
-        این بخش برای نمایش نمونهٔ عملکرد سایت است. اطلاعات کاربران مختلف هنوز به هم متصل نیست.
-      </p>
-      <div id="offersList">
-        <p class="muted mb-0">هنوز پیشنهادی در این مرورگر ثبت نشده است.</p>
-      </div>
-    </section>
-  </main>
+<button class="scroll-top" id="scrollTop" type="button" aria-label="بازگشت به بالای صفحه">↑</button>
+<script src="js/script.js"></script>
 
-  <footer class="footer">
-    <div class="container">
-      <a href="index.html" class="brand">Solver</a>
-      <p class="mt-2 mb-0">مهارتت، راه‌حل توئه.</p>
-    </div>
-  </footer>
+<script>
+(() => {
+  const container = document.getElementById("detailContent");
+  const params = new URLSearchParams(window.location.search);
+  const projectId = params.get("id");
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  const categoryNames = {
+    programming: "برنامه‌نویسی",
+    design: "طراحی گرافیک",
+    translation: "ترجمه و زبان",
+    education: "آموزش و دروس",
+    other: "سایر"
+  };
 
-  <script>
-    const demoProjects = [
-      {
-        id: "demo-1",
-        title: "طراحی سایت ساده با HTML و CSS",
-        category: "programming",
-        budget: 300000,
-        deadline: 7,
-        description: "به یک وب‌سایت ساده و واکنش‌گرا با HTML و CSS نیاز دارم. صفحه باید ظاهر مرتب داشته باشد و در موبایل و رایانه به‌درستی نمایش داده شود."
-      },
-      {
-        id: "demo-2",
-        title: "طراحی پوستر برای رویداد دانشجویی",
-        category: "design",
-        budget: 150000,
-        deadline: 3,
-        description: "برای یک رویداد دانشجویی به پوستری جذاب و خوانا نیاز دارم. اطلاعات اصلی رویداد باید به‌خوبی در طراحی دیده شوند."
-      },
-      {
-        id: "demo-3",
-        title: "ترجمه یک متن انگلیسی",
-        category: "translation",
-        budget: 120000,
-        deadline: 5,
-        description: "یک متن انگلیسی دارم که باید با حفظ مفهوم، روان و دقیق به فارسی ترجمه شود."
-      },
-      {
-        id: "demo-4",
-        title: "تایپ و مرتب‌سازی جزوه دانشگاه",
-        category: "education",
-        budget: 80000,
-        deadline: 4,
-        description: "نیاز دارم چند صفحه جزوه به‌صورت تایپ‌شده و منظم آماده شود؛ تیترها و بخش‌بندی‌ها هم مشخص باشند."
-      },
-      {
-        id: "demo-5",
-        title: "رفع اشکال کد مقدماتی پایتون",
-        category: "programming",
-        budget: 200000,
-        deadline: 6,
-        description: "برای پیدا کردن و توضیح خطاهای یک برنامه مقدماتی پایتون کمک می‌خواهم. هدفم این است که دلیل خطاها را هم یاد بگیرم."
-      },
-      {
-        id: "demo-6",
-        title: "طراحی رزومه دانشجویی",
-        category: "design",
-        budget: 100000,
-        deadline: 8,
-        description: "یک رزومه ساده و حرفه‌ای برای استفاده دانشجویی می‌خواهم که اطلاعات تحصیلی و مهارت‌ها را مرتب نمایش دهد."
-      }
+  const sampleProjects = [
+    {
+      id: "demo-1",
+      title: "طراحی سایت معرفی کسب‌وکار",
+      description: "به یک سایت واکنش‌گرا با طراحی ساده و مدرن برای معرفی خدمات و اطلاعات تماس نیاز دارم.",
+      category: "programming",
+      budget: 800000,
+      deadline: "2026-11-15",
+      createdAt: "2026-10-15T10:00:00",
+      status: "open",
+      demo: true
+    },
+    {
+      id: "demo-2",
+      title: "طراحی پوستر رویداد دانشگاهی",
+      description: "طراحی یک پوستر خلاقانه و خوانا برای رویداد دانشجویی، مناسب انتشار در شبکه‌های اجتماعی.",
+      category: "design",
+      budget: 250000,
+      deadline: "2026-11-01",
+      createdAt: "2026-10-14T12:00:00",
+      status: "open",
+      demo: true
+    },
+    {
+      id: "demo-3",
+      title: "ترجمه متن انگلیسی",
+      description: "ترجمه یک متن عمومی انگلیسی به فارسی با رعایت لحن طبیعی و نگارش صحیح.",
+      category: "translation",
+      budget: 180000,
+      deadline: "2026-10-28",
+      createdAt: "2026-10-13T09:00:00",
+      status: "open",
+      demo: true
+    },
+    {
+      id: "demo-4",
+      title: "آموزش مقدماتی اکسل",
+      description: "به دنبال فردی برای توضیح فرمول‌های پایه، مرتب‌سازی داده‌ها و ساخت جدول در اکسل هستم.",
+      category: "education",
+      budget: 300000,
+      deadline: "2026-11-10",
+      createdAt: "2026-10-12T15:00:00",
+      status: "open",
+      demo: true
+    }
+  ];
+
+  function escapeHTML(value) {
+    return String(value ?? "").replace(/[&<>"']/g, (char) => ({
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#39;"
+    })[char]);
+  }
+
+  function getProject() {
+    if (!projectId) return null;
+
+    let saved = [];
+
+    try {
+      const data = JSON.parse(localStorage.getItem("solverProjects") || "[]");
+      if (Array.isArray(data)) saved = data;
+    } catch (error) {
+      console.warn("Could not read saved projects.", error);
+    }
+
+    const allProjects = [
+      ...saved,
+      ...sampleProjects.filter(
+        (sample) => !saved.some((project) => String(project.id) === String(sample.id))
+      )
     ];
 
-    const categoryNames = {
-      programming: "برنامه‌نویسی",
-      design: "طراحی",
-      translation: "ترجمه",
-      education: "آموزشی",
-      other: "سایر"
-    };
+    return allProjects.find(
+      (project) => String(project.id) === String(projectId)
+    ) || null;
+  }
 
-    const params = new URLSearchParams(window.location.search);
-    const projectId = params.get("id");
-    const queryTitle = params.get("title");
+  function money(value) {
+    return `${(Number(value) || 0).toLocaleString("fa-IR")} تومان`;
+  }
 
-    function readStorage(key, fallback) {
-      try {
-        const value = JSON.parse(localStorage.getItem(key));
-        return value ?? fallback;
-      } catch (error) {
-        return fallback;
-      }
-    }
+  function date(value) {
+    if (!value) return "توافقی";
+    const parsed = new Date(`${value}T00:00:00`);
+    if (Number.isNaN(parsed.getTime())) return "توافقی";
+    return new Intl.DateTimeFormat("fa-IR").format(parsed);
+  }
 
-    function getAllProjects() {
-      const saved = readStorage("solverProjects", []);
-      return [
-        ...saved,
-        ...demoProjects.filter(demo =>
-          !saved.some(project => String(project.id) === demo.id)
-        )
-      ];
-    }
+  function renderNotFound() {
+    container.className = "";
+    container.innerHTML = `
+      <div class="detail-panel error-box">
+        <div class="project-symbol" style="margin:0 auto 18px;">?</div>
+        <h2>پروژه پیدا نشد</h2>
+        <p>ممکنه لینک پروژه اشتباه باشه یا این پروژه در این مرورگر ذخیره نشده باشه.</p>
+        <a class="btn btn-primary" href="services.html">بازگشت به پروژه‌ها</a>
+      </div>
+    `;
+  }
 
-    function normalizeProject(project) {
-      return {
-        id: String(project.id ?? ""),
-        title: project.title || "پروژه بدون عنوان",
-        category: project.category || "other",
-        budget: Number(project.budget ?? project.price ?? 0),
-        deadline: Number(project.deadline ?? project.days ?? 0),
-        description: project.description || "برای این پروژه توضیحات بیشتری ثبت نشده است."
-      };
-    }
+  function renderProject(project) {
+    const category = categoryNames[project.category] || "سایر";
+    const projectIdSafe = escapeHTML(project.id);
+    const isOpen = !project.status || project.status === "open";
+    const offers = Array.isArray(project.offers) ? project.offers : [];
 
-    const allProjects = getAllProjects().map(normalizeProject);
+    container.className = "detail-layout";
+    container.innerHTML = `
+      <div class="detail-main">
+        <article class="detail-panel">
+          <div class="detail-title-row">
+            <div>
+              <span class="badge">${escapeHTML(category)}</span>
+              <h1>${escapeHTML(project.title || "بدون عنوان")}</h1>
+              <div class="project-meta">
+                <span>ثبت‌شده: ${escapeHTML(date((project.createdAt || "").slice(0, 10)))}</span>
+                <span>${project.demo ? "پروژه نمونه" : "پروژه ثبت‌شده"}</span>
+              </div>
+            </div>
+            <span class="status ${isOpen ? "status-success" : "status-neutral"}">
+              ${isOpen ? "پذیرش پیشنهاد" : "پذیرش پیشنهاد بسته است"}
+            </span>
+          </div>
 
-    let project = allProjects.find(item => item.id === String(projectId));
+          <hr style="border:0;border-top:1px solid var(--border);margin:24px 0;">
 
-    if (!project && queryTitle) {
-      const decodedTitle = queryTitle.trim();
-      project = allProjects.find(item => item.title === decodedTitle);
+          <h2 style="font-size:1.2rem;">درباره پروژه</h2>
+          <div class="detail-description">${escapeHTML(project.description || "توضیحی برای این پروژه ثبت نشده است.")}</div>
 
-      if (!project) {
-        project = normalizeProject({
-          id: "legacy-" + decodedTitle,
-          title: decodedTitle,
-          category: "other",
-          budget: 0,
-          deadline: 0,
-          description: "این صفحه از یک پیوند قدیمی باز شده است. اطلاعات کامل این پروژه در فهرست فعلی پیدا نشد."
-        });
-      }
-    }
+          <div class="detail-facts">
+            <div class="fact">
+              <span class="fact-label">دسته‌بندی</span>
+              <span class="fact-value">${escapeHTML(category)}</span>
+            </div>
+            <div class="fact">
+              <span class="fact-label">مهلت انجام</span>
+              <span class="fact-value">${escapeHTML(date(project.deadline))}</span>
+            </div>
+            <div class="fact">
+              <span class="fact-label">بودجه پیشنهادی</span>
+              <span class="fact-value">${money(project.budget)}</span>
+            </div>
+            <div class="fact">
+              <span class="fact-label">وضعیت</span>
+              <span class="fact-value">${isOpen ? "باز برای پیشنهاد" : "بسته"}</span>
+            </div>
+          </div>
+        </article>
 
-    if (!project) {
-      project = normalizeProject({
-        id: "not-found",
-        title: "پروژه پیدا نشد",
-        category: "other",
-        budget: 0,
-        deadline: 0,
-        description: "این پروژه در فهرست فعلی پیدا نشد. ممکن است حذف شده باشد یا پیوند آن معتبر نباشد."
-      });
-      document.getElementById("submitOffer").disabled = true;
-    }
+        <section class="detail-panel">
+          <h2 style="font-size:1.25rem;">پیشنهادهای ثبت‌شده</h2>
+          <p>پیشنهادها در نسخه نمایشی روی همین مرورگر نگهداری می‌شوند.</p>
+          <div id="offerList" class="offer-list"></div>
+        </section>
+      </div>
 
-    const formatMoney = amount =>
-      Number(amount).toLocaleString("fa-IR") + " تومان";
+      <aside class="detail-sidebar">
+        <section class="detail-panel">
+          <span class="text-muted small">بودجه پیشنهادی پروژه</span>
+          <div class="budget-value">${money(project.budget)}</div>
+          <div class="offer-note">قیمت و زمان پیشنهادی خودت رو وارد کن. پیش از ارسال، جزئیات پروژه رو با دقت بررسی کن.</div>
+          <form id="offerForm">
+            <div class="form-group">
+              <label for="offerPrice">قیمت پیشنهادی (تومان)</label>
+              <input id="offerPrice" name="price" type="number" min="1" step="1" required placeholder="مثلاً ۵۰۰۰۰۰">
+            </div>
+            <div class="form-group">
+              <label for="offerTime">زمان موردنیاز</label>
+              <input id="offerTime" name="deliveryTime" required maxlength="80" placeholder="مثلاً ۵ روز">
+            </div>
+            <div class="form-group">
+              <label for="offerMessage">پیام و توضیحات</label>
+              <textarea id="offerMessage" name="message" required maxlength="1000" placeholder="توضیح بده چطور پروژه رو انجام می‌دی..."></textarea>
+            </div>
+            <button class="btn btn-primary btn-block" type="submit" ${isOpen ? "" : "disabled"}>
+              ارسال پیشنهاد
+            </button>
+          </form>
+          <p class="small text-muted" style="margin:14px 0 0;">این نسخه نمایشی است و ارسال پیشنهاد به معنی قرارداد یا پرداخت واقعی نیست.</p>
+        </section>
 
-    document.title = project.title + " | Solver";
-    document.getElementById("projectTitle").textContent = project.title;
-    document.getElementById("projectCategory").textContent =
-      categoryNames[project.category] || "سایر";
-    document.getElementById("projectBudget").textContent =
-      project.budget > 0 ? formatMoney(project.budget) : "تعیین نشده";
-    document.getElementById("projectDeadline").textContent =
-      project.deadline > 0 ? project.deadline.toLocaleString("fa-IR") + " روز" : "تعیین نشده";
-    document.getElementById("projectDescription").textContent = project.description;
+        <a class="btn btn-outline btn-block" href="services.html">بازگشت به فهرست پروژه‌ها</a>
+      </aside>
+    `;
 
-    function getOffers() {
-      const offers = readStorage("solverOffers", []);
-      return Array.isArray(offers) ? offers : [];
-    }
+    renderOffers(offers);
 
-    function projectOffers() {
-      return getOffers().filter(offer => String(offer.projectId) === project.id);
-    }
-
-    function renderOffers() {
-      const offers = projectOffers();
-      document.getElementById("projectOffers").textContent =
-        offers.length.toLocaleString("fa-IR") + " پیشنهاد";
-
-      const list = document.getElementById("offersList");
-
-      if (offers.length === 0) {
-        list.innerHTML = '<p class="muted mb-0">هنوز پیشنهادی در این مرورگر ثبت نشده است.</p>';
-        return;
-      }
-
-      list.innerHTML = "";
-
-      offers.forEach(offer => {
-        const card = document.createElement("div");
-        card.className = "border rounded-4 p-3 mb-3";
-
-        const heading = document.createElement("div");
-        heading.className = "d-flex flex-wrap justify-content-between gap-2";
-
-        const name = document.createElement("strong");
-        name.textContent = offer.name;
-
-        const price = document.createElement("strong");
-        price.className = "text-success";
-        price.textContent = formatMoney(offer.price);
-
-        heading.append(name, price);
-
-        const days = document.createElement("p");
-        days.className = "small muted mt-2 mb-1";
-        days.textContent = "زمان پیشنهادی: " + Number(offer.days).toLocaleString("fa-IR") + " روز";
-
-        const message = document.createElement("p");
-        message.className = "mb-0";
-        message.textContent = offer.message;
-
-        card.append(heading, days, message);
-        list.appendChild(card);
-      });
-    }
-
-    document.getElementById("offerForm").addEventListener("submit", function(event) {
+    const form = document.getElementById("offerForm");
+    form.addEventListener("submit", (event) => {
       event.preventDefault();
 
-      if (project.id === "not-found") return;
-
-      const name = document.getElementById("offerName").value.trim();
-      const price = Number(document.getElementById("offerPrice").value);
-      const days = Number(document.getElementById("offerDays").value);
-      const message = document.getElementById("offerMessage").value.trim();
-      const feedback = document.getElementById("offerFeedback");
-
-      if (!name || !message || !Number.isFinite(price) || price < 1000 ||
-          !Number.isInteger(days) || days < 1 || days > 365) {
-        feedback.className = "alert alert-danger mt-3";
-        feedback.textContent = "لطفاً همه اطلاعات را درست وارد کن.";
+      if (project.demo) {
+        showToast("این پروژه نمونه است؛ برای ثبت پیشنهاد واقعی، یک پروژه ثبت‌شده را انتخاب کن.", "info", 4500);
         return;
       }
 
-      const offers = getOffers();
+      if (!isOpen) {
+        showToast("پذیرش پیشنهاد برای این پروژه بسته است.", "error");
+        return;
+      }
 
-      offers.push({
-        id: "offer-" + Date.now(),
-        projectId: project.id,
-        name,
-        price,
-        days,
-        message,
-        createdAt: new Date().toISOString()
-      });
+      const formData = new FormData(form);
+      const price = Number(formData.get("price"));
+      const deliveryTime = String(formData.get("deliveryTime") || "").trim();
+      const message = String(formData.get("message") || "").trim();
+
+      if (!Number.isFinite(price) || price <= 0 || !deliveryTime || !message) {
+        showToast("لطفاً همه فیلدها را به‌درستی تکمیل کن.", "error");
+        return;
+      }
+
+      let savedProjects = [];
 
       try {
-        localStorage.setItem("solverOffers", JSON.stringify(offers));
+        const data = JSON.parse(localStorage.getItem("solverProjects") || "[]");
+        if (Array.isArray(data)) savedProjects = data;
       } catch (error) {
-        feedback.className = "alert alert-danger mt-3";
-        feedback.textContent = "ذخیره‌سازی انجام نشد. فضای ذخیره‌سازی مرورگر را بررسی کن.";
+        showToast("خواندن اطلاعات پروژه ممکن نیست.", "error");
         return;
       }
 
-      feedback.className = "alert alert-success mt-3";
-      feedback.textContent = "پیشنهادت در این مرورگر ذخیره شد.";
+      const index = savedProjects.findIndex(
+        (item) => String(item.id) === String(project.id)
+      );
 
-      this.reset();
-      renderOffers();
+      if (index === -1) {
+        showToast("پروژه در اطلاعات ذخیره‌شده پیدا نشد.", "error");
+        return;
+      }
+
+      const offer = {
+        id: `offer-${Date.now()}`,
+        projectId: project.id,
+        price,
+        deliveryTime,
+        message,
+        status: "pending",
+        createdAt: new Date().toISOString()
+      };
+
+      if (!Array.isArray(savedProjects[index].offers)) {
+        savedProjects[index].offers = [];
+      }
+
+      savedProjects[index].offers.push(offer);
+
+      try {
+        localStorage.setItem("solverProjects", JSON.stringify(savedProjects));
+
+        const allOffers = JSON.parse(localStorage.getItem("solverOffers") || "[]");
+        const normalizedOffers = Array.isArray(allOffers) ? allOffers : [];
+        normalizedOffers.unshift(offer);
+        localStorage.setItem("solverOffers", JSON.stringify(normalizedOffers));
+      } catch (error) {
+        showToast("ذخیره پیشنهاد انجام نشد.", "error");
+        return;
+      }
+
+      showToast("پیشنهادت با موفقیت ثبت شد.", "success");
+      form.reset();
+      renderOffers(savedProjects[index].offers);
     });
+  }
 
-    renderOffers();
-  </script>
+  function renderOffers(offers) {
+    const list = document.getElementById("offerList");
+    if (!list) return;
+
+    if (!offers.length) {
+      list.innerHTML = `
+        <div class="empty-state">
+          <h3>هنوز پیشنهادی ثبت نشده</h3>
+          <p>اگر این پروژه متعلق به شماست، پیشنهادهای ثبت‌شده در ادامه نمایش داده می‌شوند.</p>
+        </div>
+      `;
+      return;
+    }
+
+    list.innerHTML = offers.map((offer) => `
+      <article class="offer-item">
+        <div class="d-flex align-center justify-between flex-wrap gap-1">
+          <h3>پیشنهاد همکاری</h3>
+          <span class="badge">${money(offer.price)}</span>
+        </div>
+        <div class="offer-meta">
+          <span>زمان انجام: ${escapeHTML(offer.deliveryTime || "توافقی")}</span>
+          <span>وضعیت: ${offer.status === "accepted" ? "پذیرفته‌شده" : offer.status === "rejected" ? "ردشده" : "در انتظار بررسی"}</span>
+        </div>
+        <p style="margin:12px 0 0;">${escapeHTML(offer.message || "")}</p>
+      </article>
+    `).join("");
+  }
+
+  const project = getProject();
+
+  if (!project) {
+    renderNotFound();
+  } else {
+    renderProject(project);
+  }
+})();
+</script>
+
 </body>
 </html>
