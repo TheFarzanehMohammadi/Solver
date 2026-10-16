@@ -1,0 +1,257 @@
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>سبد خرید | Solver</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    body { background: #faf9fd; }
+    .cart-page { max-width: 1100px; margin: 45px auto 80px; padding: 0 20px; }
+    .cart-page h1 { font-weight: 800; font-size: 32px; margin-bottom: 10px; }
+    .cart-layout { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(270px, 1fr); gap: 24px; margin-top: 30px; align-items: start; }
+    .cart-panel, .summary-panel { background: white; border: 1px solid #eee8f7; border-radius: 20px; padding: 25px; }
+    .cart-item { display: grid; grid-template-columns: 65px minmax(0, 1fr) auto; gap: 16px; align-items: center; padding: 20px 0; border-bottom: 1px solid #f0edf5; }
+    .cart-item:first-child { padding-top: 0; }
+    .item-icon { height: 62px; width: 62px; display: grid; place-items: center; border-radius: 16px; background: #f0eaff; font-size: 27px; }
+    .item-title { font-size: 16px; font-weight: 800; margin-bottom: 6px; }
+    .item-price { color: #7047eb; font-size: 14px; font-weight: 700; }
+    .item-actions { display: flex; align-items: center; gap: 8px; margin-top: 12px; }
+    .qty-btn { width: 30px; height: 30px; border: 1px solid #e5dfef; border-radius: 8px; background: white; cursor: pointer; }
+    .qty-value { min-width: 25px; text-align: center; }
+    .remove-btn { background: transparent; border: 0; color: #d14e62; cursor: pointer; font-family: inherit; font-size: 13px; margin-right: 8px; }
+    .line-total { font-weight: 800; white-space: nowrap; }
+    .summary-panel h2 { font-size: 20px; font-weight: 800; margin-bottom: 22px; }
+    .summary-row { display: flex; justify-content: space-between; gap: 12px; margin: 16px 0; color: #6f687d; font-size: 14px; }
+    .summary-total { border-top: 1px solid #eee8f7; padding-top: 20px; color: #282139; font-weight: 800; font-size: 17px; }
+    .checkout-btn { display: block; width: 100%; margin-top: 22px; padding: 14px; border-radius: 12px; background: #7047eb; color: white; border: 0; font-family: inherit; font-weight: 700; text-align: center; text-decoration: none; cursor: pointer; }
+    .checkout-btn:hover { background: #5d35d3; color: white; }
+    .continue-link { display: block; text-align: center; margin-top: 16px; color: #7047eb; text-decoration: none; font-size: 14px; }
+    .empty-cart { display: none; text-align: center; padding: 35px 15px; }
+    .empty-icon { font-size: 55px; margin-bottom: 15px; }
+    .demo-note { font-size: 12px; color: #898398; line-height: 1.9; margin-top: 18px; }
+    @media(max-width:750px) {
+      .cart-layout { grid-template-columns: 1fr; }
+      .cart-page h1 { font-size: 27px; }
+      .cart-panel, .summary-panel { padding: 20px; }
+    }
+    @media(max-width:430px) {
+      .cart-item { grid-template-columns: 48px minmax(0, 1fr); gap: 12px; }
+      .item-icon { width: 48px; height: 48px; font-size: 22px; }
+      .line-total { grid-column: 2; }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="border-bottom bg-white">
+    <nav class="navbar navbar-expand-lg container py-3">
+      <a class="navbar-brand fw-bold" href="index.html" style="color:#7047eb;">Solver <span class="text-dark">| سالور</span></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-label="باز کردن منو">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNavbar">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 gap-lg-2">
+          <li class="nav-item"><a class="nav-link" href="index.html">خانه</a></li>
+          <li class="nav-item"><a class="nav-link" href="services.html">خدمات</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">درباره ما</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">تماس با ما</a></li>
+        </ul>
+        <a href="login.html" class="btn btn-outline-secondary btn-sm">ورود</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="cart-page">
+    <h1>سبد خرید 🛒</h1>
+    <p class="text-secondary">خدمات انتخاب‌شده رو بررسی کن و برای ادامهٔ سفارش آماده شو.</p>
+
+    <div class="cart-layout">
+      <section class="cart-panel" aria-label="خدمات انتخاب‌شده">
+        <div id="cartItems"></div>
+
+        <div class="empty-cart" id="emptyCart">
+          <div class="empty-icon">🛍️</div>
+          <h2 class="h5 fw-bold">سبد خریدت خالیه!</h2>
+          <p class="text-secondary">هنوز خدمتی انتخاب نکردی. می‌تونی از فهرست خدمات شروع کنی.</p>
+          <a href="services.html" class="checkout-btn">مشاهدهٔ خدمات</a>
+        </div>
+
+        <a href="services.html" class="continue-link">← ادامهٔ مشاهدهٔ خدمات</a>
+      </section>
+
+      <aside class="summary-panel">
+        <h2>خلاصهٔ سفارش</h2>
+        <div class="summary-row">
+          <span>تعداد خدمات</span>
+          <span id="itemCount">۰</span>
+        </div>
+        <div class="summary-row">
+          <span>جمع مبلغ</span>
+          <span id="subtotal">۰ تومان</span>
+        </div>
+        <div class="summary-row">
+          <span>هزینهٔ اضافی</span>
+          <span>۰ تومان</span>
+        </div>
+        <div class="summary-row summary-total">
+          <span>مبلغ نهایی</span>
+          <span id="total">۰ تومان</span>
+        </div>
+
+        <a href="checkout.html" class="checkout-btn" id="checkoutBtn">ادامهٔ ثبت سفارش</a>
+        <p class="demo-note">این نسخهٔ نمایشی است. مبلغ‌ها آزمایشی‌اند و هیچ پرداخت واقعی انجام نمی‌شود.</p>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="py-4 border-top bg-white">
+    <div class="container d-flex justify-content-between flex-wrap gap-2">
+      <a href="index.html" class="fw-bold text-decoration-none" style="color:#7047eb;">Solver | سالور</a>
+      <span class="text-secondary small">مهارتت، راه‌حل توئه.</span>
+      <a href="contact.html" class="text-secondary small">تماس با ما</a>
+    </div>
+  </footer>
+
+  <script>
+    const cartItems = document.getElementById('cartItems');
+    const emptyCart = document.getElementById('emptyCart');
+    const itemCount = document.getElementById('itemCount');
+    const subtotal = document.getElementById('subtotal');
+    const total = document.getElementById('total');
+    const checkoutBtn = document.getElementById('checkoutBtn');
+
+    const serviceIcons = {
+      'طراحی رزومه حرفه‌ای': '📄',
+      'کمک در برنامه‌نویسی': '💻',
+      'تایپ و ویرایش متن': '⌨️',
+      'ترجمه متن انگلیسی': '🌐'
+    };
+
+    function readCart() {
+      try {
+        const data = JSON.parse(localStorage.getItem('solverCart') || '[]');
+        return Array.isArray(data) ? data.filter(item =>
+          item && typeof item.title === 'string' &&
+          Number.isFinite(Number(item.price)) && Number(item.price) >= 0
+        ).map(item => ({
+          title: item.title,
+          price: Number(item.price),
+          quantity: Math.max(1, Math.floor(Number(item.quantity) || 1))
+        })) : [];
+      } catch {
+        return [];
+      }
+    }
+
+    function saveCart(cart) {
+      localStorage.setItem('solverCart', JSON.stringify(cart));
+    }
+
+    function formatPrice(price) {
+      return Number(price).toLocaleString('fa-IR') + ' تومان';
+    }
+
+    function renderCart() {
+      const cart = readCart();
+      cartItems.replaceChildren();
+
+      emptyCart.style.display = cart.length ? 'none' : 'block';
+      checkoutBtn.style.display = cart.length ? 'block' : 'none';
+
+      let count = 0;
+      let sum = 0;
+
+      cart.forEach((item, index) => {
+        count += item.quantity;
+        sum += item.price * item.quantity;
+
+        const row = document.createElement('article');
+        row.className = 'cart-item';
+
+        const icon = document.createElement('div');
+        icon.className = 'item-icon';
+        icon.textContent = serviceIcons[item.title] || '🎓';
+
+        const info = document.createElement('div');
+        const title = document.createElement('h2');
+        title.className = 'item-title';
+        title.textContent = item.title;
+
+        const price = document.createElement('div');
+        price.className = 'item-price';
+        price.textContent = formatPrice(item.price) + ' برای هر خدمت';
+
+        const actions = document.createElement('div');
+        actions.className = 'item-actions';
+
+        const decrease = document.createElement('button');
+        decrease.className = 'qty-btn';
+        decrease.type = 'button';
+        decrease.textContent = '−';
+        decrease.setAttribute('aria-label', 'کاهش تعداد');
+        decrease.addEventListener('click', () => updateQuantity(index, -1));
+
+        const quantity = document.createElement('span');
+        quantity.className = 'qty-value';
+        quantity.textContent = item.quantity.toLocaleString('fa-IR');
+
+        const increase = document.createElement('button');
+        increase.className = 'qty-btn';
+        increase.type = 'button';
+        increase.textContent = '+';
+        increase.setAttribute('aria-label', 'افزایش تعداد');
+        increase.addEventListener('click', () => updateQuantity(index, 1));
+
+        const remove = document.createElement('button');
+        remove.className = 'remove-btn';
+        remove.type = 'button';
+        remove.textContent = 'حذف';
+        remove.addEventListener('click', () => removeItem(index));
+
+        actions.append(decrease, quantity, increase, remove);
+        info.append(title, price, actions);
+
+        const lineTotal = document.createElement('div');
+        lineTotal.className = 'line-total';
+        lineTotal.textContent = formatPrice(item.price * item.quantity);
+
+        row.append(icon, info, lineTotal);
+        cartItems.appendChild(row);
+      });
+
+      itemCount.textContent = count.toLocaleString('fa-IR');
+      subtotal.textContent = formatPrice(sum);
+      total.textContent = formatPrice(sum);
+    }
+
+    function updateQuantity(index, change) {
+      const cart = readCart();
+      if (!cart[index]) return;
+      cart[index].quantity += change;
+      if (cart[index].quantity <= 0) {
+        cart.splice(index, 1);
+      }
+      saveCart(cart);
+      renderCart();
+    }
+
+    function removeItem(index) {
+      const cart = readCart();
+      cart.splice(index, 1);
+      saveCart(cart);
+      renderCart();
+    }
+
+    renderCart();
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
