@@ -1,0 +1,76 @@
+/* تنظیمات کلی */
+body {
+    font-family: Tahoma, Arial, sans-serif;
+    background-color: #faf8fc;
+    color: #333333;
+}
+
+/* منوی سایت */
+.navbar {
+    padding: 15px;
+}
+
+.navbar-brand {
+    color: #6846a5;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.nav-link {
+    color: #514b5e;
+}
+
+/* عنوان ها */
+h1, h2 {
+    color: #56378b;
+    font-weight: bold;
+}
+
+h1 {
+    font-size: 38px;
+}
+
+h2 {
+    font-size: 28px;
+}
+
+/* بخش معرفی */
+.container.text-center p {
+    color: #716b7b;
+    line-height: 2;
+}
+
+/* دکمه شروع */
+.btn-primary {
+    background-color: #7652b5;
+    border-color: #7652b5;
+    border-radius: 8px;
+    padding: 10px 25px;
+}
+
+/* کارت های خدمات */
+.card {
+    border: 1px solid #eee8f5;
+    border-radius: 12px;
+    background-color: #ffffff;
+}
+
+.card-body {
+    padding: 25px;
+}
+
+.card-title {
+    color: #6846a5;
+    font-weight: bold;
+}
+
+.card-text {
+    color: #77717f;
+    line-height: 1.8;
+}
+
+/* پایین صفحه */
+.container-fluid {
+    color: #5d536c;
+    padding: 30px;
+}
