@@ -74,3 +74,19 @@ h2 {
     color: #5d536c;
     padding: 30px;
 }
+
+/* بنر اصلی */
+.container.py-5 {
+    background-color: #f3eaff;
+    border-radius: 15px;
+}
+
+.container.py-5 h1 {
+    font-size: 38px;
+    color: #56378b;
+}
+
+.container.py-5 p {
+    font-size: 17px;
+    line-height: 2;
+}
