@@ -1,11 +1,11 @@
-/* تنظیمات کلی */
+/* تنظیمات صفحه */
 body {
     font-family: Tahoma, Arial, sans-serif;
     background-color: #faf8fc;
     color: #333333;
 }
 
-/* منوی سایت */
+/* منوی بالا */
 .navbar {
     padding: 15px;
 }
@@ -34,13 +34,13 @@ h2 {
     font-size: 28px;
 }
 
-/* بخش معرفی */
+/* متن ها */
 .container.text-center p {
     color: #716b7b;
     line-height: 2;
 }
 
-/* دکمه شروع */
+/* دکمه ها */
 .btn-primary {
     background-color: #7652b5;
     border-color: #7652b5;
@@ -75,18 +75,18 @@ h2 {
     padding: 30px;
 }
 
-/* بنر اصلی */
-.container.py-5 {
+/* بخش اول صفحه */
+.banner {
     background-color: #f3eaff;
     border-radius: 15px;
 }
 
-.container.py-5 h1 {
+.banner h1 {
     font-size: 38px;
     color: #56378b;
 }
 
-.container.py-5 p {
+.banner p {
     font-size: 17px;
     line-height: 2;
 }
